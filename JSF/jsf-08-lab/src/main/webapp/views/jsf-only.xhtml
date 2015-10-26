@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <h:outputScript library="js" name="jquery.min-1.11.2.js" />
+        <h:outputScript library="js" name="client-common.js" />
+        <h:outputScript library="js" name="client-jsf.js" />
+        <title>JSF Table View</title>
+    </h:head>
+    <h:body>
+        
+      <h1>JSF Table View</h1>
+        
+      <div>
+       <table class="ui-panelgrid ui-widget">
+          <ui:repeat var="dataValue" value="#{userData.getData()}" varStatus="stat">
+            <tr class="ui-widget-content">
+              <ui:repeat var="valueItem" value="#{dataValue.getValues()}" varStatus="status">
+                <td class="ui-panelgrid-cell" onclick="setRowCol('#{stat.index}','#{status.index}','#{valueItem}');">#{valueItem}</td>
+              </ui:repeat>
+            </tr>
+          </ui:repeat>
+       </table>  
+      </div>
+      <br/>
+      
+      <h:form>
+         <h:panelGrid columns="2" styleClass="itx-panel-grid">
+            <h:outputLabel value="Row"/>
+            <h:inputText id="rowId" styleClass="rowId" value="#{userData.rowId}"/>
+            
+            <h:outputLabel value="Col"/>
+            <h:inputText id="colId" styleClass="colId" value="#{userData.colId}"/>
+
+            <h:outputLabel value="Data"/>
+            <h:inputText id="dataId" styleClass="dataId" value="#{userData.entry}"/>
+            
+            <h:commandButton value="Set Value" action="#{userData.updateData()}" />
+         </h:panelGrid>
+      </h:form>
+      <br/>   
+      
+      <h:form>
+        <h:commandButton value="Logout" action="#{userAccess.doLogoutAction()}" />
+      </h:form>
+      <br/>
+      
+      <a href="jsf-javascript.xhtml">JSF + JS table data view</a>
+                 
+    </h:body>
+</html>

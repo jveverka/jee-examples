@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <title>JSF + JS demo</title>
+    </h:head>
+    <h:body>
+        
+        <h1>JSF + JS demo</h1>
+        
+        <p> 
+           This demo contains two functionally identical JSF views.<br/>
+           <b>JSF + JS</b> table data view, combination of JavaScript and JSF technology to display table data.<br/> 
+           <b>JSF only</b> table data view, pure JSF view to display same table data.<br/> 
+        </p>
+        
+        <ul>
+          <li><a href="jsf-javascript.xhtml">JSF + JS table data view</a></li>
+          <li><a href="jsf-only.xhtml">JSF only table data view</a></li>
+        </ul>
+
+        <p> 
+          Data is session scoped. Each session has same start data.
+          Data is not persisted. 
+        </p>
+
+    </h:body>
+</html>

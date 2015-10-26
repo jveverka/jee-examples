@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <h:outputScript library="js" name="jquery.min-1.11.2.js" />
+        <h:outputScript library="js" name="client-common.js" />
+        <h:outputScript library="js" name="client-js.js" />
+        <title>JSF-JavaScript Table View</title>
+    </h:head>
+    <h:body>
+        
+        <h1>JSF-JavaScript Table View</h1>
+        
+        <div id="tablePlaceHolder"/>
+        <br/>
+        
+        <table>
+          <tr>
+            <td>Row</td><td><input type="text" value="0" class="rowId"/></td>
+          </tr>
+          <tr>
+            <td>Col</td><td><input type="text" value="0" class="colId"/></td>
+          </tr>
+          <tr>
+            <td>Data</td><td><input type="text" value="" class="dataId"/></td>
+          </tr>
+        </table>
+        <button onclick="setValue();">Set Value</button>
+        <br/>
+        <br/>
+
+        <h:form>
+          <h:commandButton value="Logout" action="#{userAccess.doLogoutAction()}" />
+        </h:form>
+        <br/>
+        
+        <a href="jsf-only.xhtml">JSF only table data view</a>
+        <br/>
+                
+    </h:body>
+</html>

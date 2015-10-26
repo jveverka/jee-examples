@@ -1,0 +1,13 @@
+Demo JSF project integrating JavaScript component into JSF view
+Java scrips comoponent uses same EJB business logic as JSF beans and views would do.
+login at:
+http://localhost:8080/jsf-08-lab/ (any user name and password is accepted)
+
+packages: 
+ite.examples.services - backend EJB services
+ite.examples.ui - JSF ui beans + request filter
+ite.examples.ws - REST ws API for java script clients and automated tests
+ite.examples.ws.UserWsService - REST service for external HTTP POST client 
+
+ite.examples.test.UnitTests - blackbox unit tests utilizing REST APIs
+
