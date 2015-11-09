@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: 
+dependencies: org.infinispan, org.infinispan.commons 

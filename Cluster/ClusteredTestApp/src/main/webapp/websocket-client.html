@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>WebSocket Test Client</title>
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/css/style-default.css" rel="stylesheet">
+<script src="resources/js/jquery.min-1.11.2.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/common-client.js"></script>
+<script src="resources/js/websocket-client.js"></script>
+</head>
+
+<body class="body-websocket">
+	<div class="container">
+		<h1>WebSocket Test Client</h1>
+
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+		       Server Identity / Active WebSocket sessions 
+		       <span class="label label-default"
+						id="sessionCountTxt">?</span> 
+		    </div>
+		    <div class="panel-body">
+				<div class="row">
+					<div class="col-md-2">ServerId</div>
+					<div class="col-md-8" id="myServerId">?</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">HostName</div>
+					<div class="col-md-8" id="myServerHost">?</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">My SessionId</div>
+					<div class="col-md-8" id="mySessionId">?</div>
+				</div>
+		    </div>
+            <form id="sessionListDiv"></form>
+			<div class="panel-footer">
+				<input onclick="connect()" class="btn btn-default"
+					id="btnConnect" value="Connect" type="button" />
+                <input onclick="disconnect()" class="btn btn-default" 
+                    id="btnDisconnect" value="Disconnect" type="button" disabled />					
+			</div>
+		</div>
+		    
+		<div id="messageForm" style="display: none;" class="panel panel-default">
+		    <div class="panel-heading">
+		       Send Message
+		    </div>
+		    <div class="panel-body">
+			<form>
+				<div class="form-group" id="userIdFormGroup">
+						<label for="userIdInputId">UserId (from)</label> <input
+							class="form-control" type="text" name="userIdInput"
+							id="userIdInputId" size="42">
+				</div>
+				<div class="form-group" id="sessionIdFormGroup">
+					<label for="sessionIdInputId">SessionId (target session)</label>
+					<input class="form-control" type="text" name="sessionIdInput"
+							id="sessionIdInputId" size="42">
+				</div>
+				<div class="form-group" id="messageFormGroup">
+					<label for="messageInputId">Message</label> <input
+							class="form-control" type="text" name="messageInput"
+							id="messageInputId" size="42">
+				</div>
+				<input class="btn btn-default" onclick="sendMessage()" id="btnSend" value="Send"
+					type="button" disabled />
+			</form>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+		       Messages
+		    </div>
+		    <div id="messageLog" class="panel-body">
+		    </div>
+		</div>
+
+	</div>
+</body>
+</html>

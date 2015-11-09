@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Admin REST Test Client</title>
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/css/style-default.css" rel="stylesheet">
+<script src="resources/js/jquery.min-1.11.2.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/common-client.js"></script>
+<script src="resources/js/admin-rest-client.js"></script>
+</head>
+
+<body class="body-admin-rest">
+	<div class="container">
+		<h1>Admin REST Client - Stateful Session</h1>
+
+		<div class="panel panel-default" style="visibility: hidden; display: none;" id="loginPanel">
+			<div class="panel-heading">
+				Server Identity / User Identity 
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-2">ServerId</div>
+					<div class="col-md-8" id="serverIdLoginTxt">?</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">HostName</div>
+					<div class="col-md-8" id="hostNameLoginTxt">?</div>
+				</div>
+				<form>
+					<div class="form-group" id="userIdFormGroup">
+						<label for="userIdInputId">UserId (any)</label> <input
+							class="form-control" type="text" name="userIdInput"
+							id="userIdInputId" size="42">
+					</div>
+					<div class="form-group" id="passwordIdFormGroup">
+						<label for="passwordIdFormGroup">Password (secret)</label> <input
+							class="form-control" type="password" name="passwordIdInput"
+							id="passwordIdInputId" size="42">
+					</div>
+				</form>	
+			</div>
+			<div class="panel-footer">
+				<input onclick="loginAction()" class="btn btn-default"
+					id="btnLogin" value="Login" type="button" />
+			</div>
+		</div>
+
+		<div class="panel panel-default" style="visibility: hidden; display: none;" id="logoutPanel">
+			<div class="panel-heading">
+				Server Identity / User Identity 
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-2">ServerId</div>
+					<div class="col-md-8" id="serverIdLogoutTxt">?</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">HostName</div>
+					<div class="col-md-8" id="hostNameIdLogoutTxt">?</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">UserId</div>
+					<div class="col-md-8" id="userIdLogoutTxt">?</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">Logged time</div>
+					<div class="col-md-8" id="loggedTimeIdLogoutTxt">?</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<input onclick="logoutAction()" class="btn btn-default"
+					id="btnLogout" value="Logout" type="button" />
+			</div>
+		</div>
+
+		<div class="panel panel-default" style="visibility: hidden; display: none;" id="activeSessionsPanel">
+			<div class="panel-heading">
+				Active WebSocket sessions <span class="label label-default"
+						id="sessionCountTxt">?</span>
+			</div>
+			<div class="panel-body">
+                <form id="sessionListDiv"></form>
+			</div>
+			<div class="panel-footer">
+				<input onclick="getSessionList()" class="btn btn-default"
+					id="btnReload" value="Reload" type="button" />
+			</div>
+		</div>	
+		
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+
+.body-rest {
+	background-color: #c0efa6;
+}
+
+.body-admin-rest {
+	background-color: #fbe683;
+}
+
+.body-websocket {
+	background-color: #a6d1ef;
+}
+
+.itx-panel-grid td {
+	padding: 4px;
+}
+
+.itx-panel-grid {
+	border-collapse: collapse;
+}

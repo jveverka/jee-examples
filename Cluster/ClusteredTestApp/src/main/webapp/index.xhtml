@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	</f:facet>
+	<title>Cluster App Demo</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style-default.css" />
+	<h:outputScript library="js" name="jquery.min-1.11.2.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+</h:head>
+<h:body>
+	<div class="container">
+		<h1>Cluster App Demo</h1>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a class="btn btn-default" role="button" href="websocket-client.html">Web socket client</a> 
+				<a class="btn btn-default" role="button" href="rest-client.html">REST client</a> 
+				<a class="btn btn-default" role="button" href="admin-rest-client.html">Admin REST client</a>
+			</div>
+
+			<h:panelGrid columns="2" styleClass="table itx-panel-grid">
+				<h:outputLabel value="HostName: " />
+				<h:outputLabel value="#{configBean.hostname}" />
+				<h:outputLabel value="ServerId: " />
+				<h:outputLabel value="#{configBean.serverId}" />
+			</h:panelGrid>
+		</div>
+	</div>
+</h:body>
+</html>

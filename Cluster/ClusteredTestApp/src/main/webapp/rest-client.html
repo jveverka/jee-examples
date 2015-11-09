@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>REST Test Client</title>
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/css/style-default.css" rel="stylesheet">
+<script src="resources/js/jquery.min-1.11.2.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/common-client.js"></script>
+<script src="resources/js/rest-client.js"></script>
+</head>
+
+<body class="body-rest">
+	<div class="container">
+		<h1>REST Test Client</h1>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Server Identity / Active WebSocket sessions <span class="label label-default"
+						id="sessionCountTxt">?</span>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-2">ServerId</div>
+					<div class="col-md-8" id="serverIdTxt">?</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">HostName</div>
+					<div class="col-md-8" id="hostNameTxt">?</div>
+				</div>
+			</div>
+            <form id="sessionListDiv"></form>
+			<div class="panel-footer">
+				<input onclick="getSessionList()" class="btn btn-default"
+					id="btnConnect" value="Get Sessions" type="button" />
+			</div>
+		</div>
+
+		<div id="messageForm" style="visibility: hidden;"
+			class="panel panel-default">
+			<div class="panel-heading">
+				<h5>Send Message</h5>
+			</div>
+			<div class="panel-body">
+				<form>
+					<div class="form-group" id="userIdFormGroup">
+						<label for="userIdInputId">UserId (from)</label> <input
+							class="form-control" type="text" name="userIdInput"
+							id="userIdInputId" size="42">
+					</div>
+					<div class="form-group" id="sessionIdFormGroup">
+						<label for="sessionIdInputId">SessionId (target session)</label> <input
+							class="form-control" type="text" name="sessionIdInput"
+							id="sessionIdInputId" size="42">
+					</div>
+					<div class="form-group" id="messageFormGroup">
+						<label for="messageInputId">Message</label> <input
+							class="form-control" type="text" name="messageInput"
+							id="messageInputId" size="42">
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<input onclick="getSendDataMessageSync()" class="btn btn-default"
+								id="btnSendDataMessage" value="Send Message Sync" type="button" />
+						</div>
+						<div class="col-md-2">
+							<input onclick="getSendDataMessageAsync()"
+								class="btn btn-default" id="btnSendDataMessage"
+								value="Send Message Async" type="button" />
+						</div>
+						<div class="col-md-8">
+							Sync response: <span id="syncResponseTxt">?</span>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer">
+				Response status: <span id="responseTxt">?</span><br />
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
