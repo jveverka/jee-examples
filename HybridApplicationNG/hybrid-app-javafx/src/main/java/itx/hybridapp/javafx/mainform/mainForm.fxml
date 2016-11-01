@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="containerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="itx.hybridapp.javafx.mainform.MainFormController">
+   <top>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button fx:id="homeButton" mnemonicParsing="false" text="Home" />
+          <Button fx:id="devicesButton" mnemonicParsing="false" text="Devices" />
+          <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" />
+        </items>
+      </ToolBar>
+   </top>
+</BorderPane>

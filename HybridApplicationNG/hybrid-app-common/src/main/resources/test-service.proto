@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package useraccess;
+
+option java_package = "itx.hybridapp.common.protocols";
+option java_outer_classname = "TestServiceProtocol";
+
+message TestResultListRequest {
+}
+
+message TestResultListResponse {
+   repeated TestResult testResults = 1;
+}
+
+message TestJobRequest {
+   string wsSessionId = 1;
+   string payload = 2;
+   int32 repeat = 3;
+}
+
+message TestResult {
+   int32 testId = 1;
+   int64 started = 2;
+   int64 publishDuration = 3;
+   int64 duration = 4;
+   string status = 5;
+   string description = 6;
+   string protocol = 7;
+   string clientId = 8;
+   TestJobRequest request = 9;
+}
+

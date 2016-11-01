@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="deviceInfoPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="itx.hybridapp.javafx.devicesform.details.DeviceDetailsFormController">
+   <children>
+      <Label layoutX="32.0" layoutY="14.0" text="DeviceId">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="closeDeviceInfoButton" layoutX="32.0" layoutY="303.0" mnemonicParsing="false" text="Close" />
+      <Label fx:id="deviceIdLabel" layoutX="150.0" layoutY="14.0" text="NA">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="64.0" text="Temperature">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="84.0" text="Humidity">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="104.0" text="Pressure">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="temperatureIdLabel" layoutX="168.0" layoutY="64.0" text="NA">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="humidityIdLabel" layoutX="168.0" layoutY="84.0" text="NA">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="pressureIdLabel" layoutX="168.0" layoutY="104.0" text="NA">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="150.0" text="Control 0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="180.0" text="Control 1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="control0Value" layoutX="168.0" layoutY="150.0" prefHeight="21.0" prefWidth="77.0" styleClass="control-off" text=" OFF ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="control1Value" layoutX="168.0" layoutY="180.0" prefHeight="21.0" prefWidth="77.0" styleClass="control-off" text=" OFF ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="230.0" text="Button 0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="260.0" text="Button 1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="button0Value" layoutX="168.0" layoutY="230.0" prefHeight="21.0" prefWidth="77.0" styleClass="control-off" text=" OFF ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="button1Value" layoutX="168.0" layoutY="260.0" prefHeight="21.0" prefWidth="77.0" styleClass="control-off" text=" OFF ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="control0Button" layoutX="300.0" layoutY="228.0" mnemonicParsing="false" text="Set" />
+      <Button fx:id="control1Button" layoutX="300.0" layoutY="258.0" mnemonicParsing="false" text="Set" />
+      <Label layoutX="300.0" layoutY="64.0" text="℃">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="300.0" layoutY="84.0" text="\%">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="300.0" layoutY="104.0" text="kPa">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

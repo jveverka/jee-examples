@@ -1,0 +1,45 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+buildDir="build_gradle"
+
+eclipse {
+   wtp {
+      facet {
+          facet name: 'java', version: '1.8'
+          facet name: 'jst.web', version: '3.1'
+          facet name: 'wst.jsdt.web', version: '1.0'
+      }
+   }
+}
+ 
+sourceSets{  
+    main{  
+        java{  
+            srcDirs 'src/main/java'  
+        }
+    }  
+}  
+        
+repositories {
+   jcenter()
+   mavenLocal()
+   mavenCentral()
+}
+
+dependencies {
+   providedCompile 'javax:javaee-api:7.0'
+   compile 'com.google.code.gson:gson:2.7'
+   compile 'com.google.guava:guava:19.0'
+   compile 'com.google.protobuf:protobuf-java:3.0.2'
+   compile 'com.google.protobuf:protobuf-java-util:3.0.2'
+   compile 'itx.hybridapp.common:hybrid-app-common:1.0.0001'
+   testCompile "org.mockito:mockito-core:1.+"  
+}
+
+war {
+}
+

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>HybridApp</title>
+  <link rel="icon" href="images/icon-bootstrap.png">  
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/custom-style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <h1></h1>
+
+    <div class="panel panel-default invisible-on-load" id="loginContainer" >
+       <div class="panel-heading">
+          Hybrid App
+       </div>
+       <div class="panel-body">
+         <form>
+            <div class="form-group" id="userNameFormGroup">
+                <label for="userNameInputId">User Name</label> 
+                <input class="form-control" type="text" name="userNameInput"
+                       id="userNameInputId" size="42">
+            </div>
+            <div class="form-group" id="passwordFormGroup">
+                 <label for="passwordInputId">Password</label> 
+                 <input class="form-control" type="password" name="passwordInput"
+                        id="passwordInputId" size="42">
+            </div>
+         </form>           
+       </div>
+       <div class="panel-footer">
+            <input onclick="login()" class="btn btn-default"
+                    id="btnLogin" value="Login" type="button" />
+       </div>
+    </div>
+
+    <div class="panel panel-default invisible-on-load" id="dataContainer">
+       <div class="panel-heading">
+          <input onclick="showDataPanel('home');" class="btn btn-default"
+                    id="btnHome" value="Home" type="button" />
+          <input onclick="showDataPanel('admin');" class="btn btn-default"
+                    id="btnAdmin" value="Admin" type="button" />
+          <input onclick="showDataPanel('devices');" class="btn btn-default"
+                    id="btnDevices" value="Devices" type="button" />
+          <input onclick="showDataPanel('chat');" class="btn btn-default"
+                    id="btnChat" value="Chat" type="button" />
+          <input onclick="showDataPanel('test');" class="btn btn-default"
+                    id="btnTest" value="Test" type="button" />
+          <input onclick="logout()" class="btn btn-default"
+                    id="btnLogout" value="Logout" type="button" />
+       </div>
+       <div class="panel-body">
+       
+          <!-- HOME VIEW -->
+          <div id=homeDataTableWrapper>
+             <h2>Hybrid Application Demo</h2>
+             This is HTML5 client for Hybrid JEE application demo.<br/>
+             It is integrated with backed using REST and WebSocket APIs.<br/>
+             It uses "application/json" content-type for protocol.
+             <br/>
+             <br/>
+             <table class="table table-hover">  
+             <tr><td>UserName</td><td id="userNameHolder">NA</td></tr>
+             <tr><td>HttpSessionId</td><td id="httpSessionIdHolder">NA</td></tr>
+             <tr><td>WsSessionId</td><td id="wsSessionIdHolder">NA</td></tr>
+             <tr><td><strong>Test Requests: </strong></td><td id="testCounterId">0</td></tr>
+             </table>
+          </div>
+
+          <!-- ADMIN VIEW -->
+          <div id=adminDataTableWrapper class="invisible-on-load">
+            <div id="adminDataHolder"></div>
+          </div>
+
+          <!-- DEVICES VIEW -->
+          <div id=devicesDataTableWrapper class="invisible-on-load">
+             <div class="invisible-on-load" id="devicesInfoPanel">
+               <h2>Devices</h2>
+               <table class="table table-hover" id="devicesTable">
+                 <thead><tr><th>deviceId</th><th>WS Session</th><th>Connected</th></tr></thead>
+                 <tbody id="devicesTableBody"></tbody>
+               </table>
+             </div>
+             <div class="invisible-on-load" id="deviceInfoPanel">
+                <h4 id="deviceInfoHeader"></h4>
+                <table class="table table-hover">
+                   <thead><tr><th>data</th><th>value</th><th>unit</th></tr></thead>
+                   <tbody>
+                     <tr><td>Temperature</td><td id="temperatureValue"></td><td>&#8451;</td></tr>
+                     <tr><td>Humidity</td><td id="relativeHumidityValue"></td><td>%</td></tr>
+                     <tr><td>Pressure</td><td id="pressureValue"></td><td>kPa</td></tr>
+                     <tr>
+                        <td>Control 0</td>
+                        <td><h3><span class="label label-danger" id="control0Value">off</span></h3></td>
+                        <td>bool</td>
+                     </tr>
+                     <tr>   
+                        <td>Control 1</td>
+                        <td><h3><span class="label label-danger" id="control1Value">off</span></h3></td>
+                        <td>bool</td>
+                     </tr>   
+                     <tr>   
+                        <td>Button 0</td>
+                        <td><h3><span class="label label-danger" id="button0Value">off</span></h3></td>
+                        <td><input onclick="toggleControl(0);" class="btn btn-default" id="btnControl0" value="Set" type="button" /></td>
+                     </tr>   
+                     <tr>   
+                        <td>Button 1</td>
+                        <td><h3><span class="label label-danger" id="button1Value">off</span></h3></td>
+                        <td><input onclick="toggleControl(1);" class="btn btn-default" id="btnControl1" value="Set" type="button" /></td>
+                     </tr>   
+                   </tbody>
+                </table>
+                <div id="deviceTimeChart" class="panel chart-placeholder" ></div>
+                <input onclick="showDevicesList()" class="btn btn-default"
+                    id="btnDeviceInfo" value="Close" type="button" />
+                <input onclick="getSensorData()" class="btn btn-default"
+                    id="btnSensorData" value="Sensors" type="button" />
+                <input onclick="getDeviceInfo()" class="btn btn-default"
+                    id="btnReloadData" value="Reload" type="button" />
+             </div>
+          </div>
+
+          <!-- CHAT VIEW -->
+          <div id=chatDataTableWrapper class="invisible-on-load">
+            <div class="form-horizontal">
+                <div class="form-group">
+                   <label for="inputChatId" class="col-sm-2 control-label">ChatId</label>
+                   <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputChatId" placeholder="type chat id">
+                   </div>
+                </div>
+                <div class="form-group">
+                   <label for="inputChatList" class="col-sm-2 control-label">ChatList</label>
+                   <div class="col-sm-10">
+                      <select id="inputChatList" class="form-control" onchange="onChatIdSelect()"></select>
+                   </div>
+                </div>
+                <div class="form-group">
+                   <label for="inputChatMessageId" class="col-sm-2 control-label">Message</label>
+                   <div class="col-sm-8">
+                      <input type="text" class="form-control" id="inputChatMessageId" placeholder="message">
+                   </div>
+                   <div class="col-sm-2">
+                      <button type="submit" class="btn btn-default" onclick="submitChatMessage()">Submit</button>
+                   </div>
+                </div>
+            </div>
+            <table class="table table-hover">
+               <tbody id="chatMessages"></tbody>
+            </table>
+          </div>
+
+          <!-- TEST VIEW -->
+          <div id="testInfoPanel" class="invisible-on-load">
+            <div class="form-horizontal">
+                <div class="form-group">
+                   <label for="inputTestRepeatId" class="col-sm-2 control-label">Repeat</label>
+                   <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputTestRepeatId" placeholder="number of echo requests">
+                   </div>
+                </div>
+                <div class="form-group">
+                   <label for="inputTestPayloadId" class="col-sm-2 control-label">Payload</label>
+                   <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputTestPayloadId" placeholder="echo request payload">
+                   </div>
+                </div>   
+                <div class="form-group">
+                   <label for="inputTestWsList" class="col-sm-2 control-label">WSClient</label>
+                   <div class="col-sm-10">
+                      <select id="inputTestWsList" class="form-control" onchange="onWSTestSelect()"></select>
+                   </div>
+                </div>
+                <div class="form-group">
+                   <div class="col-sm-3">
+                   </div>
+                   <div class="progress col-sm-5">
+                      <div id="testProgressBarId" class="progress-bar progress-bar-striped" role="progressbar" 
+                      aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                      </div>
+                   </div>
+                   <div class="col-sm-2">
+                      <span id="runningTestCounterId" class="badge">0</span>
+                   </div>
+                   <div class="col-sm-2">
+                      <button type="submit" class="btn btn-default" onclick="submitTestJob()">Submit</button>
+                   </div>
+                </div>
+            </div>
+            <table class="table table-hover">
+               <thead>
+                 <th>id</th> 
+                 <th>send[ms]</th> 
+                 <th>total[ms]</th> 
+                 <th>status</th> 
+                 <th>repeat</th> 
+                 <th>protocol</th> 
+                 <th>client</th> 
+                 <th>msg/s</th> 
+               </thead>
+               <tbody id="testResults"></tbody>
+            </table>
+          </div>
+      
+       </div>
+       <div class="panel-footer">
+       </div>
+    </div>
+</div>  
+
+<div class="modal fade" id="offlineModalDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Session error</h4>
+      </div>
+      <div class="modal-body">
+        Sorry, connection to server has been closed.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="logoutOnWSDisconnect()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>    
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="../../resources/js/rest-api.js"></script>
+  <script src="../../resources/js/websockets.js"></script>
+  <script src="js/flot/jquery.flot.js"></script>
+  <script src="js/flot/jquery.flot.time.min.js"></script>
+  <script src="js/flot/jquery.flot.stack.min.js"></script>
+  <script src="js/flot-driver.js"></script>
+   
+  <script src="js/controls-common.js"></script>
+  <script src="js/controls-devices.js"></script>
+  <script src="js/controls-admin.js"></script>
+  <script src="js/controls-chat.js"></script>
+  <script src="js/controls-test.js"></script>
+  <script type="text/javascript">
+      $( document ).ready(function(){
+          startApplication();
+      }) 
+  </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package useraccess;
+
+option java_package = "itx.hybridapp.common.protocols";
+option java_outer_classname = "DeviceServiceProtocol";
+
+message RegisterDevice {
+   string deviceId = 1;
+}
+
+message DeviceInfo {
+   string deviceId = 1;
+   string sessionId = 2;
+   int64 connected = 3;
+}
+
+message DeviceListRequest {
+}
+
+message DeviceListResponse {
+   repeated DeviceInfo devices = 1;
+}
+
+message DeviceListChanged {
+}
+
+message GetStatusRequest {
+   string deviceId = 1;
+   string replyToWsSessionId = 2;
+}
+
+message SensorDataRequest {
+   string deviceId = 1;
+}
+
+message TimeSeriesDataRequest {
+   string deviceId = 1;
+}
+
+message TimeSeriesDataResponse {
+   string deviceId = 1;
+   int64 historyInterval = 2;
+   int64 timeStamp = 3;
+   repeated TimeDataHolder timeDataHolder = 4;
+}
+
+message GetStatusResponse {
+   string deviceId = 1;
+   string replyToWsSessionId = 2;
+   float temperature = 3;
+   float relativeHumidity = 4;
+   float pressure = 5;
+   repeated bool controlOutputs = 6;
+}
+
+message SetControlOutputRequest {
+   string deviceId = 1;
+   int32 pinId = 2;
+   bool state = 3;
+}
+
+message DeviceEvent {
+   string deviceId = 1;
+   oneof msg {
+       ButtonEvent buttonEvent = 2;
+       ControlOutputEvent controlOutputEvent = 3;
+       SensorEvent sensorEvent = 4;
+   }
+}
+
+message ButtonEvent {
+   int32 buttonId = 1;
+   bool state = 2;
+}
+
+message ControlOutputEvent {
+   int32 pinId = 1;
+   bool state = 2;
+}
+
+message SensorEvent {
+   int64 timeStamp = 1;
+   float temperature = 2;
+   float relativeHumidity = 3;
+   float pressure = 4;
+}
+
+message TimeDataHolder {
+   int64 timeStamp = 1;
+   float temperature = 2;
+   float relativeHumidity = 3;
+   float pressure = 4;
+}

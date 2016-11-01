@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="itx.hybridapp.javafx.homeform.HomeFormController">
+   <children>
+      <TextArea layoutX="14.0" layoutY="50.0" prefHeight="69.0" prefWidth="423.0" text="This is JavaFX client for Hybrid JEE application demo.&#10;It is integrated with backed using REST and WebSocket APIs.&#10;It uses &quot;application/protobuf&quot; content-type for protocol." />
+      <Label layoutX="14.0" layoutY="14.0" text="Hybrid Application Demo">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="16.0" layoutY="130.0" text="UserName" />
+      <Label layoutX="16.0" layoutY="153.0" text="HttpSessionId" />
+      <Label layoutX="16.0" layoutY="180.0" text="WsSessionId" />
+      <Label layoutX="16.0" layoutY="208.0" text="Test Requests" />
+      <Label fx:id="userNameLabel" layoutX="136.0" layoutY="130.0" text="NA" />
+      <Label fx:id="httpSessionLabel" layoutX="136.0" layoutY="153.0" text="NA" />
+      <Label fx:id="wsSessionLabel" layoutX="136.0" layoutY="180.0" text="NA" />
+      <Label fx:id="testResuestsLabel" layoutX="136.0" layoutY="208.0" text="NA" />
+   </children>
+</Pane>

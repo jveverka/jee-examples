@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package useraccess;
+
+option java_package = "itx.hybridapp.common.protocols";
+option java_outer_classname = "DataServiceProtocol";
+
+message TestRequest {
+    string data = 1;
+}
+
+message TestResponse {
+    string data = 1;
+}

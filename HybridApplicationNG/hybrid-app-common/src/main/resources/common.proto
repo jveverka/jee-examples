@@ -1,0 +1,76 @@
+
+syntax = "proto3";
+
+package useraccess;
+
+import public "user-access.proto";
+import public "data-service.proto";
+import public "device-service.proto";
+import public "chat-service.proto";
+import public "test-service.proto";
+
+option java_package = "itx.hybridapp.common.protocols";
+option java_outer_classname = "CommonAccessProtocol";
+
+message WrapperMessage {
+    oneof msg {
+       LoginRequest loginRequest = 1;
+       LoginResponse loginResponse = 2;
+       TestRequest testRequest = 3;
+       TestResponse testResponse = 4;
+       TopicSubscribe topicSubscribe = 5;
+       TopicUnsubscribe topicUnsubscribe = 6;
+       RegisterDevice registerDevice = 7;
+       GetStatusRequest getStatusRequest = 8;
+       GetStatusResponse getStatusResponse = 9;
+       SetControlOutputRequest setControlOutputRequest = 10;
+       DeviceEvent deviceEvent = 11;
+       DeviceListRequest deviceListRequest = 12;
+       DeviceListResponse deviceListResponse = 13;
+       DeviceListChanged deviceListChanged = 14;
+       TopicPublishMessage topicPublishMessage = 15;
+       WsSessionPublishMessage wsSessionPublishMessage = 16;
+       HttpSessionPublishMessage httpSessionPublishMessage = 17;
+       WsSessionPublishWithReplyMessage wsSessionPublishWithReplyMessage = 18;
+       SensorDataRequest sensorDataRequest = 19;
+       TimeSeriesDataRequest timeSeriesDataRequest = 20;
+       TimeSeriesDataResponse timeSeriesDataResponse = 21;
+       UserInfoData userInfoData = 22;
+       ChatListRequest chatListRequest = 23;
+       ChatListResponse chatListResponse = 24;
+       ChatHistoryRequest chatHistoryRequest = 25;
+       ChatHistoryResponse chatHistoryResponse = 26;
+       ChatPublishEvent chatPublishEvent = 27;
+       EchoData echoData = 28;
+       TestResultListRequest testResultListRequest = 29;
+       TestResultListResponse testResultListResponse = 30;
+       TestJobRequest testJobRequest = 31;
+    }
+}
+
+message TopicPublishMessage {
+    string topicId = 1;
+    WrapperMessage message = 2;
+}
+
+message WsSessionPublishMessage {
+    string wsSessionId = 1;
+    WrapperMessage message = 2;
+}
+
+message WsSessionPublishWithReplyMessage {
+    string wsSessionId = 1;
+    string replyToWsSessionId = 2;
+    WrapperMessage message = 3;
+}
+
+message HttpSessionPublishMessage {
+    string httpSessionId = 1;
+    WrapperMessage message = 2;
+}
+
+message EchoData {
+   int32 jobId = 1;
+   int32 ordinal = 2;
+   string payload = 3;
+}

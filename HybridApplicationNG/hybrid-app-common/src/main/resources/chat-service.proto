@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package useraccess;
+
+option java_package = "itx.hybridapp.common.protocols";
+option java_outer_classname = "ChatServiceProtocol";
+
+message ChatListRequest {
+}
+
+message ChatListResponse {
+    repeated string chatId = 1; 
+}
+
+message ChatHistoryRequest {
+    string chatId = 1;
+} 
+
+message ChatHistoryResponse {
+    string chatId = 1;
+    repeated ChatMessage messages = 2;
+}
+
+message ChatPublishEvent {
+    string chatId = 1;
+    ChatMessage message = 2;
+}
+ 
+message ChatMessage {
+    int64 timeStamp = 1;
+    string fromUser = 2;
+    string message = 3;
+}

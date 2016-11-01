@@ -1,0 +1,10 @@
+
+.control-off {
+	-fx-background-color: #d71010;
+	-fx-text-fill: white;
+}
+
+.control-on {
+	-fx-background-color: #18b71b;
+	-fx-text-fill: white;
+}

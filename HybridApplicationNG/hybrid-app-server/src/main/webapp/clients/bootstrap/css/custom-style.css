@@ -1,0 +1,10 @@
+
+.invisible-on-load {
+	visibility: hidden; 
+	display: none;
+}
+
+.chart-placeholder {
+   width: 100%;
+   height: 220px;
+}

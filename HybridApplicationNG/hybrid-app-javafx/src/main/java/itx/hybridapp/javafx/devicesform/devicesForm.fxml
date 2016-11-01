@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="devicesPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="itx.hybridapp.javafx.devicesform.DevicesFormController">
+   <children>
+      <TableView fx:id="devicesTable" layoutX="6.0" layoutY="7.0" prefHeight="307.0" prefWidth="582.0">
+        <columns>
+          <TableColumn fx:id="deviceIdCol" prefWidth="164.0" text="Device Id">
+          	 <!--<cellValueFactory><PropertyValueFactory property="deviceId" /></cellValueFactory>-->
+          </TableColumn>
+          <TableColumn fx:id="wsSessionIdCol" prefWidth="278.0" text="WS Session">
+             <!--<cellValueFactory><PropertyValueFactory property="wsSessionId" /></cellValueFactory>-->
+          </TableColumn>
+          <TableColumn fx:id="connectedCol" prefWidth="152.0" text="Connected">
+             <!--<cellValueFactory><PropertyValueFactory property="connected" /></cellValueFactory>-->
+          </TableColumn>
+        </columns>
+      </TableView>
+   </children>
+</Pane>

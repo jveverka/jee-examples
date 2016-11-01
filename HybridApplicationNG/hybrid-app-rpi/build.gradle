@@ -1,0 +1,70 @@
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'application'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+buildDir='build_gradle'
+
+version = '1.0.0001'
+group = 'itx.hybridapp.rpi'
+mainClassName = "itx.hybridapp.rpi.Main"
+
+eclipse {
+   wtp {
+      facet {
+          facet name: 'java', version: '1.8'
+      }
+   }
+}
+ 
+sourceSets{  
+    main{  
+        java{  
+            srcDirs 'src/main/java'  
+        }
+    }  
+}  
+        
+repositories {
+   mavenLocal()
+   mavenCentral()
+}
+
+dependencies {
+   compile 'org.glassfish.jersey.core:jersey-client:2.22.2'
+   compile 'com.google.code.gson:gson:2.7'
+   compile 'com.google.guava:guava:19.0'
+   compile 'com.google.protobuf:protobuf-java:3.0.2'   
+   compile 'com.google.protobuf:protobuf-java-util:3.0.2'
+   compile 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.13'
+   compile 'com.google.inject:guice:4.1.0'
+   compile 'com.pi4j:pi4j-core:1.1'
+   compile 'itx.hybridapp.common:hybrid-app-common:1.0.0001'
+   compile 'itx.hybridapp.common.client:hybrid-app-common-client:1.0.0001'
+   compile 'itx.rpi.hardware:itx-rpi-drivers:1.0.0'
+   testCompile 'org.testng:testng:6.9.13.6'   
+}
+
+jar {
+   baseName = 'hybrid-app-rpi'
+}
+
+task jarSources(type: Jar, dependsOn: classes) {
+   classifier = 'sources'
+   baseName = 'hybrid-app-rpi'
+}
+
+task jarJavadoc(type: Jar, dependsOn: javadoc) {
+   classifier = 'javadoc'
+   baseName = 'hybrid-app-rpi'
+}
+
+artifacts {
+  archives jar
+  archives jarSources
+  archives jarJavadoc
+}
+

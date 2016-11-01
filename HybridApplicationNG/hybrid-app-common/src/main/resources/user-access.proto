@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package useraccess;
+
+option java_package = "itx.hybridapp.common.protocols";
+option java_outer_classname = "UserAccessProtocol";
+
+message LoginRequest {
+    string userName = 1;
+    string password = 2;
+    string httpSessionId = 3;
+    string protocol = 4;
+}
+
+message LoginResponse {
+    string userName = 1;
+    string wsSessionId = 2;
+    repeated string role = 3;
+}
+
+message TopicSubscribe {
+    string topicId = 1;
+}
+
+message TopicUnsubscribe {
+    string topicId = 1;
+}
+
+message UserInfoData {
+    repeated HttpSessionInfo httpSessions = 1;
+    repeated WsSessionInfo wsSessions = 2;
+    repeated TopicInfo topics = 3;
+    repeated HttpSessionWsSessionsInfo httpSessionWsSessions = 4;
+}
+
+message WsSessionInfo {
+    string wsSessionId = 1;
+    string userName = 2;
+    string protocol = 3;
+}
+
+message HttpSessionInfo {
+   string httpSessionId = 1;
+   string userName = 2;
+   string protocol = 3;
+}
+
+message TopicInfo {
+   string topicId = 1;
+   repeated string wsSessionId = 2;
+}
+
+message HttpSessionWsSessionsInfo {
+   string httpSessionId = 1;
+   repeated string wsSessionId = 2;
+}
