@@ -1,0 +1,57 @@
+
+import java.text.SimpleDateFormat;
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+buildDir="build_gradle"
+
+version = '1.0.0001'
+group = 'itx.protobuffers'
+
+ext.libraries = [
+    commonsio: 'commons-io:commons-io:2.4',
+    jerseyclient: 'org.glassfish.jersey.core:jersey-client:2.22.2',
+	testng: 'org.testng:testng:6.9.10',
+    guava: 'com.google.guava:guava:19.0',
+    protobuf: 'com.google.protobuf:protobuf-java:3.0.0',   
+    protobufutils: 'com.google.protobuf:protobuf-java-util:3.0.0'   
+]
+    
+eclipse {
+   wtp {
+      facet {
+          facet name: 'java', version: '1.8'
+      }
+   }
+}
+ 
+sourceSets{  
+    main{  
+        java{  
+            srcDirs 'src/main/java'  
+        }
+    }  
+}  
+        
+repositories {
+   mavenLocal()
+   mavenCentral()
+}
+
+dependencies {
+   compile  libraries.commonsio
+   compile  libraries.testng
+   compile  libraries.jerseyclient
+   compile  libraries.guava
+   compile  libraries.protobuf
+   compile  libraries.protobufutils
+}
+
+jar {
+   baseName = 'protocol-buffers-common'
+}
+

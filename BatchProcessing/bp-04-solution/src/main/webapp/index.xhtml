@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>JPA CRUD demo</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <h:outputScript library="js" name="default.js" />
+    </h:head>
+    <h:body>
+    
+      <h1>Batch Processing demo: PrimeFaces PUSH</h1>
+
+      <h:form id="jobDataControllerForm">
+         <p:commandButton value="Start Job" action="#{userview.startNewJobAction()}"/>
+         <br/>
+      </h:form>
+      
+      <h:form id="jobDataForm">
+
+         <p:dataTable value="#{userview.batchJobs}" var="batchJob">
+           <p:column headerText="Id">
+             <h:outputText value="#{batchJob.id}"/>
+           </p:column>
+           <p:column headerText="Started">
+             <h:outputText value="#{batchJob.started}" />
+           </p:column>
+           <p:column headerText="Name">
+             <h:outputText value="#{batchJob.name}"/>
+           </p:column>
+           <p:column headerText="Progress">
+             <h:outputText value="#{batchJob.progress} %" />
+           </p:column>
+           <p:column headerText="Result">
+              <h:outputText value="#{batchJob.result}" />
+           </p:column>
+         </p:dataTable>
+         
+         <p:remoteCommand name="triggerUserFormUpdate" update=":jobDataForm" actionListener="#{userview.reloadDataAction()}" />
+         
+      </h:form>
+
+      <p:socket onMessage="handlePushGlobalEvent" channel="#{userview.getPushChannelName()}" />
+      
+    </h:body>
+</html>

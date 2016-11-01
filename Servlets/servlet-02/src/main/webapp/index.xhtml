@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>REST WS server-client demo</title>
+    </h:head>
+    <h:body>
+        
+        <h1>REST WS server-client demo</h1>
+        
+        <h:form>
+           <h:inputText value="#{wsController.message}"/><br/>
+           <h:outputLabel value="Last response: #{wsController.response}"/><br/>
+           <h:commandButton value="http Get" action="#{wsController.doGetAction()}" /><br/>
+           <h:commandButton value="http Post" action="#{wsController.doPostAction()}" /><br/>
+        </h:form>
+        
+    </h:body>
+</html>

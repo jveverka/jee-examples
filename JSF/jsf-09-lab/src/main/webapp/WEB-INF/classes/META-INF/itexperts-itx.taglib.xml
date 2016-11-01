@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+		version="2.0">
+	<namespace>http://itexperts.sk/ui</namespace>
+	<tag>
+		<tag-name>outputHeader</tag-name>
+		<description><![CDATA[OutputHeader is H1 header tag.]]></description>
+		<component>
+			<component-type>ite.examples.jsf.component.OutputHeaderk</component-type>
+			<renderer-type>ite.examples.jsf.component.OutputHeaderRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Header to display.]]></description>
+			<name>value</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Style class of the component.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>		
+	</tag>
+</facelet-taglib>
+			

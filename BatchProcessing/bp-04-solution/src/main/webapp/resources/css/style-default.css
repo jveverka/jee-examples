@@ -1,0 +1,15 @@
+
+body {
+	margin: 8px;
+	background-color: white;
+	font-size: 90%;
+	font-family: arial, sans-serif;
+}
+
+.itx-panel-grid td {
+	padding: 4px;
+}
+
+.itx-panel-grid {
+	border-collapse: collapse;
+}

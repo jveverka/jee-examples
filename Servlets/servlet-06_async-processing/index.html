@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::Servlet</title>
+  </head>
+  <body>
+    <div class="container">
+    <p></p>
+    <a href="../../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / Servlet / Servlet-06</h3>
+        <h4>JAX-RS Asynchronous processing</h4>
+        <div>
+          <p>
+          Example implementation of JAX-RS asynchronous processing + client.
+          This demo exposes two REST GET APIs.<br/>
+          <strong>Asynchrnonous:</strong> http://localhost:8080/wsasync/ws/data/async?delay=500</br>
+          <strong>Synchrnonous:</strong> http://localhost:8080/wsasync/ws/data/sync?delay=500</br>
+          On server, asynchronous call is processed by three threads, while synchonous call is processd by two threads.
+          Notice JSON response: name - name of processing thread, startedBy: name of starting thread, triggeredBy: name of triggering thread.
+          For client both calls, both calls are blocking (synchronous).<br/> 
+
+          <p>
+          There are some URL parameters available for the service:<br/>
+          <strong>delay:</strong> delay between writes in millisecons<br/>
+          </p>
+
+          Notable java classes:
+          <ul>
+             <li><code>itx.asynctest.server.AsyncService</code> - JAX-RS REST endpoint</li>
+             <li><code>itx.asynctest.server.DataService</code> - Service generating data and running background jobs.</li>
+             <li><code>itx.asynctest.client.WSClient</code> - Web Service client.</li>
+          </ul>
+        </div>
+    <div/> 
+    <div/>
+  </body>
+</html>
+   
+      

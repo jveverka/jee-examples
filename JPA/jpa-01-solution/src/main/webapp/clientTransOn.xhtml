@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>JPA CRUD demo</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+    </h:head>
+    <h:body>
+    
+      <h1>JPA CRUD demo: Client Transactions ON</h1>
+      
+      <h:form>
+         <h:outputLabel value="Number of users: #{userviewda.getUserCount()}"/>
+         <h:dataTable value="#{userviewda.users}" var="userData">
+           <h:column>#{userData.id}</h:column>
+           <h:column>#{userData.firstName}</h:column>
+           <h:column>#{userData.secondName}</h:column>
+           <h:column>#{userData.phone}</h:column>
+           <h:column>#{userData.email}</h:column>
+           <h:column><h:commandButton value="E" action="#{userviewda.setEditUserAction(userData.id)}"/></h:column>
+           <h:column><h:commandButton value="X" action="#{userviewda.deleteUserAction(userData.id)}"/></h:column>
+         </h:dataTable>
+         <h:commandButton value="Reload Users" action="#{userviewda.reloadDataAction()}"/>
+         
+         <hr/>
+         <h:panelGrid columns="2" styleClass="itx-panel-grid">
+           <h:outputLabel value="FirstName: "/> 
+           <h:inputText value="#{userviewda.firstName}"/>
+           <h:outputLabel value="SecondName: "/> 
+           <h:inputText value="#{userviewda.secondName}"/>
+           <h:outputLabel value="Email: "/> 
+           <h:inputText value="#{userviewda.email}"/>
+           <h:outputLabel value="Phone: "/> 
+           <h:inputText value="#{userviewda.phone}"/>
+           <h:commandButton value="Create User" action="#{userviewda.createUserAction()}" rendered="#{!userviewda.editMode}"/>
+           <h:commandButton value="Edit User" action="#{userviewda.updateUserAction()}" rendered="#{userviewda.editMode}"/>
+           <h:commandButton value="Clear" action="#{userviewda.cancelEditAction()}" rendered="#{userview.editMode}"/>
+         </h:panelGrid>
+         
+      </h:form>
+
+    </h:body>
+</html>

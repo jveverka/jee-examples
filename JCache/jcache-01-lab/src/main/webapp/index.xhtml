@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <title>JCache</title>
+    </h:head>
+    <h:body>
+        
+        <h1>JCache demo</h1>
+        
+        <h:form>
+          <h:panelGrid columns="2" styleClass="itx-panel-grid" >
+            <h:outputLabel value="InKey: "/>
+            <h:inputText value="#{cacheActions.inKey}"/>
+            <h:outputLabel value="InData: "/>
+            <h:inputText value="#{cacheActions.inData}"/>
+          </h:panelGrid>
+          <h:commandButton value="Store In Cache" action="#{cacheActions.storeInCacheAction()}" />
+        </h:form>
+
+        <h:form>
+          <h:panelGrid columns="2" styleClass="itx-panel-grid" >
+            <h:outputLabel value="OutKey: "/>
+            <h:inputText value="#{cacheActions.outKey}"/>
+            <h:outputLabel value="OutData: "/>
+            <h:outputLabel value="#{cacheActions.outData}"/>
+          </h:panelGrid>
+          <h:commandButton value="Get From Cache" action="#{cacheActions.getFromCacheAction()}" />
+        </h:form>
+    
+    </h:body>
+</html>

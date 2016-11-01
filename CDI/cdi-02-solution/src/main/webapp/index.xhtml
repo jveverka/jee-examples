@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>CDI-producer</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+    </h:head>
+    <h:body>
+      <h1>CDI producer demo</h1>
+      #{vscoped.name}
+    </h:body>
+</html>

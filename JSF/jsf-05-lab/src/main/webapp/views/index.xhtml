@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <h:outputScript library="js" name="jslib.js" />
+        <title>TemplateApp</title>
+        <script type="text/javascript">
+           var userName = "#{userAccess.userName}";
+           var password = "#{userAccess.password}";
+           var jsfSessionId = "#{userAccess.sessionId}";
+        </script>
+    </h:head>
+    <h:body>
+        
+        <h1>TemplateApp</h1>
+        
+        <div>SessionId: #{userAccess.sessionId}</div>
+        <div>UserName: #{userAccess.userName}</div>
+        <br/>
+        
+        <h:form>
+          <p:commandButton value="Ajax Submit" ajax="true" id="ajaxButton" actionListener="#{userAccess.doSubmitAction()}" />
+          <p:commandButton value="Normal Submit" ajax="false" id="normalButton" actionListener="#{userAccess.doSubmitAction()}" />
+          <p:remoteCommand name="logoutAction" actionListener="#{userAccess.doLogoutAction()}" oncomplete="location.reload(true);"/>
+        </h:form>
+        
+        <br/>
+        <div>session timeout in <span id="timerDisplay"> ??? </span> ms</div>
+        <!--  <button type="button" onclick="getDataFromServer();">GetData</button> -->
+        
+    </h:body>
+</html>

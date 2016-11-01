@@ -1,0 +1,16 @@
+
+body {
+	margin: 8px;
+	background-color: white;
+	font-size: 90%;
+	font-family: arial, sans-serif;
+}
+
+.itx-outputheader {
+	color: green;
+}
+
+.custom-style2 {
+	color: red !important;
+}
+

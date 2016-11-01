@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <title>Login</title>
+    </h:head>
+    <h:body>
+        
+        <h1>Login</h1>
+        
+        <h:form>
+          <h:panelGrid columns="2" styleClass="itx-panel-grid" >
+            <h:outputLabel value="Name: "/>
+            <h:inputText value="#{userAccess.userName}"/>
+            <h:outputLabel value="Password: "/>
+            <h:inputText value="#{userAccess.password}"/>
+          </h:panelGrid>
+          <h:commandButton value="Submit" action="#{userAccess.doLoginAction()}" />
+          <p:idleMonitor timeout="20000" onactive="location.reload();">
+          </p:idleMonitor>
+        </h:form>
+    
+    </h:body>
+</html>

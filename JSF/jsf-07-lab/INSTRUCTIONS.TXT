@@ -1,0 +1,6 @@
+This project demostrates simple usage of web filters with JSF
+- http://localhost:8080/jsf-07-lab/index.whtml - public content for abybody
+- http://localhost:8080/jsf-07-lab/content/index.whtml - requires user login
+- http://localhost:8080/jsf-07-lab/admin/index.whtml - requires admin login
+
+

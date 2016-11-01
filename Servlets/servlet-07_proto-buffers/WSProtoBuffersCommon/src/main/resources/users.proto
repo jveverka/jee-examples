@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package users;
+
+option java_package = "itx.protobuffers.common";
+option java_outer_classname = "UsersProtoc";
+
+message User {
+    string userName = 1;
+    string email = 2;
+    string note = 3;
+}
+
+message UserList {
+    repeated User user = 1;
+}
+

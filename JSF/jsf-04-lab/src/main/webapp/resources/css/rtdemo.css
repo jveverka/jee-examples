@@ -1,0 +1,13 @@
+body {
+	font-family: arial;
+}
+
+.demo-container {
+   height: 350px;
+   width: 850px;
+}
+
+.demo-placeholder {
+   height: 100%;
+   width: 100%;
+}

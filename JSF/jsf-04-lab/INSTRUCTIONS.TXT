@@ -1,0 +1,9 @@
+JSF lab 04
+This projects demonstrates asynchronous one-way push-to-browser communication
+There are 2 components on the index.xhtml page. Those are purely JavaScript components.
+Runtime environment is web browser and it's JavaScript engine.
+
+- on page load, initila data structures are created as static javascript data object
+- web browser than connects to primafeces web socket servlet
+- when page is displayed, server sends asynchronously data updates via existing web socket channel
+

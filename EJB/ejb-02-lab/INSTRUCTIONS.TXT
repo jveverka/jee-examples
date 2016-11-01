@@ -1,0 +1,33 @@
+EJB Lab 02 Timers, EJB Timer Service
+This lab is designed to demonstrate basic EJB timer features.
+Scheduled timers are already implemented in classes
+ite.examples.ejb.timers.SingletonScopedBean
+ite.examples.ejb.timers.StatelessBean
+you may modify scheduled times and try to re-deploy application
+
+
+1. Let's Create new TimerServiceManager Singleton bean which will provide interface methods:
+    /* creates single timer fired each 30 seconds */
+	public void createTimer();
+    /* cancels previously created timer fired each 30 seconds */
+	public void cancelTimer();
+	/* returns status if the timer is created or not*/
+	public boolean isTimerCreated();
+2. Extend UI, so we can trigger create and cancel methods.
+   index.xhtml has to be extended with commadnButtons 
+         <h:commandButton value="Create Timer" action="#{vscoped.createTimerAction()}" rendered="#{!vscoped.timerCreated}" />
+         <h:commandButton value="Cancel Timer" action="#{vscoped.cancelTimerAction()}" rendered="#{vscoped.timerCreated}" />
+   ite.examples.ejb.timers.ui.ViewScopedBean has to be extended accordingly.      
+3. solution implementation is in ejb-02-solution project as 
+   ite.examples.ejb.timers.ui.TimerServiceManager	
+
+4. Let's create DelayedActionManager Stateless bean which provide interface method:
+   /* creates timer to be fired in 5 seconds from this method call */
+   public void createDelayedAction();	
+5. Extend UI, so we can trigger new action method.
+         <h:commandButton value="Fire Delayed Action" action="#{vscoped.fireDelayedAction()}" />
+   ite.examples.ejb.timers.ui.ViewScopedBean has to be extended accordingly.      
+6. solution implementation is in ejb-02-solution project as 
+   ite.examples.ejb.timers.ui.DelayedActionManager
+   	
+	  

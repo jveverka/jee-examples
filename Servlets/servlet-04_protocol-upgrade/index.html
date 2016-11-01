@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::Servlet</title>
+  </head>
+  <body>
+    <div class="container">
+    <p></p>
+    <a href="../../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / Servlet / Servlet-04</h3>
+        <h4>Protocol Upgrade demo</h4>
+        <div>
+          This is simple example implementation of HTTP 1.1 protocol upgrade. dem o consists of 3 parts.
+          <ul>
+            <li>protocol-upgrade-common - common utilities for data read/write into/from data streams</li>
+            <li>protocol-upgrade-server - sevlet implementing protocol handler on server side</li>
+            <li>protocol-upgrade-client - client using special protocol to communicate with server</li>
+          </ul> 
+        </div>
+        <div>
+        Build and install the demo
+        <pre><code>
+        cd protocol-upgrade-common
+        gradle clean install
+        cd protocol-upgrade-server
+        gradle clean war
+        cd protocol-upgrade-client
+        gradle clean jar
+        </code></pre>
+        </div>
+    <div/> 
+    <div/>
+  </body>
+</html>
+   
+      

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:itx="http://itexperts.sk/ui">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <title>Index</title>
+    </h:head>
+    <h:body>
+        
+        <itx:outputHeader id="myId1" value="#{dataBean.text1}" styleClass="custom-style1"/>
+        <itx:outputHeader id="myId2" value="#{dataBean.text2}" styleClass="custom-style2"/>
+        
+    </h:body>
+</html>
+    

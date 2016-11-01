@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <title>Online Trainings</title>
+    </h:head>
+    <h:body>
+        
+        <h1>Online Trainings</h1>
+        <p>
+          itExperts online training demo welcomes you !<br/>
+          <h:link value="Trainings" outcome="contentIndex" /><br/>
+          <h:link value="Admin" outcome="adminIndex" /><br/>
+        </p>
+        
+    </h:body>
+</html>

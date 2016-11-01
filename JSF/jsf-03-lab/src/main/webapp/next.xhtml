@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <title>JSF demo: Flash scope</title>
+    </h:head>
+    <h:body>
+
+        <f:metadata>
+           <f:viewAction action="#{data.loadFlashData()}"/>
+        </f:metadata>
+        
+        <h1>JSF demo: Flash scope [Step2]</h1>
+        
+        <h:form>
+          <h:panelGrid columns="2" styleClass="itx-panel-grid" rendered="#{data.flashDataValid}">
+            <h:outputLabel value="Your Data: "/>
+            <h:outputLabel value="#{flash.data}"/>
+          </h:panelGrid>
+          <h:outputLabel value="Please enter your data first !" rendered="#{!data.flashDataValid}"/>
+        </h:form>
+    
+    </h:body>
+</html>

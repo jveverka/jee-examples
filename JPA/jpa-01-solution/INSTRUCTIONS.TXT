@@ -1,0 +1,13 @@
+JPA Lab 01 
+This is simple CRUD demo using single database entity.
+There are 2 types of data access used in this demo.
+
+1. CDI @SessionBean UserViewClientBean as client bean is using services of @Stateless bean UserManagerBean
+   Transactions are within UserManagerBean
+   http://localhost:8080/jpa-01-solution/clientTransOff.xhtml
+   
+2. CDI @SessionBean which is @Transactional is able to handle same operations on it's own, 
+   even if it is not EJB bean (session bean).
+   http://localhost:8080/jpa-01-solution/clientTransOn.xhtml
+
+   

@@ -1,0 +1,4 @@
+This project has compilation and runtime dependency on ejb-01-lab project.
+It it also necessary to add ApplicationUser into wildfly realm. In order to 
+do that, use bin/add-user.sh script. Created user ejbuser with password ejbuser123.
+

@@ -1,0 +1,10 @@
+
+include "ejb-common"
+project( ':ejb-common' ).projectDir = new File('ejb-common')
+
+include "ejb-client"
+project( ':ejb-client' ).projectDir = new File('ejb-client')
+
+include "ejb-service"
+project( ':ejb-service' ).projectDir = new File('ejb-service')
+

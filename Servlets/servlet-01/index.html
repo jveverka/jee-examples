@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::Servlet</title>
+  </head>
+  <body>
+    <div class="container">
+    <p></p>
+    <a href="../../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / Servlet / Servlet-01</h3>
+        <h4>Simple Servlet demo</h4>
+        <div>
+          This is simple demo of servlet API capabilities.<br/>
+          <p>
+          <strong>servlet-01-clients</strong> - simple http client<br/>
+          </p>
+          <p>
+          <strong>servlet-01-lab</strong> 
+          - This lab implements manual httpt session timeout control.
+          ite.examples.servlet.session.SessionManager is singleton taking care of session management on application level.
+          make use of http session management provided by servlet container.<br/>
+
+          deploy an application, check URL <code>http://localhost:8080/servlet-01-lab/sessiontest</code>
+          - first time browser accesses the URL, you should see the "NEW registered session" message<br/>
+          - consequent URL access (browser reload) should display "Already registered session" message<br/> 
+          - session invalidation timeout is set for 20 seconds<br/>
+
+          <ol>
+          <li>remove/delete SessionManager class</li> 
+          <li>create new ite.examples.servlet.session.SessionAttribute class which implements HttpSessionBindingListener</li>
+          <li>adapt private processRequest method of ite.examples.servlet.session.TestServlet, so it uses http session management 
+              provided by servlet container, check target implementation in servlet-01-solution project</li> 
+          <li>deploy the application, you behavior of application should remain same</li>   
+          </ol>
+          </p>    
+
+          
+          <strong>servlet-01-solution</strong> 
+          - This lab utilizes httpt session timeout control provided by servlet container.<br/>
+
+          deploy an application, check URL http://localhost:8080/servlet-01-solution/sessiontest<br/>
+          - first time browser accesses the URL, you should see the "NEW registered session" message<br/>
+          - consequent URL access (browser reload) should display "Already registered session" message<br/> 
+          - session invalidation timeout is set for 20 seconds          
+        </div>
+    <div/> 
+    <div/>
+  </body>
+</html>
+   
+      

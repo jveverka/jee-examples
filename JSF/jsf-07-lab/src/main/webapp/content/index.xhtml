@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <title>Online Trainings - Content</title>
+    </h:head>
+    <h:body>
+        
+        <h1>Online Trainings - Content</h1>
+
+        <p>
+          welcome #{userAccess.userName}
+        </p>
+
+        <h:form id="trainingLogoutForm">
+          <h:commandButton value="Logout" action="#{userAccess.doLogoutAction()}" rendered="#{userAccess.validUser}"/>
+        </h:form>
+    
+    </h:body>
+</html>       

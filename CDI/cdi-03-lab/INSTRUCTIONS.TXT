@@ -1,0 +1,19 @@
+CDI Producer/Disposer, lab 03
+Let's implement simple CDI producer and disposer class for stateful object.
+It is necessary to have custom stateful object injectable by CDI framework.
+
+1. Create StateHolder class in ite.examples.cdi.producer package, use class from cdi-03-solution project
+
+2. Create StatefulObjectProducer class in ite.examples.cdi.producer package with @Dependent scope and 
+   implement methods 
+   private StateHolder createStatefulObject();
+   private void destroyStatefulObject(@Disposes StateHolder sh);
+   
+3. Inject StateHolder into ite.examples.cdi.producer.RequestScopedBean bean using CDI annontation
+
+4. change states of the StateHolder object instance in @PostConstruct method
+   you may use commended code inside RequestScopedBean class
+
+5. deploy the application and with each reload of http://localhost:8080/cdi-03-lab/ page
+   creation and disposal of StateHolder instance is visible in server log.
+      

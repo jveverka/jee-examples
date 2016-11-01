@@ -1,0 +1,31 @@
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse-wtp'
+
+group = 'ite.ejbdemo'
+description = "EJB Demo"
+
+allprojects {
+  buildDir="build_gradle"
+}
+
+project(":ejb-common"){
+  apply plugin: 'java'
+}
+
+project(":ejb-client"){
+  apply plugin: 'war'
+  dependencies {
+      compile project(':ejb-common')
+  }
+}
+
+project(":ejb-service"){
+  apply plugin: 'war'
+  dependencies {
+      compile project(':ejb-common')
+  }
+}
+
+

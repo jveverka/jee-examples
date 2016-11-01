@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>CDI-scopes</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+    </h:head>
+    <h:body>
+      <h1>JEE Scopes: Conversation</h1>
+
+      <h:form>
+        <h:panelGrid columns="2" styleClass="itx-panel-grid">
+      
+          <h:outputLabel value="Conversation ID: " />
+          <h:outputLabel value="#{cscoped.conversationId}" />
+
+          <h:outputLabel value="Message: " />
+          <h:outputLabel value="#{cscoped.currentMessage}" rendered="#{cscoped.hasStarted()}"/>
+          <h:outputLabel value="Thanks for your time !" rendered="#{cscoped.hasStarted() and !cscoped.hasNextStep()}"/>
+
+        </h:panelGrid>
+
+        <h:panelGrid columns="1" styleClass="itx-panel-grid">
+          <h:commandButton value="Start Conversation" action="#{cscoped.startConversation()}" rendered="#{!cscoped.hasStarted()}"/>
+          <h:commandButton value="Next Step" action="#{cscoped.next()}" rendered="#{cscoped.hasStarted()}" disabled="#{!cscoped.hasNextStep()}"/>
+          <h:commandButton value="Stop Conversation" action="#{cscoped.stopConversation()}" rendered="#{cscoped.hasStarted()}"/>
+        </h:panelGrid>  
+      </h:form>
+
+    </h:body>
+</html>

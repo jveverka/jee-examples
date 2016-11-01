@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  
+  <display-name>protocol-upgrade-server</display-name>
+  
+  <session-config>
+     <session-timeout>30</session-timeout>
+  </session-config>
+  
+  <servlet>
+    <servlet-name>default</servlet-name>
+    <servlet-class>io.undertow.servlet.handlers.DefaultServlet</servlet-class>
+    <init-param>
+       <param-name>allowed-extensions</param-name>
+       <param-value>js,css,png,jpg,gif,html,htm,txt,pdf,jpeg,xml,zip,ts,svg</param-value>
+    </init-param>
+    <init-param>
+       <param-name>directory-listing</param-name>
+       <param-value>false</param-value>
+    </init-param>
+    <init-param>
+       <param-name>resolve-against-context-root</param-name>
+       <param-value>true</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+
+</web-app>

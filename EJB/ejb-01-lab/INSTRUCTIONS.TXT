@@ -1,0 +1,12 @@
+EJB 01 Lab
+This project defines various bean scopes
+Try to use following injection combinations and check the bean beahvior
+
+1. Inject DependentBean into
+ - Singleton
+ - ApplicationScoped
+
+2. Inject DependentBean into
+ - SessionScoped
+ - RequestScoped    
+  

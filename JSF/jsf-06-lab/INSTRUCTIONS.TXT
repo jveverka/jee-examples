@@ -1,0 +1,18 @@
+This project demonstrates simple security configuration to achieve
+HTTP basic authentication. Note that this application has no java code.
+Only web.xml contains security configuration and AS has to be setup as well.
+Security process is in responsibility of application server 
+(runs outside of application). 
+
+Prerequisities WildFly AS 
+- using add-user.bat create Application user with role 'appuser'
+
+Application deployment/start
+- deploy/run application in WildFly AS
+- note that there are no java classes
+- web.xml contains security configuration for the web application
+- when URL is accessed http://localhost:8080/jsf-06-lab 
+  username/password in form of BASIC http authentication will be 
+  acked from user by web browser
+- user name and password of valid user with role 'appuser' has to be provided
+  

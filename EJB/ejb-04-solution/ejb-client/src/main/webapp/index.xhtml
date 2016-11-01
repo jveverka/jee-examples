@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <title>EJB-clientApp</title>
+    </h:head>
+    <h:body>
+        
+        <h1>EJB-clientApp</h1>
+        
+        <h:form>
+          <h:panelGrid columns="2" styleClass="itx-panel-grid" >
+            <h:outputLabel value="Data: "/>
+            <h:inputText value="#{dataClient.data}"/>
+            <h:outputLabel value="Result: "/>
+            <h:outputLabel value="#{dataClient.result}"/>
+          </h:panelGrid>
+          <h:commandButton value="Submit" action="#{dataClient.doSubmitAction()}" />
+        </h:form>
+    
+    </h:body>
+</html>

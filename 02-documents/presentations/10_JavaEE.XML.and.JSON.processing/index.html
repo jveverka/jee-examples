@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>10 - Java EE7 XML and JSON processing</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/custom.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/reveal.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/header-footer.css">
+    <!-- <link rel="stylesheet" href="../_resources/css/theme/league.css" id="theme"> -->
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/lib/css/zenburn.css">
+  </head>
+  <body>
+
+    <div id="header-hidden">
+       <div id="header">
+          <!--
+          <div id="header-left">HEADER-LEFT</div>
+          <div id="header-right">HEADER-RIGHT</div>
+          <div id="footer-left">FOOTER-LEFT</div>
+          -->
+       </div>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+      
+        <section>
+          <h2>Java EE7</h2>
+          <h3>veverka@itexperts.sk</h3>
+          <p/>
+          <h3>XML and JSON processing</h3>
+        </section>
+
+        <section>
+          <h3>XML and JSON Processing</h3>
+          <ul>
+            <li>XML and JSON is used to exchange data and events between heterogeneous systems.</li>
+            <li>Java SE and EE has subsystems to deal with XML and JSON transformations.</li>
+            <ul> 
+              <li><strong>JAX-P:</strong> Java API for XML processing</li>
+              <li><strong>JAX-B:</strong> Java Architecture for XML binding</li>
+              <li><strong>JSON-P:</strong> Java API for JSON processing</li>
+            </ul>
+            <li>JAX-* and JSON-P are workhorses of data transformations widely used in all Java applications.</li>
+            <li>Used in WebServices, PrimeFaces, ...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>JAX-P</h3>
+          <ul>
+            <li>Internally uses DOM and SAX XML parsing.</li>
+            <li>Supports XSLT</li>
+            <li>Supports DTD validations</li>
+          </ul>
+          <br/>
+          <table class="small-table">
+            <tr><th>Package</th><th>Description</th></tr>
+            <tr><td>javax.xml.parsers</td><td>The JAXP APIs, which provide a common interface for different vendors' SAX and DOM parsers.</td></tr>
+            <tr><td>org.w3c.dom</td><td>Defines the Document class (a DOM) as well as classes for all the components of a DOM.</td></tr>
+            <tr><td>org.xml.sax</td><td>Defines the basic SAX APIs.</td></tr>
+            <tr><td>javax.xml.transform</td><td>Defines the XSLT APIs that let you transform XML into other forms.</td></tr>
+            <tr><td>javax.xml.stream</td><td>Provides StAX-specific transformation APIs.</td></tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>JAX-P DOM</h3>
+          <ul>
+              <li>Tree-like access to XML data structures.</li>
+              <li>Uses javax.xml.parsers.DocumentBuilderFactory class to get a DocumentBuilder instance</li>
+              <li>Easy to add or remove XML elements</li>
+              <li>DOM manipulation using Java APIs</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>JAX-P XSLT</h3>
+          <ul>
+              <li>TransformerFactory object is used to create a Transformer.</li>
+              <li>Source Object may be created from SAX, DOM or inputstream.</li>
+              <li>Result object can be SAX event handler, a DOM, or an output stream.</li>           
+          </ul>
+        </section>
+
+        <section>
+          <h3>JAX-P XSLT</h3>
+          <img class="embedded-image" src="images/JAXP-XSLT.svg"/>
+        </section>
+
+        <section>
+          <h3>JAX-P StAX</h3>
+          <ul>
+              <li>StAX is the latest API in the JAXP family, and provides an alternative to SAX, DOM, TrAX</li>
+              <li>For developers looking to do high-performance stream filtering, processing, and modification,</li> 
+              <li>Low memory and limited extensibility requirements.</li>
+              <li>Bidirectional pull parser interface for streaming XML processing</li>
+              <li>Offering a simpler programming model than SAX and more efficient memory management than DOM.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>JAX-B</h3>
+          <ul>
+              <li>Provides XML – Object mapping capability.</li>
+              <ul>
+              <li>Marshalling</li> 
+              <li>Unmarshalling</li>
+              <li>Binding</li>
+              </ul>
+              <li>In web services is used for automatic data object transformations.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>JAX-B</h3>
+          <img class="embedded-image" src="images/JAX-B.svg"/>
+        </section>
+
+        <section>
+          <h3>JAX-B - goals</h3>
+          <ul>
+              <li>Full W3C XML Schema support</li> 
+              <li>Binding existing Java classes to generated XML schema</li>
+              <li>Ease of Development</li>
+              <li>Partial mapping of XML document relevant to application</li>
+              <li>Portability of JAXB mapped classes</li>
+              <li>High customization</li> 
+              <li>
+              Annotation driven binding framework
+              <pre>javax.xml.bind.annotation</pre>
+              </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>JAX-P</h3>
+          <ul>
+              <li>JSON: JavaScript Object Notation</li>
+              <li>Set of Java APIs to parse, generate, transform, and query JSON.</li>
+          </ul>
+          <br/>
+          <br/>
+          <table class="small-table">
+            <tr><th>Package</th><th>Description</th></tr>
+            <tr><td>javax.json</td><td>Provides an object model API to process JSON.</td></tr>
+            <tr><td>javax.json.spi</td><td>Service Provider Interface (SPI) to plug in implementations for JSON processing objects.</td></tr>
+            <tr><td>javax.json.stream</td><td>Provides a streaming API to parse and generate JSON.</td></tr>
+          </table>
+        </section>
+          
+        <section>
+          <h3>JSON-P Object Model API</h3>
+          <ul>
+            <li>API provides a random-access, tree-like structure that represents the JSON data in memory.</li> 
+            <li>Very similar to XML DOM approach.</li>
+            <li>Streaming API provides a way to parse and generate JSON in a streaming fashion.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>JSON-P Object Model API</h3>
+          <table class="small-table">
+            <tr><th>Class or Interface</th><th>Description</th></tr>
+            <tr><td>Json</td><td>Contains static methods to create JSON readers, writers, builders, and their factory objects.</td></tr>
+            <tr><td>JsonGenerator</td><td>Writes JSON data to a stream one value at a time.</td></tr>
+            <tr><td>JsonObjectBuilder<br/>JsonArrayBuilder</td><td>Create an object model or an array model in memory by adding values from application code.</td></tr>
+            <tr><td>JsonWriter</td><td>Writes an object model from memory to a stream.</td></tr>
+            <tr><td>
+                JsonValue<br/>
+                JsonObject<br/>
+                JsonArray<br/>
+                JsonString<br/>
+                JsonNumber</td>
+                <td>Represent data types for values in JSON data.</td></tr>
+            <tr><td>JsonParser</td><td>Represents an event-based parser that can read JSON data from a stream.</td></tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>References</h3>
+          <ul>  
+            <li><a href="https://jcp.org/en/jsr/detail?id=353">JSR 353: JSON Processing.</a></li> 
+            <li><a href="https://jcp.org/en/jsr/detail?id=206">JSR 206: Java API for XML processing</a></li>
+            <li><a href="https://jaxp.java.net/">Glassfish JAXP project</a></li>
+            <li><a href="https://jcp.org/en/jsr/detail?id=222" >JSR 222: Java Architecture for XML binding.</a></li>
+            <li><a href="https://docs.oracle.com/javaee/7/tutorial/jsonp.htm#GLRBB">Oracle JEE JSONP tutorials</a></li>  
+            <li><a href="http://docs.oracle.com/javase/tutorial/jaxp/">Oracle JEE JAXP tutorials</a></li>  
+          </ul>  
+        </section>
+
+      </div>
+    </div>
+    
+	<script src="../../../01-html-resources/presentations/lib/js/head.min.js"></script>
+	<script src="../../../01-html-resources/presentations/js/reveal.js"></script>
+	<script src="../../../01-html-resources/presentations/js/jquery-3.1.0.min.js"></script>
+
+	<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../../../01-html-resources/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../../01-html-resources/presentations/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../../../01-html-resources/presentations/plugin/notes/notes.js', async: true }
+				]
+			});
+			
+	        $(document).ready(function(){
+			   console.log("document loaded");
+			   /**
+			    * insert header and footer into every slide
+			    */ 
+			   var header = $('#header').html();
+               if ( window.location.search.match( /print-pdf/gi ) ) {
+                    Reveal.addEventListener( 'ready', function( event ) {
+                       $('.slide-background').append(header);
+                    });
+               } else {
+                    $('div.reveal').append(header);
+               }
+	        });
+	</script>
+		    
+  </body>
+</html>
+    

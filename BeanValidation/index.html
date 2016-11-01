@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::Bean Validation</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+    <p></p>
+    <a href="../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / BeanValidation / bv-01</h3>
+      <p>
+          This demo is simple form for entering employee data requires validation on submit. 
+          Let's validate all actions provided by this employee entry form.
+          URL of user interface: <a href="http://localhost:8080/bv-01-lab/index.xhtml">http://localhost:8080/bv-01-lab/index.xhtml</a> 
+          There are four action buttons for submitting the form, but unfortunately no validation is present at all.
+          Description of validation rules is on the web page. 
+      </p>
+       <ol>
+         <li>
+   first step is implementation of method-level validation by adding constraints to
+   action method createNewDataRecord in stateless bean ite.examples.bv.DataProcessingService
+
+   <pre><code class="language-java">
+   public String createNewDataRecord(String name, Integer age, Float salary) {
+
+   public String createNewDataRecord(@NotNull @Size(min=2, max=10) String name, @NotNull @Min(18) Integer age, @NotNull @Digits(integer=6, fraction=2) Float salary) {
+   </code></pre>
+   
+   run and deploy the application, check if validation rules are applied
+         </li>
+         <li>
+   next step will be also method-level validation using custom validator for Employee class 
+   we need to create custom annotation <code>ite.examples.bv.annotations.EMPLOYEE</code>
+   
+   <pre><code class="language-java">
+   package ite.examples.bv.annotations;
+
+   import java.lang.annotation.Retention;
+   import java.lang.annotation.Target;
+   import java.lang.annotation.ElementType;
+   import java.lang.annotation.RetentionPolicy;
+
+   import javax.validation.Constraint;
+   import javax.validation.Payload;
+
+   @Constraint(validatedBy = {EmployeeValidator.class})
+   @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER})
+   @Retention(RetentionPolicy.RUNTIME)
+   public @interface EMPLOYEE {
+	
+	  //Hard coded error message
+	  String message() default "Invalid Employee instance";
+
+	  //Resource bundle key
+	  //String message() default "{invalid.employee.instance}";
+
+	  Class<?>[] groups() default {};
+	  Class<? extends Payload>[] payload() default {};
+	
+   } 
+   </code></pre>
+   
+   we also need to create <code>ite.examples.bv.EmployeeValidator</code> class 
+   
+   <pre><code class="language-java">
+   package ite.examples.bv;
+
+   import javax.validation.ConstraintValidator;
+   import javax.validation.ConstraintValidatorContext;
+
+   public class EmployeeValidator implements ConstraintValidator <EMPLOYEE, Employee> {
+
+	@Override
+	public void initialize(EMPLOYEE annotation) {
+	}
+
+	@Override
+	public boolean isValid(Employee employee, ConstraintValidatorContext context) {
+		if (employee != null) {
+			if (employee.getName() == null || employee.getName().length() <2 || employee.getName().length() >10) {
+				return false;
+			}
+			if (employee.getAge() == null || employee.getAge() < 18) {
+				return false;
+			}
+			if (employee.getSalary() == null || !(employee.getSalary() < 1000000)) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+
+   }
+   </code></pre>
+   
+   and as last step, annotate action method of ite.examples.bv.DataProcessingService
+   public String createNewDataRecord(@EMPLOYEE Employee e) {
+   
+   run and deploy the application, check if validation rules are applied
+      </li>
+      <li>
+   next step will be programmatic validation by obtaining validator from container    
+   in ite.examples.bv.EmployeeValidator class we need to implement new action method
+   
+   <pre><code class="language-java">
+   	public String createNewDataRecordObtainedValidator(String name, Integer age, Float salary) {
+		Employee e = new Employee(name, age, salary);
+		Set<ConstraintViolation<Employee>> violations = validator.validate(e);
+		if (violations.size() != 0) {
+			logger.severe("createNewDataRecordValidator: Validation ERRORs detected");
+		} else {
+			logger.info("createNewDataRecordValidator: name=" + name + " age=" + age + " salary=" + salary);
+			return "hello: " + e;
+		}
+		return "Validation ERROR !";
+	}
+	</code></pre>
+	
+	and also inject Validator from container
+	
+	<pre><code class="language-java">
+	@Inject 
+	private Validator validator;
+	</code></pre>
+	
+	it is also necessary to apply constraints directly on fields of ite.examples.bv.Employee class
+	
+	<pre><code class="language-java">
+    public class Employee {
+	
+	    @NotNull @Size(min=2, max=10)
+	    private String name;
+	    @NotNull @Min(18)
+	    private Integer age;
+	    @NotNull @Digits(integer=6, fraction=2)
+	    private Float salary;
+	    ...
+	    
+	ViewScoped bean of user interface has to be extended with caller methods
+	ite.examples.bv.ui.DataProcessingBean
+	public void dataProcessingObtainedValidator() {
+		message = dps.createNewDataRecordObtainedValidator(name, age, salary);
+	}
+
+	public void testNullObtainedValidator() {
+		message = dps.createNewDataRecordObtainedValidator(null, age, salary);
+	}
+	</code></pre>
+	    	
+	
+    we need to add the UI buttons into index.xhtml to trigger new action method
+    <pre><code class="language-xml">
+           &lt;h:commandButton value="Obtained Validation" action="#{dataProcessing.dataProcessingObtainedValidator()}" /&gt;
+           &lt;h:commandButton value="Test Null" action="#{dataProcessing.testNullObtainedValidator()}" /&gt;    
+   </code></pre>        
+   run and deploy the application, check if validation rules are applied        
+   </li>
+   <li> 
+   next step will be implementation of programmatic validation by obtaining validator from container
+   New data bean EmployeeHistory will be validated using class-level constraint
+   create new classes:
+   ite.examples.bv.EmployeeHistory - data bean, subject of class-level validation
+   ite.examples.bv.ChronologicalDates - class-level annotation constraint
+   ite.examples.bv.ChronologicalDatesValidator - validator implementation
+   
+   implement history create record action in ite.examples.bv.DataProcessingService service bean
+
+   <pre><code class="language-java">
+   	public String createNewDataHistoryRecordObtainedValidator(Date hired, Date fired) {
+		EmployeeHistory eh = new EmployeeHistory(hired, fired);
+		Set<ConstraintViolation<EmployeeHistory>> violations = validator.validate(eh);
+		if (violations.size() != 0) {
+			logger.severe("createNewDataHistoryRecordObtainedValidator: Validation ERRORs detected");
+		} else {
+			logger.info("createNewDataHistoryRecordObtainedValidator: eh=" + eh.toString());
+			return "HistoryRecord OK: " + eh.toString();
+		}
+		return "HistoryRecord Validation ERROR: " + eh.toString();
+	}
+	</code></pre>
+	
+	implement triggering methods in ui bean ite.examples.bv.ui.DataProcessingBean
+	
+   <pre><code class="language-java">
+	private String historyMessage;
+	
+	public String getHistoryMessage() {
+		return historyMessage;
+	}
+	
+	public void createCorrectHistoryAction() {
+		Date hired = new Date(System.currentTimeMillis());
+		Date fired = new Date(System.currentTimeMillis() + 3600*1000*24*20);
+		historyMessage = dps.createNewDataHistoryRecordObtainedValidator(hired, fired);
+	}
+
+	public void createIncorrectHistoryAction() {
+		Date hired = new Date(System.currentTimeMillis() + 3600*1000*24*20);
+		Date fired = new Date(System.currentTimeMillis());
+		historyMessage = dps.createNewDataHistoryRecordObtainedValidator(hired, fired);
+	}
+	</code></pre>
+	
+	extend index.xhtml in order to get UI control elements
+	<pre><code class="language-xml">
+    &lt;h:panelGrid columns="2" styleClass="itx-panel-grid"&gt;
+      &lt;h:outputLabel value="Message" /&gt;
+      &lt;h:outputLabel value="#{dataProcessing.historyMessage}" /&gt;
+      &lt;h:commandButton value="Create Correct History" action="#{dataProcessing.createCorrectHistoryAction()}" /&gt;
+      &lt;h:commandButton value="Create Incorrect History" action="#{dataProcessing.createIncorrectHistoryAction()}" /&gt;
+    &lt;/h:panelGrid&gt;	
+    </code></pre>    	
+    </li>
+    </ol>
+    </div>  
+    </div>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="../01-html-resources/docs/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../01-html-resources/docs/js/prism.js"></script>
+    <script type="text/javascript" src="../01-html-resources/docs/js/prism-java.min.js"></script>
+    <script type="text/javascript" src="../01-html-resources/docs/js/materialize.min.js"></script>
+    <script type="text/javascript">
+      $( document ).ready(function(){
+         $(".button-collapse").sideNav();
+      }) 
+    </script>
+  </body>
+</html>
+

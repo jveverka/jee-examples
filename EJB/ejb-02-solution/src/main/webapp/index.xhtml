@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>EJB Timers</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+    </h:head>
+    <h:body>
+      <h1>EJB Timers</h1>
+
+      <h:form>      
+        <h:panelGrid columns="2" styleClass="itx-panel-grid">
+
+         <h:outputLabel value="Singleton Counter: " />
+         <h:outputLabel value="#{vscoped.singletonCounter}" />
+
+         <h:outputLabel value="Stateless Counter: " />
+         <h:outputLabel value="#{vscoped.statelessCounter}" />
+
+         <h:commandButton value="Create Timer" action="#{vscoped.createTimerAction()}" rendered="#{!vscoped.timerCreated}" />
+         <h:commandButton value="Cancel Timer" action="#{vscoped.cancelTimerAction()}" rendered="#{vscoped.timerCreated}" />
+
+         <h:commandButton value="Fire Delayed Action" action="#{vscoped.fireDelayedAction()}" />
+         
+        </h:panelGrid>
+      </h:form>
+      
+    </h:body>
+</html>

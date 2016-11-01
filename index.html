@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7 Examples</title>
+  </head>
+
+  <body>
+    
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">&nbsp;JEE7</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>          
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#servlet">Servlet</a></li>
+            <li><a href="#cdi">CDI</a></li>
+            <li><a href="#ejb">EJB</a></li>
+            <li><a href="#jcache">JCache</a></li>
+            <li><a href="#jms">JMS</a></li>
+            <li><a href="#jpa">JPA</a></li>
+            <li><a href="#jsf">JSF</a></li>
+            <li><a href="#servlet">Servlet</a></li>
+            <li><a href="#websockets">WebSocket</a></li>
+            <li><a href="#xmljson">XML/JSON</a></li>
+            <li><a href="#batchprocessing">Batch</a></li>
+            <li><a href="#beanvalidation">Bean Validation</a></li>
+            <li><a href="#apps">Apps</a></li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="#servlet">Servlet</a></li>
+            <li><a href="#cdi">CDI</a></li>
+            <li><a href="#ejb">EJB</a></li>
+            <li><a href="#jcache">JCache</a></li>
+            <li><a href="#jms">JMS</a></li>
+            <li><a href="#jpa">JPA</a></li>
+            <li><a href="#jsf">JSF</a></li>
+            <li><a href="#websockets">WebSocket</a></li>
+            <li><a href="#xmljson">XML/JSON</a></li>
+            <li><a href="#batchprocessing">Batch</a></li>
+            <li><a href="#beanvalidation">Bean Validation</a></li>
+            <li><a href="#apps">Apps</a></li>
+          </ul>          
+        </div>
+      </nav>
+
+    <div class="container">
+      <div class="had-container">
+
+        <!-- CONTENT TOP -->        
+        <a name="pagetop"></a>
+        <div class="section">
+          <h4>JEE7 Examples</h4>
+          <div class="row valign-wrapper">
+            <div class="col s2">
+              <img class="responsive-img" src="01-html-resources/docs/images/wildfly_logo.svg">
+            </div>
+            <div class="col s10">
+              Collection of simple example gradle projects demonstrating usage of main JEE7 technologies.
+              All Examples are tested with WildFly 10.1.0 AS, however some may work on other application servers as well.
+              Eclipse IDE is preferred. 
+            </div>
+          </div>
+          <div class="collection">
+            <a href="02-documents/presentations/01_JavaEE.Overview/index.html" class="collection-item" target="_jee7series">Java EE7 Overview<span class="new badge red" data-badge-caption="Slides"/></a>
+            <a href="02-documents/presentations/99_JavaEE.Confusions/index.html" class="collection-item" target="_jee7series">Java EE7 Confusions<span class="new badge red" data-badge-caption="Slides"/></a>
+            <a href="02-documents/presentations/91_JavaEE.Books.And.Links/index.html" class="collection-item" target="_jee7series">Java EE7 Books And Links<span class="new badge red" data-badge-caption="Slides"/></a>
+            <a href="02-documents/presentations/92_JavaEE.Environment.Setup/index.html" class="collection-item" target="_jee7series">Java EE7 Environment Setup<span class="new badge red" data-badge-caption="Slides"/></a>
+          </div>
+        </div>
+
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="servlet"></a>
+          <h4>Servlets and JAX-RS examples</h4>
+          <div class="collection">
+             <a href="Servlets/servlet-01/index.html" class="collection-item">Simple Servlet demo<span class="new badge" data-badge-caption="Servlet 3.1"/></a>
+             <a href="Servlets/servlet-02/index.html" class="collection-item">Simple Servlet demo<span class="new badge" data-badge-caption="Servlet 3.1"/></a>
+             <a href="Servlets/servlet-03_stream-download/index.html" class="collection-item">JAX-RS stream demo<span class="new badge" data-badge-caption="JAX-RS"/></a>
+             <a href="Servlets/servlet-04_protocol-upgrade/index.html" class="collection-item">Servlet protocol-upgrade demo<span class="new badge" data-badge-caption="Servlet 3.1"/></a>
+             <a href="Servlets/servlet-05_bulk-encrypted-download/index.html" class="collection-item">JAX-RS stream compression and encrytption demo<span class="new badge" data-badge-caption="JAX-RS"/></a>
+             <a href="Servlets/servlet-06_async-processing/index.html" class="collection-item">JAX-RS Asynchronous processing<span class="new badge" data-badge-caption="JAX-RS"/></a>
+             <a href="Servlets/servlet-07_proto-buffers/index.html" class="collection-item">JAX-RS Using google protocol buffers<span class="new badge" data-badge-caption="JAX-RS"/></a>
+             <a href="Servlets/servlet-08_httpfilter-auth/index.html" class="collection-item">JAX-RS Filter SecurityContext<span class="new badge" data-badge-caption="JAX-RS"/></a>
+          </div>
+        </div>
+
+        <!-- SECTION -->  
+        <div class="divider"></div>
+        <div class="section">
+          <a name="cdi"></a>
+          <h4>Context and Dependecy Injection</h4>
+          <div class="collection">
+             <a href="02-documents/presentations/02_JavaEE.CDI/index.html" class="collection-item" target="_jee7series">Java EE7 CDI<span class="new badge red" data-badge-caption="Slides"/></a>
+             <a href="CDI/cdi-01-lab/index.html" class="collection-item">CDI scopes demo<span class="new badge" data-badge-caption="CDI"/></a>
+          </div>
+        </div>
+        
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="batchprocessing"></a>
+          <h4>Batch Processing</h4>
+          <div class="collection">
+             <a href="BatchProcessing/bp-04-solution/index.html" class="collection-item">Batch Processing demo<span class="new badge" data-badge-caption="JSR 352"/></a>
+          </div>
+        </div>
+
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="beanvalidation"></a>
+          <h4>Bean Validation</h4>
+          <div class="collection">
+             <a href="BeanValidation/index.html" class="collection-item">Bean Validation demo<span class="new badge" data-badge-caption="JSR 349"/></a>
+          </div>
+        </div>
+
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="ejb"></a>
+          <h4>Enterprise Java Beans</h4>
+          <p>in progress ...</p>
+        </div>
+
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="jcache"></a>
+          <h4>JCache</h4>
+          <p>in progress ...</p>
+        </div>
+
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="jms"></a>
+          <h4>JMS and MDB</h4>
+          <p>in progress ...</p>
+        </div>
+
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="jpa"></a>
+          <h4>Java Persistence API</h4>
+          <p>in progress ...</p>
+        </div>
+
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="jsf"></a>
+          <h4>Java Server Faces</h4>
+          <p>in progress ...</p>
+        </div>
+
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="websockets"></a>
+          <h4>WebSockets</h4>
+          <p>in progress ...</p>
+        </div>
+
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="xmljson"></a>
+          <h4>XML / JSON processing</h4>
+          <div class="collection">
+             <a href="02-documents/presentations/10_JavaEE.XML.and.JSON.processing/index.html" class="collection-item" target="_rtjee7slides">XML and JSON processing<span class="new badge red" data-badge-caption="Slides"/></a>
+             <a href="XMLJSON/xml-01-lab-jaxb/index.html" class="collection-item">JAX-B example<span class="new badge" data-badge-caption="JAX-B"/></a>
+          </div>
+        </div>
+
+        <!-- SECTION -->        
+        <div class="divider"></div>
+        <div class="section">
+          <a name="apps"></a>
+          <h4>Example Applications</h4>
+          <div class="collection">
+             <a href="02-documents/presentations/JEE7_RealTime/index.html" class="collection-item" target="_rtjee7slides">Real-Time JEE7 appications<span class="new badge red" data-badge-caption="Slides"/></a>
+             <a href="HybridApplicationNG/index.html" class="collection-item">HybridApplication<span class="new badge blue" data-badge-caption="Demo"/></a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+      <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">JEE7 examples</h5>
+                <p class="grey-text text-lighten-4">Set of simple JEE7 example applications.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">References</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#">Content</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://gradle.org/" target="_gradle">Gradle</a></li>
+                  <li><a class="grey-text text-lighten-3" href="http://wildfly.org/" target="_wildfly">WildFly AS</a></li>
+                  <li><a class="grey-text text-lighten-3" href="http://materializecss.com/" target="_materialize">Materialize CSS</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            &copy; 2016 itExperts s.r.o.
+            <a class="grey-text text-lighten-4 right" target="_itexpers" href="http://itexperts.sk/">Home</a>
+            </div>
+          </div>
+      </footer>
+                
+    
+              
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="01-html-resources/docs/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="01-html-resources/docs/js/prism.js"></script>
+    <script type="text/javascript" src="01-html-resources/docs/js/prism-java.min.js"></script>
+    <script type="text/javascript" src="01-html-resources/docs/js/materialize.min.js"></script>
+    <script type="text/javascript">
+      $( document ).ready(function(){
+         $(".button-collapse").sideNav();
+      }) 
+    </script>
+  </body>
+</html>
+        

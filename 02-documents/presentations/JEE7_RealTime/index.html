@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>JEE7 real - time</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/custom.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/reveal.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/header-footer.css">
+    <!-- <link rel="stylesheet" href="../_resources/css/theme/league.css" id="theme"> -->
+    <!-- <link rel="stylesheet" href="_resources/css/theme/sky.css" id="theme"> -->
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/theme/beige.css" id="theme">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/lib/css/zenburn.css">
+  </head>
+  <body>
+
+    <div id="header-hidden">
+       <div id="header">
+          <!--
+          <div id="header-left">HEADER-LEFT</div>
+          <div id="header-right">HEADER-RIGHT</div>
+          <div id="footer-left">FOOTER-LEFT</div>
+          -->
+       </div>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+      
+        <section>
+          <h1>JEE7 Real-Time</h1>
+          <h2>(web) applications</h2>
+          <img class="embedded-image" data-src="images/wildfly_logo.svg"/>
+        </section>
+
+        <section>
+          <table>
+          <tr>
+            <td> 
+              <img class="embedded-image" data-src="images/juraj_veverka_photo.png"/>
+            </td>
+          </tr>
+          <tr>  
+            <td>
+            <h3>Juraj Veverka</h3>
+          Java and JEE developer with 10+ Years experience<br/>
+          Participated on many international projects<br/>
+          Participating on solution architecture designs<br/> 
+          Solutions based on WildFly / Jetty ...<br/> 
+          Raspberry PI and IoT enthusiast<br/>
+            </td>
+          </tr>  
+          </table>
+        </section>
+
+        <!-- INTRO - explain the scope: traditional JEE7 design patterns -->
+        <section>
+          <h2>JEE apps are usually ...</h2>
+          <ul>
+             <li><strong>Transactional</strong> - </li>
+             <li><strong>Request/Response</strong> - </li>
+             <li><strong>DB centric</strong> - </li>
+             <li><strong>Web Interface</strong> - server side rendering.</li>
+             <li><strong>Monolithical</strong> - single or few war/ear.</li>
+          </ul> 
+        </section>
+
+        <!-- INTRO - explain the scope: what problem we are addressing ? -->
+        <section>
+          <h2>JEE apps might be also ...</h2>
+          <ul>
+             <li><strong>Reactive</strong> - </li>
+             <li><strong>Responsive</strong> - low latency responses</li>
+             <li><strong>Effective</strong> - better http stack utilization</li>
+             <li><strong>Versatile</strong> - support different client technologies</li>
+          </ul>
+        </section>
+
+        <!-- INTRO - explain the scope: how can we reach it with JEE7 technologies -->
+        <section>
+          <h2>JEE Technologies for Real-Time apps</h2>
+          <ul>
+            <li>JEE7 Technologies for real-time app development</li>
+              <ul>
+                 <li>WebSockets, HTTP protocol upgrade</li>
+                 <li>JMS, CDI Events, Async REST</li>
+              </ul>
+            <li>Client technologies</li>
+              <ul>
+                 <li>JSF, JavaScript, JavaSE</li>
+              </ul>
+            <li>JEE7 and beyond, extend classical JEE7 apps.</li>
+            <li>Demo: WildFly, JSF, JavaScript, JavaFx, IoT device</li>
+            <li>What's planned in JEE8</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Real-Time application ?</h2>
+          <ul>
+             <li>Continuous communication with server during user's session.</li>
+             <li>Backend - JEE7 server</li>
+             <li>Suitable JEE technologies for JavaSE/JavaFX clients</li>
+             <ul>
+                <li>CDI events</li>
+                <li>JMS</li>
+                <li>Remote EJB calls</li>
+             </ul>
+             <li>Suitable JEE technologies for HTML5 clients</li>
+             <ul>
+                <li>JAX-RS - REST APIs</li>
+                <li>WebSockets</li>
+                <li>JSF - Java Server Faces</li>
+             </ul>
+          </lu>
+        </section>
+
+        <section>
+          <h2>JEE technologies for HTML5 clients</h2>
+          <ul>
+             <li>Servlet 3.1 - Asynchronous processing, JSR340</li>
+             <li>Servlet 3.1 - Protocol upgrade, JSR340</li>
+             <li>JAX-RS 2.0 - REST APIs, JSR339</li>
+             <li>WebSockets 1.0 - JSR356</li>
+             <li>JSF 2.2 - Java Server Faces, JSR344, kind of suitable ...</li>
+          </ul>
+        </section>
+
+        <section data-state="jee7TechnologiesState">
+          <h2>JEE7 technologies</h2>
+          <img class="embedded-image" data-src="images/JEE7-technologies.svg"/>
+          <!--
+          <object id="jee7TechologiesImage" type="image/svg+xml" data="images/JEE7-technologies.svg">
+          </object>
+          <embed id="jee7TechologiesImage" src="images/JEE7-technologies.svg">
+          -->
+        </section>
+
+        <section>
+          <h2>HTTP protocol upgrade</h2>
+          <ul>
+             <li>Servlet 3.1 - Protocol upgrade</li>
+             <li>Full duplex communication using own protocol</li>
+             <ol>
+                <li>Handshake - protocol negotiation</li>
+                <li>Full duplex TCP connection</li>
+                <li>Close from client or server</li>
+             </ol>
+             <li>Demo on Github: TODO</li>
+             <li>WebSocket is based on HTTP protocol upgrade</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>HTTP protocol upgrade</h2>
+          1. Implement your HttpUpgradeHandler
+          <pre><code>
+public class CustomProtocoloUpgradeHandler implements HttpUpgradeHandler {
+	@Override
+	public void init(WebConnection wc) {
+	   //handle read/write messages
+	}
+
+	@Override
+	public void destroy() {
+	}
+}          
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>HTTP protocol upgrade</h2>
+          2. Use your HttpUpgradeHandler in servlet
+          <pre><code>
+@WebServlet(urlPatterns = { "/customProtocolEndpoint" })
+public class ProtocolUpgradeServlet extends HttpServlet {
+    @Override
+    public void doGet(HttpServletRequest request, 
+                      HttpServletResponse response) {
+        String protocolName = request.getHeader("Upgrade");
+        if (MessageUtils.PROTOCOL_NAME.equals(protocolName)) {
+           response.setStatus(101);
+           response.setHeader("Upgrade", MessageUtils.PROTOCOL_NAME);
+           response.setHeader("Connection", "Upgrade");
+           request.upgrade(CustomProtocoloUpgradeHandler.class);
+        }
+    }
+}	
+          </code></pre>
+        </section>
+
+        <section>
+          <img class="embedded-image" data-src="images/Http.upgrade.svg"/>
+        </section>
+
+        <section>
+          <h2>WebSockets</h2>
+          <ul>
+             <li>WebSocket API - <a href="https://www.w3.org/TR/websockets/">W3C</a></li>
+             <li>WebSocket MDN - <a href="https://developer.mozilla.org/en/docs/Web/API/WebSocket">API and method overview.</a></li>
+             <li>IETF - <a href="https://tools.ietf.org/html/rfc6455">RFC-6455</a></li>
+             <li>JSR 356 - <a href="https://jcp.org/en/jsr/detail?id=356">Java API for WebSocket</a></li>
+          </lu>
+        </section>
+
+        <section>
+          <h2>Is HTTP a problem !?</h2>
+          <ul>
+             <li>HTTP is good for client-initiated requests</li>
+             <li>HTTP is <strong>half-duplex</strong></li>
+             <li>HTTP is <strong>verbose, complex, resource-wasteful</strong></li>
+             <li>Common hacks for ServerPush</li>
+             <ul>
+                 <li>Polling</li>
+                 <li>Long Polling</li>
+                 <li>Comet / Ajax</li>
+                 <li>SSE - Server Sent Events</li>
+             </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h2>HTTP optimization</h2>
+          <ul>
+             <li><a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a></li>
+             <li>To speed up HTTP communication</li>
+             <li>Better/Faster for serialization of structured data</li>
+             <li>Supported languges - C++, C#, GO, Java, Python, Ruby, ...</li>
+             <li>Instead sending JSON/XML as payload, send smaller packets.</li>
+             <li>Faster serialization</li>
+             <li>Faster deserialization</li> 
+          </ul>
+        </section>
+
+        <section>
+          <h2>JAX-RS with protocol buffers</h2>
+          <ol>
+             <li>Install protoc or use mvn or gradle plugins</li>
+             <li>Write your protocol in proto3 language</li>
+             <li>Compile .proto file into java using protoc</li>
+             <li>Implement JAX-RS provider for writing/reading messages</li>
+             <li>Use compiled java protocol and provider on server and client</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>JAX-RS with protocol buffers</h2>
+          <ul>
+             <li>Simple demo endpoints</li>
+             <ul>
+                <li><code>http://.../data/getAllUsers</code></li>
+                <li><code>http://.../data/getUserByName?userName=john</code></li>
+             </ul>
+             <li>Comlete demo sources on Github: TODO</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>JAX-RS with protocol buffers</h2>
+          1. Write your protocol in proto3
+          <pre><code>
+syntax = "proto3";
+package users;
+option java_package = "itx.protobuffers.common";
+option java_outer_classname = "UsersProtoc";
+
+message User {
+    string userName = 1;
+    string email = 2;
+    string note = 3;
+}
+
+message UserList {
+    repeated User user = 1;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>JAX-RS with protocol buffers</h2>
+          2. Create JAX-RS Provider for reading and writing 
+          <pre><code>
+@Provider
+@Produces("application/protobuf")
+@Consumes("application/protobuf")
+public class ProtoBufferProvider implements MessageBodyReader, MessageBodyWriter {          
+	@Override
+	public void writeTo(Object t, Class type, Type genericType, Annotation[] annotations, MediaType mediaType,
+			MultivaluedMap httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
+			...
+	}		
+	@Override
+	public Object readFrom(Class type, Type genericType, Annotation[] annotations, MediaType mediaType,
+			MultivaluedMap httpHeaders, InputStream entityStream) throws IOException, WebApplicationException {
+			...
+	}
+}			
+          </code></pre>
+        </section>  
+
+        <section>
+          <h2>JAX-RS with protocol buffers</h2>
+          3. Create JAX-RS endpoint 
+          <pre><code>
+@Path("data")
+public class ProtoBufferService {
+	@GET
+	@Produces("application/protobuf")
+	@Path("getAllUsers")
+	public Response getAllUsers() {
+		return Response.ok(dataService.getAllUsers()).build();
+	}
+
+	@GET
+	@Produces("application/protobuf")
+	@Path("getUserByName")
+	public Response getUserByName(@QueryParam("userName") String userName) {
+		User user = dataService.getUserByName(userName);
+		return Response.serverError().build();
+	}
+}          
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>JAX-RS with protocol buffers</h2>
+          4. Create JAX-RS client 
+          <pre><code>
+public static void main(String[] args) {
+
+   Client client = ClientBuilder.newBuilder()
+                   .register(ProtoBufferProvider.class)
+                   .build(); 
+   WebTarget target = client.target(config.getServiceURLUserList());
+   Builder builder = target.request();
+   UserList userList = builder.get(UserList.class);
+   
+}          
+          </code></pre>
+        </section>  
+
+        <section>
+          <h2>WebSockets is solution</h2>
+          <ul>
+             <li>TCP based, bi-directional, full-duplex messaging</li> 
+             <li>Dramatic reduction in network latency and traffic.</li>
+             <li>WebSocket frame is just <strong>2</strong> bytes overhead.</li>
+             <li>Good adoption by majority of web browsers.</li> 
+             <li>Mature JavaScript API.</li> 
+             <li>Supports HTTP proxies, filtering, authentication.</li> 
+          </ul>
+        </section>
+
+        <section>
+          <img class="embedded-image" data-src="images/WebSocket.svg"/>
+        </section>
+          
+        <section>
+          <h2>WebSocket protocol</h2>
+        </section>
+
+        <section>
+          <h2>WebSockets with protocol buffers</h2>
+        </section>
+
+        <section>
+          <h2>Communication patterns</h2>
+          <ul>
+             <li>Simple set of data values</li>
+             <ul>
+               <li>Display set of immutable data values</li>
+               <li>Sensor data, statisctics, ...</li>
+             </ul>
+             <li>Data series</li>
+             <ul>
+               <li>Time series data</li> 
+               <li>Time charts, ...</li> 
+             </ul>  
+             <li>Client query results</li>
+             <ul>
+               <li>Results from database based on user query</li>
+             </ul>
+             <li>Combination of above</li>
+          </lu>
+        </section>
+
+        <section>
+          <h2>Communication protocols</h2>
+          <ul>
+             <li>Clients using REST APIs</li>
+             <li>Clients using REST APIs and WebSocket connections</li>
+             <li>Clients using only WebSocket connections</li>
+             <li>Web Browser clients - JSON</li>
+             <li>Other clients - JSON / XML / Protocol buffers</li>  
+          </ul>
+        </section>  
+
+        <section>
+          <h2>Session synchronizations</h2>
+          <ul>
+             <li>For clients using HTTP sessiion and WebSockets</li>
+             <li>HttpsSession is usually bound to user identity</li>
+             <li>Disconnect WebSockets on http session timeout</li> 
+          </ul>
+        </section>  
+        
+        <!-- JEE8 FUTURE IMPROVEMENTS -->        
+        <section>
+          <h2>Future improvements in JEE8</h2>
+          <ul>
+             <li>JEE8 standard - Q3/2017</li>
+             <li>Servlet 4.0, HTTP/2</li>
+             <ul>
+                <li>HTTP/2 - </li>
+                <li>Server Sent Events - MediaType.SERVER_SENT_EVENT JAX-RS 2.1</li>
+             </ul>
+             <li>Asynch CDI events ?</li>
+             <li>ALPN - Application Layer Protocol Negotioation</li>
+             <li>ActiveMQ-MQTT bridge ?<a= hrf="http://camel.apache.org/mqtt.html">ActiveMQ - MQTT bridge: camel-mqtt</a> </li> 
+             <li>AMQP <a href="https://developer.jboss.org/thread/269424?start=0&tstart=0">Link</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>JEE8 - Roadmap</h2>
+          <ul>
+             <li>As presented at JavaOne</li>
+             <li>2017 - Finalize JEE8 specs</li>
+             <li>2018 - Finalize JEE9 specs</li>
+             <li>JEE8 & JEE9 - focus on cloud and micro-services.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Emerging technologies</h2>
+          Not part of JEE7, maybe later ...<br/>
+          <ul>
+            <li><a href="http://socket.io">http://socket.io ??</a></li>
+            <li><a href="https://blogs.oracle.com/OracleCoherence/entry/coherencerx_reactive_extensions_for_oracle">coherenceRx ??</a></li>
+            <li><a href="http://www.grpc.io/">gRPC + HTTP 2</a> - nex gen REST APIs, based on Protobufs</li>
+            <li><a href="http://gluonhq.com/">Gluon</a> - JavaFx for on Android and iOS</li>
+          </ul>
+        </section>
+        
+        <section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             <img class="embedded-image" data-src="images/HybridApp.architecture.svg"/>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             <ul>
+               <li>Clients</li>
+               <ul>
+                 <li>JSF - PrimeFaces UI</li>
+                 <li>JavaScript - Bootstrap, Angular2, ...</li>
+                 <li>JavaFx - JVM fat client, UI</li>
+                 <li>RPi - JVM client, WS only</li>
+               </ul>
+               <li>Backend</li>
+               <ul>
+                 <li>JEE7 - single war deployed in WildFly 10 AS</li>
+               </ul>
+             </ul>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Communication protocols:
+             <br/>
+             <ul>
+               <li>Web Browsers - JSON over HTTP 1.1</li>
+               <ul>
+                 <li>JSON over HTTP 1.1</li> 
+                 <li>JSON over webSocket</li> 
+               </ul>
+               <li>JVM clients</li>
+               <ul>
+                 <li>proto3 over HTTP 1.1</li>
+                 <li>proto3 over WebSocket</li>
+                 <li>may use JSON as well</li>
+               </ul>
+               <li><strong>proto3</strong> - C#, Python, Ruby ... clients !</li>
+             </ul>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Raspberry PI stack:<br/>
+             <img class="embedded-image" data-src="images/Raspberry_Pi_Stack.svg"/>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Raspberry PI schematics:<br/>
+             <img class="embedded-image" data-src="images/Raspberry_Pi_Controller-schema.svg"/>
+             <br/>
+          </section>
+        </section>
+
+        <section>
+          <h2>JEE7 Real-Time apps - wrap up</h2>
+        </section>
+        
+        <!-- BACKUP -->        
+        <section>
+          <section>
+            <h2>Backup Slides</h2>
+          </section>
+          <section>
+            <h1>Backup #01</h1>
+          </section>
+        </section>
+        
+        <!-- REFERENCES -->        
+        <section>
+          <section>
+            <h2>References</h2>
+            <ul>
+              <li><a href="http://www.reactivemanifesto.org"><strong>The Reactive Manifesto</strong></a> - principles of reactive systems</li>
+              <li><a href="https://developers.google.com/protocol-buffers/"><strong>Google Protocol Buffers</strong></a> - efficient message transport</li>
+              <li><a href="http://lab.hakim.se/reveal-js/#/"><strong>Reveal JS</strong></a> - made this presentation possible, thanx!</li>
+              <li><a href="http://www.yworks.com/products/yed"><strong>yEd</strong></a> - diagram and graph editor</li>
+            </ul>
+          </section>
+          <section>
+            <h2>References - backup</h2>
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=0KArzAbaPWQ">JEE8 JAX-RS 2.1</a> at JavaOne</li> 
+              <li><a href="https://www.youtube.com/watch?v=T9HPLLXjGzI">Servlet 4 0 Status Update</a> at JavaOne</li>
+              <li><a href="https://www.youtube.com/watch?v=BwwR1C_Lvpc">Java EE Next HTTP 2 and REST Opportunities</a></li>   
+              <li><a href="http://www.mastertheboss.com/">www.mastertheboss.com</a></li>
+            </ul>
+          </section>
+        </section>
+
+      </div>
+    </div>
+    
+	<script src="../../../01-html-resources/presentations/lib/js/head.min.js"></script>
+	<script src="../../../01-html-resources/presentations/js/reveal.js"></script>
+	<script src="../../../01-html-resources/presentations/js/jquery-3.1.0.min.js"></script>
+
+	<script>
+	var xxx;
+	        var ddd;
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../../../01-html-resources/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../../01-html-resources/presentations/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../../../01-html-resources/presentations/plugin/notes/notes.js', async: true }
+				]
+			});
+			
+			Reveal.addEventListener( 'jee7TechnologiesState', function() {
+			   console.log("jee7TechnologiesState: fired !");
+			   //var elementsToHiglight = $("g[fill='rgb(255,204,153)']");//.css('fill','rgb(255,255,255)');
+			   //var elementsToHiglight = $("#jee7TechologiesImage");//.css('fill','rgb(255,255,255)');
+			   //var elementsToHiglight = $("g[fill='rgb(255,204,153)']",svgRoot);
+			   //console.log(elementsToHiglight);
+            }, false );
+
+	        $(document).ready(function(){
+			   console.log("document loaded");
+			   //xxx = document.getElementById("jee7TechologiesImage");
+			   //var iWindow = xxx.contentWindow;
+			   //iWindow.addEventListener("load",function(){
+			   //    console.log("svg loaded");
+			   //    ddd = xxx.contentDocument || xxx.contentWindow.document;
+    			   //var svgRoot  = xx.contentDocument.documentElement;
+    			   //var elementsToHiglight = $("g[fill='rgb(255,204,153)']",svgRoot);
+    			   //console.log(elementsToHiglight);
+			   //});
+			   //$("#jee7TechologiesImage").load(function() {
+			   //    console.log("svg loaded");
+			       //var doc = this.contentDocument || this.contentWindow.document;
+			   //});
+			   
+			   /**
+			    * insert header and footer into every slide
+			    */ 
+			   var header = $('#header').html();
+               if ( window.location.search.match( /print-pdf/gi ) ) {
+                    Reveal.addEventListener( 'ready', function( event ) {
+                       $('.slide-background').append(header);
+                    });
+               } else {
+                    $('div.reveal').append(header);
+               }
+	        });
+	</script>
+		    
+  </body>
+</html>
+    

@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>02 - Java EE7 CDI</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/custom.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/reveal.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/header-footer.css">
+    <!-- <link rel="stylesheet" href="../_resources/css/theme/league.css" id="theme"> -->
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/zenburn.css">
+  </head>
+  <body>
+
+    <div id="header-hidden">
+       <div id="header">
+          <!--
+          <div id="header-left">HEADER-LEFT</div>
+          <div id="header-right">HEADER-RIGHT</div>
+          <div id="footer-left">FOOTER-LEFT</div>
+          -->
+       </div>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+      
+        <section>
+          <h2>Java EE7</h2>
+          <h3>veverka@itexperts.sk</h3>
+          <p/>
+          <h3>Context and Dependency Injection</h3>
+        </section>
+
+        <section>
+          <h3>Context and Dependency Injection</h3>
+          <ul>
+            <li>Helps to integrate web tier and transactional tier.</li>
+            <li>Implements IoC (Inversion of Control).</li>
+            <li>Replaces Factory and Service Locator pattern.</li>
+            <li>Dependency Injection and configuration as service of application container.</li>
+            <li>Concept of loose coupling and strong typing. No hard-coded  dependencies.</li>
+            <li>Provides life-cycle management, interceptors and events.</li>
+            <li>Reference implementation is JBoss Weld.</li>
+            <li>Excellent for testing.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Dependency Injection in Java SE</h3>
+          <ul>
+            <li>DI via constructor, using fields</li>
+            <li>DI via setter public methods</li>
+            <li>Using JNDI lookups</li>
+            <li>Using Factory pattern</li>
+            <li>Usually an object is actively lookig up other objects (it's dependencies).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>CDI in application server</h3>
+          <ul>
+            <li>Contexts: CDI service enables you to bind life-cycle to well defined life-cycle contexts.</li>
+            <li>DI: CDI service enables you to inject components into application in type safe way.</li>
+            <li>CDI defines scopes.</li>
+            <li>Provides Interceptors for life-cycle events.</li>
+            <li>Provides integration for web tier and transactional tier.</li>
+            <li>Custom Qualifiers Producers and Disposers.</li>  
+          </ul>
+        </section>
+
+        <section>
+          <h3>CDI related packages</h3>
+          <table class="small-table">
+            <tr><th>Package</th><th>Description<th/></tr>
+            <tr><td><code>javax.inject</code></td><td>Core dependency injection for Java API JSR 330<td/></tr>
+            <tr><td><code>javax.entertprise.inject</code></td><td>Core dependency injection APIs<td/></tr>
+            <tr><td><code>javax.entertprise.context</code></td><td>CDI scopes and contextual APIs<td/></tr>
+            <tr><td><code>javax.entertprise.event</code></td><td>CDI events and observers APIs<td/></tr>
+            <tr><td><code>javax.entertprise.util</code></td><td>CDI utility package<td/></tr>
+            <tr><td><code>javax.interceptor</code></td><td>Interceptor APIs<td/></tr>
+            <tr><td><code>javax.decorator</code></td><td>CDI decorator APIs<td/></tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>CDI Bean</h3>
+          <ul>
+            <li>Any kind of class containing business logic.</li>
+            <li>May be called directly from Java code.</li>
+            <li>May be invoked via EL from JSF page.</li>
+          </ul>  
+          <pre><code>
+public class BookService {
+
+    @Inject
+    private NumberGenerator ng;
+
+    @Inject 
+    private Logger logger;
+
+    @PostConstruct
+    private void init() {
+    }
+
+}            
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>CDI Injection points</h3>
+          <ul>
+            <li>Into property private fields
+              <pre><code>
+class BookService {
+   @Inject
+   private NumberGenerator ng;
+}
+              </code></pre>
+            </li>
+            <li>Using setter method
+              <pre><code>
+class BookService {
+
+   private NumberGenerator ng; 
+
+   @Inject
+   public void setNumberGenerator
+      (NumberGenerator ng) {
+      this.ng = ng;
+   }
+}
+              </code></pre>
+            </li>
+          </ul> 
+        </section>
+
+        <section>
+          <h3>CDI Injection points</h3>
+          <ul>
+            <li>Using class constructor parameters
+              <pre><code>
+class BookService {
+  
+   private NumberGenerator ng; 
+
+   @Inject
+   public BookService (NumberGenerator ng) {
+      this.ng = ng;
+   }
+}          
+              </code></pre>
+            </li>
+          </ul> 
+        </section>
+
+        <section>
+          <h3>CDI Annotations</h3>
+          <ul>
+            <li>
+              <strong>@Default</strong> is standard qualifier used by CDI<br/>
+              <pre>@Inject is same as @Inject @Default</pre>
+            </li>
+            
+            <li>
+              <strong>Qualifiers</strong> – if more than one default implementation is available qualifier annotation is used to distinguish implementations. 
+              Qualifiers are user defined runtime anotation anotated with @Qualifier
+              <pre>@Inject @MyImplementationQualifier</pre>
+            </li>
+
+            <li>
+              <strong>@Alternative</strong> – used for alternative injection during testing. Alternatives must be enabled in beans.xml because are disabled by default.          
+            </li>
+          </ul> 
+        </section>
+
+        <section>
+          <h3>CDI Producers</h3>
+          <ul>
+             <li><strong>@Produces</strong> annotation marks instance producer method or field giving off instances injectable by CDI</li>
+              <pre><code>
+public class NumberGenerator {
+    @Produces @Random
+    public double getRandom() {
+       return Math.abs(new Random().nextInt());
+    }
+}
+
+public class LoggingProducer {
+    @Produces
+    public Logger createLogger(InjectionPoint ip) {
+       return Logger.getLogger(ip.getMember()
+              .getDeclaringClass().getName());
+    }
+}
+              </code></pre>
+          </ul>
+        </section>
+
+        <section>
+          <h3>CDI Scopes</h3>
+          <ul>
+            <li>CDI scopes are used to integrate web tier with service tier.</li>
+            <li><strong>Application scope</strong> – similar to EJB singleton, bean is created on application startup and discarded on application shutdown.</li>
+            <li><strong>Session scope</strong> – bound to life cycle of HTTP session or JSF session.</li>
+            <li><strong>Request Scope</strong> – bound to single http request or single method invocation.</li>             
+          </ul>
+        </section>
+
+        <section>
+          <h3>CDI Scopes</h3>
+          <ul>
+            <li><strong>Conversation scope</strong> – spans between multiple invocations. Session boundaries are determined by application.</li>
+            <li><strong>Dependent</strong> – pseudo scope, life cycle is same as life cycle of client bean. This scope is default if no other is specified.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>CDI and Expression Language</h3>
+          <ul>
+            <li>CDI knits together transactional tier and web tier.</li>
+            <li>CDI provides type safe DI for Java code.</li>
+            <li>JSF and EL requires however character-based names.</li>
+            <li><strong>@Named</strong> annotation solves this problem</li>          
+          </ul>
+        </section>
+
+        <section>
+          <h3>CDI and Expression Language</h3>
+          <pre><code>
+@Named
+public class BookService {
+   public void createBook() {
+   }
+}
+
+&lt;h:commandButton value=”Create Book” 
+                    action=”#{bookService.createBook}”/&gt;
+          </code></pre>
+          <pre><code>
+@Named(“bService”)
+public class BookService {
+   public void createBook() {
+   }
+}
+
+&lt;h:commandButton value=”Create Book” action=”#{bService.createBook}”/&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>CDI Interceptors</h3>
+            <ul>
+              <li>Interceptors allow to add cross-cutting concerns to user's beans.</li>
+              <li><strong>@AroundConstruct</strong> – associated with constructor of target class</li>
+              <li><strong>@AroundInvoke</strong> – associated with specific busienss method</li>
+              <li><strong>@AroundTimeout</strong> – associated EJB timer services</li>
+              <li>Life-cycle interceptors like <strong>@PostConstruct</strong> and <strong>@PreDestroy</strong></li> 
+            </ul>
+        </section>
+
+        <section>
+          <h3>CDI Events</h3>
+            <ul>
+              <li>CDI provides simple framework for distributing application events.</li>
+              <li>Event producers fire or raises event.</li>
+              <li>CDI container passes events to all available observers.</li>
+              <li>CDI events are only synchronous.</li>
+              <li>Simple replacement of JMS in single application.</li> 
+            </ul>
+        </section>
+
+        <section>
+          <h3>CDI Events</h3>
+          <pre><code>
+public class BookService {
+
+   @Inject
+   private Event&lt;Book&gt; bookAddedEvent;
+   
+   public void createBook() {
+      ...
+      bookAddedEvent.fire(book);
+   }
+}          
+          </code></pre>
+          <pre><code>
+public class InventoryService {
+  public void onBookCreated(@Observes Book book) {
+      ...
+  }
+}  
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>References</h3>
+          <ul>  
+            <li><a href="https://jcp.org/en/jsr/detail?id=330">JSR 330: Dependency Injection for Java</a></li> 
+            <li><a href="https://jcp.org/en/jsr/detail?id=346">JSR 346: Contexts and Dependency Injection for Java EE 1.1</a></li>
+          </ul>  
+        </section>
+
+      </div>
+    </div>
+    
+	<script src="../../../01-html-resources/presentations/lib/js/head.min.js"></script>
+	<script src="../../../01-html-resources/presentations/js/reveal.js"></script>
+	<script src="../../../01-html-resources/presentations/js/jquery-3.1.0.min.js"></script>
+
+	<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../../../01-html-resources/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../../01-html-resources/presentations/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../../../01-html-resources/presentations/plugin/notes/notes.js', async: true }
+				]
+			});
+			
+	        $(document).ready(function(){
+			   console.log("document loaded");
+			   /**
+			    * insert header and footer into every slide
+			    */ 
+			   var header = $('#header').html();
+               if ( window.location.search.match( /print-pdf/gi ) ) {
+                    Reveal.addEventListener( 'ready', function( event ) {
+                       $('.slide-background').append(header);
+                    });
+               } else {
+                    $('div.reveal').append(header);
+               }
+	        });
+	</script>
+		    
+  </body>
+</html>
+    

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <title>JPA-06</title>
+    </h:head>
+    <h:body>
+        
+        <h1>JPA 06</h1>
+        
+        <h:form>
+          <!-- >
+          <h:panelGrid columns="2" styleClass="itx-panel-grid" >
+            <h:outputLabel value="Data: "/>
+            <h:inputText value="#{template.data}"/>
+          </h:panelGrid>
+          -->
+          <h:commandButton value="Get User Sync" action="#{actions.getUserById()}" /><br/>
+          <h:commandButton value="Get User Async" action="#{actions.getUserByIdAsync()}" /><br/>
+          <h:commandButton value="JDBC Action" action="#{actions.doDataAction()}" /><br/>
+          <h:commandButton value="Change Owner Action" action="#{actions.changeProjectOwner()}" /><br/>
+          <h:commandButton value="Create Project" action="#{actions.createProject()}" /><br/>
+          <h:commandButton value="Get User Tx Aware" action="#{actionsTx.getUserById()}" /><br/>
+          <h:commandButton value="Create User" action="#{actions.createUsert()}" /><br/>
+        </h:form>
+    
+    </h:body>
+</html>

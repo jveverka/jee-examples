@@ -1,0 +1,20 @@
+CDI Producer, lab 02
+Let's implement simple producer class for Logger CDI injection.
+ite.examples.cdi.producer.SingletonScopedBean obtains logger instance via 
+Logger.getLogger(SingletonScopedBean.class.getName()); factory method call.
+Implement own CDI provider and let CDI framework create logger instance for you.
+
+1. Create new LoggingProducer class in ite.examples.cdi.producer package
+Use @Dependent scope and implement public @Produces method like this:
+
+	@Produces
+	private Logger createLogger(InjectionPoint injectionPoint) {
+		return Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
+	}
+
+2. Remove logger from SingletonScopedBean
+private Logger logger = Logger.getLogger(SingletonScopedBean.class.getName());
+
+3. Inject Logger into SingletonScopedBean using @Inject annotation
+
+deploy the project in Wildfly AS, you should see singleton bean initialization log during AS startup.

@@ -1,0 +1,3 @@
+JSF lab 01
+This is just simple login/logout demo
+

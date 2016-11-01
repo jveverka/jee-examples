@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+buildDir="build_gradle"
+
+ext.libraries = [
+    javaee:   'javax:javaee-api:7.0',
+    primefaces: 'org.primefaces:primefaces:5.2',
+    pfthemes: 'org.primefaces.themes:all-themes:1.0.10',
+]
+    
+eclipse {
+   wtp {
+      facet {
+          facet name: 'java', version: '1.8'
+          facet name: 'jst.web', version: '3.1'
+          facet name: 'wst.jsdt.web', version: '1.0'
+      }
+   }
+}
+ 
+repositories {
+   maven { url "$wildfly_maven_url" }
+   mavenCentral()
+   maven { url "$artifactory_url" }
+   maven { url "$localrepo_url" }    
+}
+
+dependencies {
+   compile  libraries.javaee
+   compile  libraries.primefaces
+   compile  libraries.pfthemes
+}
+
+war {
+}
+

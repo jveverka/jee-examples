@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::Servlet</title>
+  </head>
+  <body>
+    <div class="container">
+    <p></p>
+    <a href="../../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / Servlet / Servlet-05</h3>
+        <h4>JAX-RS compressed encrypted streams</h4>
+        <div>
+          <p>
+          Example implementation of JAX-RS stream server + client in case you need to download bulk data via REST web services.
+          On server side, XML data is generated, then data is compressed uzing ZipOutputStream, later data is encrypted using symmentric AES cipher.
+          XML data generated on server have following structure:
+          <pre><code class="language-java">
+          &lt;root&gt;
+            &lt;data index="1"&gt;data: [1]&lt;data&gt;
+            &lt;data index="2"&gt;data: [2]&lt;data&gt;
+            &lt;data index="3"&gt;data: [3]&lt;data&gt;
+            &lt;data index="4"&gt;data: [4]&lt;data&gt;
+            ...
+          &lt;/root&gt;
+          </code></pre>
+          When server is deployed and running, bulk download service is available at:</br> <code>http://localhost:8080/wsstreambulk/ws/data/stream?password=secret&delay=0&size=100000000</code><br/>
+          Regular web browser (Chrome) can be used as client as well. In case of input parameters password=secret delay=0 size=100000000 approx. 500MB of data is downloaded from server.
+          </p>
+          <p>
+          There are some URL parameters available for the service:<br/>
+          <strong>password:</strong> string password used for encryption/decryprion of data<br/>
+          <strong>delay:</strong> delay between writes in nanonsecons<br/>
+          <strong>size:</strong> number of data elements<br/>
+          </p>
+          <p>
+          Server stream chain: <code>OutputStream -> CipherOutputStream -> ZipOutputStream -> XMLStreamWriter</code><br/>
+          Client stream chain: <code>InputStream -> CipherInputStream -> ZipInputStream -> XMLEventReader</code>
+          </p>
+          <ul>
+            <li><strong>WSStreamEncryptedClient</strong> - client which downloads bulk compressed and encrypted data from server</li>
+            <li><strong>WSStreamEncryptedServer</strong> - server JAX-RS service which provides bulk compressed and encrypted data</li>
+          </ul> 
+          <p>
+          Please note that even if there are many concurrent clients, downloading data at same time, server memory is not overloaded.
+          Client can process the data even if they are not completely downloaded from server.    
+          </p>
+          Notable java classes:
+          <ul>
+             <li><code>itx.wsstreamtest.server.StreamService</code> - JAX-RS REST endpoint</li>
+             <li><code>itx.wsstreamtest.server.DataService</code> - Service generating data.</li>
+             <li><code>itx.wsstreamtest.client.WSClient</code> - Web Service client.</li>
+          </ul>
+        </div>
+    <div/> 
+    <div/>
+  </body>
+</html>
+   
+      

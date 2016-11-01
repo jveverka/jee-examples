@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>CDI-producer/disposer</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+    </h:head>
+    <h:body>
+      <h1>CDI producer/disposer demo</h1>
+      
+      StateHolder state=#{requestScoped.shState}
+      
+    </h:body>
+</html>

@@ -1,0 +1,12 @@
+<job id="create-report" version="1.0" standalone="yes">
+	<properties>
+		<property name="reportId" value="" />
+		<property name="reportData" value="" />
+	</properties>
+	<listeners>
+		<listener ref="CreateReportListener" />
+	</listeners>
+	<step id="create">
+		<batchlet ref="CreateReportBatchlet" />
+	</step>
+</job>

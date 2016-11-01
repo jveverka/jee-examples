@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>Bean Validation</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+    </h:head>
+    <h:body>
+      <h1>Simple Bean Validation example</h1>
+      
+      <h:form>
+        <h:panelGrid columns="2" styleClass="itx-panel-grid">
+          <h:panelGrid columns="2" styleClass="itx-panel-grid">
+            <h:outputLabel value="Name" />
+            <h:inputText value="#{dataProcessing.name}" />
+
+            <h:outputLabel value="Age" />
+            <h:inputText value="#{dataProcessing.age}" />
+
+            <h:outputLabel value="Salary" />
+            <h:inputText value="#{dataProcessing.salary}" />
+
+            <h:outputLabel value="Message" />
+            <h:outputLabel value="#{dataProcessing.message}" />
+            
+          </h:panelGrid>
+          <div>
+            Create Employee record.<br/>
+            Name must be longer than 2 characters and not null.<br/>
+            Age must be greater than 18 and not null.<br/>  
+            Salary must be max. 6 digit float with max 2 decimals and not null.<br/>  
+          </div>
+        </h:panelGrid>
+        <h:panelGrid columns="2" styleClass="itx-panel-grid">
+           <h:commandButton value="Simple Validation" action="#{dataProcessing.dataProcessingAction()}" />
+           <h:commandButton value="Test Null" action="#{dataProcessing.testNullAction()}" />
+           <h:commandButton value="EMPLOYEE Validation" action="#{dataProcessing.dataProcessingEmployeeValidatorAction()}" />
+           <h:commandButton value="Test Null" action="#{dataProcessing.testNullEmployeeValidatorAction()}" />
+           <h:commandButton value="Obtained Validation" action="#{dataProcessing.dataProcessingObtainedValidator()}" />
+           <h:commandButton value="Test Null" action="#{dataProcessing.testNullObtainedValidator()}" />
+        </h:panelGrid>
+        <hr/>
+        <h:panelGrid columns="2" styleClass="itx-panel-grid">
+          <h:outputLabel value="Message" />
+          <h:outputLabel value="#{dataProcessing.historyMessage}" />
+          <h:commandButton value="Create Correct History" action="#{dataProcessing.createCorrectHistoryAction()}" />
+          <h:commandButton value="Create Incorrect History" action="#{dataProcessing.createIncorrectHistoryAction()}" />
+        </h:panelGrid>
+      </h:form>
+      
+    </h:body>
+</html>

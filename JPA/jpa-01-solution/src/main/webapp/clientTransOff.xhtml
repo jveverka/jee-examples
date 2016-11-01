@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>JPA CRUD demo</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+    </h:head>
+    <h:body>
+    
+      <h1>JPA CRUD demo: Client Transactions OFF</h1>
+      
+      <h:form>
+         <h:outputLabel value="Number of users: #{userview.getUserCount()}"/>
+         <h:dataTable value="#{userview.users}" var="userData">
+           <h:column>#{userData.id}</h:column>
+           <h:column>#{userData.firstName}</h:column>
+           <h:column>#{userData.secondName}</h:column>
+           <h:column>#{userData.phone}</h:column>
+           <h:column>#{userData.email}</h:column>
+           <h:column><h:commandButton value="E" action="#{userview.setEditUserAction(userData.id)}"/></h:column>
+           <h:column><h:commandButton value="X" action="#{userview.deleteUserAction(userData.id)}"/></h:column>
+         </h:dataTable>
+         <h:commandButton value="Reload Users" action="#{userview.reloadDataAction()}"/>
+         
+         <hr/>
+         <h:panelGrid columns="2" styleClass="itx-panel-grid">
+           <h:outputLabel value="FirstName: "/> 
+           <h:inputText value="#{userview.firstName}"/>
+           <h:outputLabel value="SecondName: "/> 
+           <h:inputText value="#{userview.secondName}"/>
+           <h:outputLabel value="Email: "/> 
+           <h:inputText value="#{userview.email}"/>
+           <h:outputLabel value="Phone: "/> 
+           <h:inputText value="#{userview.phone}"/>
+           <h:commandButton value="Create User" action="#{userview.createUserAction()}" rendered="#{!userview.editMode}"/>
+           <h:commandButton value="Edit User" action="#{userview.updateUserAction()}" rendered="#{userview.editMode}"/>
+           <h:commandButton value="Clear" action="#{userview.cancelEditAction()}" rendered="#{userview.editMode}"/>
+         </h:panelGrid>
+         
+      </h:form>
+
+    </h:body>
+</html>

@@ -1,0 +1,4 @@
+
+JPA demostration of entity graph capabilities
+
+

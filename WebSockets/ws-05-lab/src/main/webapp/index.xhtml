@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+    </h:head>
+    <h:body>
+    
+      <h1>Web socket demo</h1>
+      
+      <a href="websocket-client.html">browser web socket client</a>
+
+      <br/>
+      <br/>
+      
+      <h:form id="activeSessionsTable">
+        <p:dataTable var="sessionData" value="#{sessions.activeSessions}">
+           <f:facet name="header">
+             List of Active Web Socket sessions (clients)
+           </f:facet>
+           <p:column headerText="Id">
+              <h:outputText value="#{sessionData.id}" />
+           </p:column>
+           <p:column headerText="Timeout">
+              <h:outputText value="#{sessionData.idleTimeout}" />
+           </p:column>
+           <p:column headerText="">
+              <p:commandButton value="Set" actionListener="#{sessions.setSessionId(sessionData.id)}" update=":sessionSendForm"/>
+           </p:column>
+        </p:dataTable>
+        <p:poll interval="3" listener="#{sessions.reloadData()}" update=":activeSessionsTable" />
+      </h:form>
+      
+      <br/>
+      <br/>
+
+      <h:form id="sessionSendForm">
+        <p:panelGrid columns="2">
+          <h:outputText value="SessionId:" />
+          <p:inputText value="#{sessions.sessionId}" size="64"/>
+          
+          <h:outputText value="Message:" />
+          <p:inputText value="#{sessions.message}" size="64"/>
+        </p:panelGrid>
+        <p:commandButton value="Send message" actionListener="#{sessions.sendMessageAction()}" />
+      </h:form>
+      
+    </h:body>
+</html> 

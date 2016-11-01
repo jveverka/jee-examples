@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>92 - Java EE7 Environment Setup</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/custom.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/reveal.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/header-footer.css">
+    <!-- <link rel="stylesheet" href="../_resources/css/theme/league.css" id="theme"> -->
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/lib/css/zenburn.css">
+  </head>
+  <body>
+
+    <div id="header-hidden">
+       <div id="header">
+          <!--
+          <div id="header-left">HEADER-LEFT</div>
+          <div id="header-right">HEADER-RIGHT</div>
+          <div id="footer-left">FOOTER-LEFT</div>
+          -->
+       </div>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+      
+        <section>
+          <h2>Java EE7</h2>
+          <h3>veverka@itexperts.sk</h3>
+          <p/>
+          <h3>JEE runtime & environment setup</h3>
+        </section>
+
+        <section>
+          <h3>Wildfly AS environment setup</h3>
+          <ul>
+            <li>Required software</li>
+            <li>Setup environment variables</li>
+            <li>Setup Wildfly standalone configuration</li>
+            <li>Create Wildfly AS admin user</li>
+            <li>Create users for remote EJB calls</li>
+            <li>Create user for remote MDB access</li>
+            <li>Add modules for PostgreSQL</li>
+            <li>Create data source for PostgreSQL</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Required software</h3>
+          <ul>
+            <li>Operating Systems: Linux, Windows</li>
+            <li>JVM - Oracle <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK 1.8</a></li>
+            <li>Wildfly <a href="http://wildfly.org/downloads/">10.1.0 AS</a></li>
+            <li>PostgeSQL <a href="https://www.postgresql.org/download/">9.3 or later</a></li>
+            <ul><li>Pgadmin</li></ul>
+            <li>Eclipse JEE IDE <a href="https://eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/oxygen/M2/eclipse-jee-oxygen-M2-linux-gtk-x86_64.tar.gz&mirror_id=17">64bit Oxygen M2 with plugins</a></li>
+            <ul>
+            <li>JBoss Tools</li>
+            <li>Gradle Buildship for Eclipse</i>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Environment variable PATH</h3>
+          <ul>
+             <li>
+                 Check if PATH environment variable contains java bin directory.<br/>
+                 <code>echo $PATH</code><br/>
+                 <code>echo %PATH%</code>
+             </li>    
+          </ul>
+        </section>
+
+        <section>
+          <h3>Environment variable PATH</h3>
+          <ul>
+             <li>
+                 Set PATH environment variable in<br/>
+                 <code class="font-small">
+                 JBOSS_HOME/bin/standalone.conf<br/>
+                 JBOSS_HOME\bin\standalone.conf.bat<br/>
+                 </code> 
+                 <br/>add line on Linux:<br/>
+                 <code class="font-small">PATH=$PATH;/opt/jre/jdk1.8.0_31</code><br/>
+                  
+                 <br/>add line on Windows:<br/>
+                 <code class="font-small">set PATH=%PATH%;c:\Program Files\Java\jre1.8\bin</code>
+             </li>              
+          </ul>
+        </section>
+
+        <section>
+          <h3>Environment variable JAVA_HOME</h3>
+          <ul>
+             <li>
+                Check if JAVA_HOME environment variable is defined in your system properly.<br/>
+                <code>echo $JAVA_HOME</code><br/>
+                <code>echo %JAVA_HOME%</code>
+             </li>   
+          </ul>
+        </section>
+
+        <section>
+          <h3>Environment variable JAVA_HOME</h3>
+          <ul>
+             <li>
+               Set JAVA_HOME environment variable in<br/>
+                 <code class="font-small">
+                 JBOSS_HOME/bin/standalone.conf<br/>
+                 JBOSS_HOME\bin\standalone.conf.bat 
+                 </code><br/>
+                 <br/>add line on Linux:<br/>
+                 <code class="font-small">JAVA_HOME=/opt/jre</code><br/>
+
+                 <br/>add line on Windows:<br/>
+                 <code class="font-small">set JAVA_HOME=c:\Program Files\Java\jre1.8\bin</code><br/>
+             </li>              
+          </ul>
+        </section>
+
+        <section>
+          <h3>Setup standalone-full.xml</h3>
+          <ul>
+            <li>Setup Wildfly AS to use <code>standalone-full.xml</code> profile.</li>
+            <li>By default <code>standalone.xml</code> is used by WildFly AS.</li>
+            <li><code>standalone.xml</code> is NOT full JEE7 profile config.</li>
+            <li><code>standalone-full.xml</code> is full JEE7 profile config.</li>
+          </ul>  
+        </section>
+
+        <section>
+          <h3>Setup standalone-full.xml</h3>
+          <ul>
+            <li>
+               Set profile in<br/>
+               <code class="font-small">
+                 JBOSS_HOME/bin/standalone.conf<br/>
+                 JBOSS_HOME\bin\standalone.conf.bat<br/>
+               </code>
+
+                 <br/>add line on Linux:<br/>
+                 <code class="font-small">JVM_OPTS="$JVM_OPTS -Djboss.server.default.config=standalone-full.xml"</code><br/>
+
+                 <br/>add line on Windows:<br/>
+                 <code class="font-small">set "JAVA_OPTS=%JAVA_OPTS% -Djboss.server.default.config=standalone-full.xml"</code><br/>
+            </li>
+          </ul>  
+        </section>
+        
+        <section>
+          <h3>Create Wildfly admin user</h3>
+          <ul>
+            <li>
+              Start Wildfly AS using scipt<br/> 
+              <code class="font-small">
+              JBOSS_HOME/bin/standalone.sh<br/>
+              JBOSS_HOME\bin\standalone.bat
+              </code>
+            </li>
+            <li>
+              Create user of Management type<br/>
+              <code class="font-small">
+<strong>./add-user.sh</strong><br/>
+What type of user do you wish to add?<br/> 
+(a): <strong>a</strong><br/> 
+Username : <strong>manager</strong><br/>
+What groups … leave blank for none)[  ]:<strong class="font-opaque">! leave blank !</strong><br/>
+Is this new user … or for a Remoting connection for server to server EJB calls. yes/no? <strong>No</strong><br/>
+</code>            
+            </li>
+          </ul>  
+        </section>  
+
+        <section>
+          <h3>WildFly Admin Interface</h3>
+          <ul>
+            <li>Check is WildFly Admin interface is accessible</li>
+            <li><a href="http://loaclhost:9990">http://loaclhost:9990</a></li>
+          </ul>  
+          <img class="embedded-image" src="images/wf-admin-console.png" />
+        </section>  
+
+        <section>
+          <h4>Create users for remote EJB calls</h4>
+          <ul>
+            <li>
+              Start Wildfly AS using scipt<br/> 
+              <code class="font-small">
+              JBOSS_HOME/bin/standalone.sh<br/>
+              JBOSS_HOME\bin\standalone.bat
+              </code>
+            </li>
+            <li>
+            Create user of Application type<br/>
+              <code class="font-small">
+<strong>./add-user.sh</strong><br/>
+What type of user do you wish to add?<br/> 
+(a): <strong>b</strong><br/> 
+Username : <strong>ejbguest</strong><br/>
+Password : <strong>ejbguest123</strong><br/>
+What groups … leave blank for none)[  ]: <strong>guest</strong><br/>
+Is this new user … or for a Remoting connection for server to server EJB calls. yes/no? <strong>Yes</strong>
+             </code>
+            </li>
+          </ul>  
+        </section>
+
+        <section>
+          <h4>Create users for remote EJB calls</h4>
+          Add remaining EJB users using previous procedure:<br/><br/>
+          <table>
+            <tr><th>User Name</th><th>Password</th><th>Role</th></tr>
+            <tr><td>ejbuser</td><td>ejbuser123</td><td>users</td></tr>
+            <tr><td>ejadmin</td><td>ejbadmin123</td><td>admins</td></tr>
+          </table>
+        </section>
+
+        <section>
+          <h4>Create users for remote MDB access</h4>
+          <ul>
+            <li>
+              Start Wildfly AS using scipt<br/> 
+              <code class="font-small">
+              JBOSS_HOME/bin/standalone.sh<br/>
+              JBOSS_HOME\bin\standalone.bat
+              </code>
+            </li>
+            <li>
+            Create user of Application type<br/>
+            <code class="font-small">
+            <strong>./add-user.sh</strong><br/>
+What type of user do you wish to add?<br/> 
+(a): <strong>b</strong><br/> 
+Username : <strong>mdbuser</strong><br/>
+Password : <strong>mdbuser123</strong><br/>
+What groups … leave blank for none)[  ]: <strong>guest</strong><br/>
+Is this new user … or for a Remoting connection for server to server EJB calls. yes/no? <strong>yes</strong><br/>
+             </code>
+            </li>
+          </ul>  
+        </section>
+
+        <section>
+          <h4>Add modules for Postrges SQL</h4>
+          <ul>
+            <li>Install Postgres module in Wildfly modules directory</li>
+            <li>create directory <pre>JBOSS_HOME/modules/org/postgres/main</pre></li>
+            <li>put module.xml and jdbc driver in the directory</li>
+            <ul>
+              <li>module.xml</li>
+              <li><a href="https://jdbc.postgresql.org/download/postgresql-9.4.1211.jar">postgresql-9.4.1211.jar</a></li>
+            </ul>
+          </ul>  
+          <pre><code>
+&lt;module name="org.postgres"&gt;
+  &lt;resources&gt;
+    &lt;resource-root path="postgresql-9.4.1211.jar"/&gt;
+  &lt;/resources&gt;
+  &lt;dependencies&gt;
+    &lt;module name="javax.api"/&gt;
+    &lt;module name="javax.transaction.api"/&gt;
+  &lt;dependencies&gt;
+&lt;module&gt;          
+          </code></pre>
+        </section>
+
+        <section>
+          <h4>Create data source for Postgres</h4>
+          <ul>
+             <li>Add Postges driver and data source into <strong>standalone-full.xml</strong></li>
+             <li>server/profile/subsystem/datasources/drivers<br/>
+             <pre><code>
+&lt;driver name="postgres" module="org.postgres"&gt;
+  &lt;driver-class&gt;org.postgresql.Driver&lt;/driver-class&gt;
+&lt;driver/&gt;
+          </code></pre>
+             </li>
+          </ul>  
+        </section>
+
+        <section>
+          <h4>Create data source for Postgres</h4>
+          <ul>
+             <li>Create data source usin Postgres driver in <strong>standalone-full.xml</strong></li>
+             <li>server/profile/subsystem/datasources<br/>
+             <pre><code>
+&lt;datasource jndi-name="java:/datasources/PostgresDS" 
+  pool-name="PostgresPool" enabled="true"&gt;
+  &lt;connection-url&gt;
+    jdbc:postgresql://localhost/postgres
+  &lt;/connection-url&gt;
+  &lt;driver&gt;postgres&lt;/driver&gt;
+  &lt;security&gt;
+    &lt;user-name&gt;postgres&lt;user-name&gt;
+    &lt;password&gt;postgres&lt;password&gt;
+  &lt;/security&gt;
+&lt;/datasource&gt;
+          </code></pre>
+             </li>
+          </ul>  
+        </section>
+
+        <section>
+          <h4>Create infinispan cache-container</h4>
+          <ul>
+             <li>Create infinispan cache-container</li> 
+             <li>in <strong>standalone-full.xml</strong></li>
+          </ul>  
+          <pre><code>
+&lt;cache-container name="jcacheTest" default-cache="jcacheTestdb"&lt;
+  &lt;local-cache name="jcacheTestdb"&lt;
+    &lt;transaction mode="NON_XA"/&lt;
+  &lt;local-cache&lt;
+&lt;cache-container&lt;             
+          </code></pre>
+        </section>
+
+      </div>
+    </div>
+    
+	<script src="../../../01-html-resources/presentations/lib/js/head.min.js"></script>
+	<script src="../../../01-html-resources/presentations/js/reveal.js"></script>
+	<script src="../../../01-html-resources/presentations/js/jquery-3.1.0.min.js"></script>
+
+	<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../../../01-html-resources/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../../01-html-resources/presentations/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../../../01-html-resources/presentations/plugin/notes/notes.js', async: true }
+				]
+			});
+			
+	        $(document).ready(function(){
+			   console.log("document loaded");
+			   /**
+			    * insert header and footer into every slide
+			    */ 
+			   var header = $('#header').html();
+               if ( window.location.search.match( /print-pdf/gi ) ) {
+                    Reveal.addEventListener( 'ready', function( event ) {
+                       $('.slide-background').append(header);
+                    });
+               } else {
+                    $('div.reveal').append(header);
+               }
+	        });
+	</script>
+		    
+  </body>
+</html>
+    

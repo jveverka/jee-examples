@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>JPA CRUD demo</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <h:outputScript library="js" name="default.js" />
+    </h:head>
+    <h:body>
+    
+      <h1>JPA CRUD demo: PrimeFaces PUSH</h1>
+      
+      <h:form id="userDataForm">
+         <h:outputLabel value="Number of users: #{userview.getUserCount()}"/>
+         <p:dataTable value="#{userview.users}" var="userData">
+           <p:column headerText="Id">
+             <h:outputText value="#{userData.id}"/>
+           </p:column>
+           <p:column headerText="FirstName">
+             <h:outputText value="#{userData.firstName}"/>
+           </p:column>
+           <p:column headerText="SecondName">
+             <h:outputText value="#{userData.secondName}" />
+           </p:column>
+           <p:column headerText="Phone">
+             <h:outputText value="#{userData.phone}" />
+           </p:column>
+           <p:column headerText="e-mail">
+              <h:outputText value="#{userData.email}" />
+           </p:column>
+           <p:column><p:commandButton value="E" update=":userDataForm" action="#{userview.setEditUserAction(userData.id)}"/></p:column>
+           <p:column><p:commandButton value="X" update=":userDataForm" action="#{userview.deleteUserAction(userData.id)}"/></p:column>
+         </p:dataTable>
+         
+         <hr/>
+         <h:panelGrid columns="2" styleClass="itx-panel-grid">
+           <h:outputLabel value="FirstName: "/> 
+           <h:inputText value="#{userview.firstName}"/>
+           <h:outputLabel value="SecondName: "/> 
+           <h:inputText value="#{userview.secondName}"/>
+           <h:outputLabel value="Email: "/> 
+           <h:inputText value="#{userview.email}"/>
+           <h:outputLabel value="Phone: "/> 
+           <h:inputText value="#{userview.phone}"/>
+           <h:commandButton value="Create User" action="#{userview.createUserAction()}" rendered="#{!userview.editMode}"/>
+           <h:commandButton value="Edit User" action="#{userview.updateUserAction()}" rendered="#{userview.editMode}"/>
+           <h:commandButton value="Clear" action="#{userview.cancelEditAction()}" rendered="#{userview.editMode}"/>
+         </h:panelGrid>
+         
+         <p:remoteCommand name="triggerUserFormUpdate" update=":userDataForm" actionListener="#{userview.reloadDataAction()}" />
+         
+      </h:form>
+
+      <p:socket onMessage="handlePushGlobalEvent" channel="#{userview.getPushChannelName()}" />
+      
+    </h:body>
+</html>

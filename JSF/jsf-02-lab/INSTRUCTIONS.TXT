@@ -1,0 +1,9 @@
+jsf-02-lab
+This lab is sample implementation of JSF programmatic login/logout utilizing JEE security.
+In order to make this demo work, it is necessary to add ApplicationUser into wildfly default security realm. 
+Use bin/add-user.sh script. Created user ejbuser with password ejbuser123 and role admin or guest.
+
+Use created user to login and check if BusinessService.doAuthorizedAction(); call is authorized or not. 
+
+
+

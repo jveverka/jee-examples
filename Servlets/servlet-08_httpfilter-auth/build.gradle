@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+buildDir="build_gradle"
+
+ext.libraries = [
+   javaee:   'javax:javaee-api:7.0',
+   gson: 'com.google.code.gson:gson:2.7'
+]
+    
+eclipse {
+   wtp {
+      facet {
+          facet name: 'java', version: '1.8'
+          facet name: 'jst.web', version: '3.1'
+          facet name: 'wst.jsdt.web', version: '1.0'
+      }
+   }
+}
+ 
+sourceSets{  
+    main{  
+        java{  
+            srcDirs 'src/main/java'  
+        }
+    }  
+}  
+        
+repositories {
+   mavenLocal()
+   mavenCentral()
+}
+
+dependencies {
+   compile  libraries.javaee
+   compile  libraries.gson
+}
+
+war {
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::Servlet</title>
+  </head>
+  <body>
+    <div class="container">
+    <p></p>
+    <a href="../../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / Servlet / Servlet-07</h3>
+        <h4>JAX-RS Using Google Protocol buffers as transport</h4>
+        <div>
+          <p>
+          Example implementation of JAX-RS REST endpoint where transport media type is <a href="https://developers.google.com/protocol-buffers/">google protocol buffers</a>.
+          This demo exposes two REST GET APIs.<br/>
+          <strong>Get list of all users:</strong> http://localhost:8080/wsprotobuffers/ws/data/getAllUsers</br>
+          <strong>Get user by name:</strong> http://localhost:8080/wsprotobuffers/ws/data/getUserByName?userName=john</br>
+
+          <p>
+          There are some URL parameters available for the service:<br/>
+          <strong>userName:</strong> unique name of user<br/>
+          </p>
+          
+          <p>
+          Protocol buffers require programmer to use this workflow:
+          <ol>
+             <li>write .proto file which describes your DTOs (protocol)</li>
+             <li>compile .proto file into java sources using protoc compiler</li>
+             <li>use compiled java sources in your application (on both client and server)</li>
+          </ol>
+          In order to create java DTO classes, protoc compiles has to be installed on the system.</br>
+          On ubuntu: <code>sudo apt install protobuf-compiler</code><br/>
+          Or install compiler from: <code>https://github.com/google/protobuf/releases/download/v3.0.2/protoc-3.0.2-linux-x86_64.zip</code>
+          </p>
+
+          <p>
+          Build and install the demo
+          <pre><code>
+          cd WSProtoBuffersCommon
+          gradle clean install
+          cd WSProtoBuffersServer
+          gradle clean war
+          cd WSProtoBuffersClient
+          gradle clean jar
+          </code></pre>
+          </p>
+
+          <p>  
+          This demo consists of three projects:<br/>
+          <strong>WSProtoBuffersCommon</strong> - implementation of procol using protocol buffer compiler and inplementation of JAX-RS provider for server and client.<br/>
+          <strong>WSProtoBuffersServer</strong> - server JAX-RS endpoint implementation.<br/>
+          <strong>WSProtoBuffersClient</strong> - client implementation.<br/>
+          </p> 
+
+          Notable java classes and files:
+          <ul>
+             <li><code>WSProtoBuffersServer/itx.protobuffers.server.ProtoBufferService</code> - JAX-RS REST endpoint implementation</li>
+             <li><code>WSProtoBuffersCommon/src/main/resources/users.proto</code> - protocol description in google's special language.</li>
+             <li><code>WSProtoBuffersCommon/src/main/resources/protoc.sh</code> - shell scripe that generates protocol java classes. protoc must be installed on the system</li>
+             <li><code>WSProtoBuffersCommon/itx.protobuffers.common.UsersProtoc</code> - generated protocol code. DO NOT EDIT !!!</li>
+             <li><code>WSProtoBuffersCommon/itx.protobuffers.common.providers.ProtoBufferProvider</code> - JAX-RS provider responsible for writing and reading protocol for client and server.</li>
+             <li><code>WSProtoBuffersClient/itx.protobuffers.client.WSClient</code> - JAX-RS cleint implementation</li>                        
+          </ul>
+        </div>
+    <div/> 
+    <div/>
+  </body>
+</html>
+   
+      

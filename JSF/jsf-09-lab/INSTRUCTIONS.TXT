@@ -1,0 +1,2 @@
+Demo JSF project showing implementation of custom JSF component
+

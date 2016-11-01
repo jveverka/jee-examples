@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>01 - Java EE7 overview</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/custom.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/reveal.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/header-footer.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/lib/css/zenburn.css">
+  </head>
+  <body>
+
+    <div id="header-hidden">
+       <div id="header">
+          <!--
+          <div id="header-left">HEADER-LEFT</div>
+          <div id="header-right">HEADER-RIGHT</div>
+          <div id="footer-left">FOOTER-LEFT</div>
+          -->
+       </div>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+      
+        <section>
+          <h2>Java EE7 Overview</h2>
+          <h3>veverka@itexperts.sk</h3>
+          <p/>
+          <h3>Module 1</h3>
+        </section>
+
+        <section>
+          <h3>Java EE Platform</h3>
+          <ul>
+            <li>Java EE is a superset of the Java SE platform</li>
+            <li>Set of specifications and APIs for building component-based multi-tier applications</li>
+            <li>Components are deployed in containers, which provide infrastructure and offer a series of services</li>
+            <li>Components are running within managed environment.</li>
+            <li>Developed through the Java Community Process (JCP)</li>
+          </ul>   
+        </section>
+
+        <section>
+          <h3>Java EE History</h3>
+          <ul>  
+            <li>J2EE 1.2 10 Specs Dec. 1999, <strong>Enterprise Applications</strong></li>
+            <li>J2EE 1.3 13 Specs Sep. 2001, <strong>Robust, Scalable</strong></li>
+            <li>J2EE 1.4 20 Specs Nov. 2003, <strong>Web Services</strong></li>
+            <li>Java EE 5 23 Specs May. 2006, <strong>Ease of Development</strong></li>
+            <li>Java EE 6 28 Specs Dec. 2009, <strong>Web EoD Profile</strong></li>
+            <li>Java EE 7 31 Specs Jun. 2013, <strong>Tihgter Integration</strong></li>
+            <ul>
+              <li>JMS 2.0</li>
+              <li>Batch processing</li>
+              <li>WebSockets</li>
+              <li>JSon-P</li>
+            </ul>  
+          </ul>            
+        </section>
+
+        <section>
+          <h3>Java EE History</h3>
+          <img class="embedded-image" src="images/JEE-history.svg" />
+        </section>
+
+        <section>
+          <h3>Java EE Future</h3>
+          <ul>  
+            <li>Java EE 8, estimated ~35 Specs, Q3. 2017</li>
+            <li>Improvements</li>
+            <ul>
+              <li>Support of latest standards like HTTP 2.0</li>
+              <li>Improve Ease of development</li>
+              <li>Cloud support improvements</li>
+              <li>Java SE 9 adaptation</li>
+            </ul>  
+            <li>New specifications</li> 
+            <ul>
+              <li>J-Cache</li>
+              <li>Java API for JSON Binding</li>
+              <li>Java Configuration</li>
+              <li>JEE security API</li>
+              <li>MVC 1.0</li>          
+            </ul>  
+          </ul>  
+        </section>
+
+        <section>
+          <h3>Java EE Application Model</h3>
+          <ul>  
+            <li>Distributed multi-tiered application model</li>
+            <ul>
+              <li>Client-tier components run on the client machine</li>
+              <li>Web-tier and Business-tier components run on Java EE server</li>
+              <li>Enterprise information system -tier software runs on EIS server</li>
+            </ul>  
+          </ul>  
+        </section>
+
+        <section>
+          <h4>Java EE Application Model</h4>
+          <img class="embedded-image" src="images/JEE-application-model.svg" />
+        </section>
+
+        <section>
+          <h4>Java EE Components</h4>
+          <ul>  
+            <li>Java EE Component is a self-contained functional software unit that is assembled into a Java EE application with related classes and files that communicates with other components</li>
+            <ul>  
+              <li>Application clients</li>
+              <ul>  
+                <li>Java Beans components</li>
+                <li>Batch processing programs</li>
+                <li>JavaFX or Swing GUI applications</li>
+              </ul>  
+              <li>Web application components</li>
+              <ul>  
+                <li>Java Servlets, Servlet Filters, Java Server Pages, Java Server Faces</li>
+              </ul>  
+              <li>Enterprise application components</li>
+              <ul>  
+                <li>EJB Session Beans, JPA Entities, Message Driven Beans</li>
+                <li>Scheduled tasks, Batch jobs</li>          
+              </ul>  
+            </ul>  
+          </ul>  
+        </section>
+        
+        <section>
+          <h4>Java EE Containers</h4>
+          <ul>  
+            <li>
+            Java EE Containers are a interface between a component and the low-level platform-specific functionality. 
+            Each container has a specific role, supports a set of APIs, and offers services to components. 
+            </li>  
+            <ul>  
+              <li>Enterprise Java Beans (EJB) container</li>
+              <ul>  
+                <li>Manages the execution of enterprise beans for Java EE applications. Enterprise beans and their container run on the Java EE server.</li>
+              </ul>  
+              <li>Web container</li>
+              <ul>  
+                 <li>Manages the execution of web pages, servlets, and some EJB components for Java EE applications. Web components and their container run on the Java EE server.</li>
+              </ul>  
+              <li>Application client container</li>
+              <ul>  
+                  <li>Manages the execution of application client components. Application clients and their container run on the client.</li>
+              </ul>  
+            </ul>  
+          </ul>  
+        </section>
+
+        <section>
+          <h3>Java EE Component Packaging (1)</h3>
+          <ul>  
+            <li>Components must be packaged in order to be deployed in a container</li>
+            <li>Java EE defines several package formats based on common JAR</li>  
+            <li>Components can be packaged along with deployment descriptors (meta-data)</li>
+            <ul>  
+              <li>XML deployment descriptor</li>
+              <li>Java Annotations (preferred)</li>          
+            </ul>  
+          </ul>  
+        </section>
+
+        <section>
+          <h3>Java EE Component Packaging (2)</h3>
+          <ul>  
+            <li>
+                <strong>EJB Module</strong> – contains Session and Message Driven Beans. 
+                It contains an optional <code>META-INF/ejb-jar.xml</code> deployment descriptor. 
+                All packaged in file with jar extension.
+            </li>
+            <li>    
+                <strong>Web Application Module</strong> - contains servlets, JSPs, JSF pages, HTML, CSS, web services and EJB Lite beans. 
+                It contains an optional <code>WEB-INF/web.xml</code> deployment descriptor. 
+                All packaged in file with war extension.
+            </li>
+            <li>    
+                <strong>Enterprise Application Module</strong> - can contain zero or more web application modules, zero or more EJB modules, 
+                and other common or external libraries. It contains an optional <code>META-INF/application.xml</code> deployment descriptor. 
+                All packaged in file with ear extension.
+            </li>
+            <li>
+                <strong>Application Client Module</strong> - contains Java classes and other resource files packaged in  jar file
+            </li>              
+          </ul>  
+        </section>
+
+        <section>
+          <h3>Java EE Component Packaging (3)</h3>
+          <img class="embedded-image" src="images/JEE-components-packaging.svg" />
+        </section>
+
+        <section>
+          <h3>Java EE Component Packaging (4)</h3>
+          <ul>
+            <li>From EJB 3.1 on you can package EJB beans into WAR archive</li> 
+            <li>EJB classes come into <code>WEB-INF/classes</code> directory</li>
+            <li>Optional <code>ejb-jar.xml</code> descriptor come into WEB-INF directory</li>
+          </ul>  
+          <img class="embedded-image" src="images/JEE-components-packaging-war.svg" />
+        </section>
+
+        <section>
+          <h3>Java EE APIs in the Web Container</h3>
+          <img class="embedded-image" src="images/JEEAPIsWebContainer.png" />
+        </section>
+          
+        <section>
+          <h3>Java EE APIs in the EJB Container</h3>
+          <img class="embedded-image" src="images/JEEAPIsEJBContainer.png" />
+        </section>
+
+        <section>
+          <h3>Java EE APIs in the App Client Container</h3>
+          <img class="embedded-image" src="images/JEEAPIsApplClientContainer.png" />
+        </section>
+
+        <section>
+          <h3>Java EE application servers</h3>
+          <ul>
+            <li>Java EE servers</li>
+            <ul>
+              <li>RedHat / JBoss EAP $$$ / WildFly		free</li> 
+              <li>IBM WebSphere Application Server		$$$</li>
+              <li>Oracle WebLogic Server	                	$$$</li>
+              <li>Oracle GlassFish Server			free</li>
+              <li>Apache Geronimo				free</li>
+              <li>OW2 JOnAS				free</li>
+              <li>SAP, Fujitsu, NEC, TmaxSoft, Apusic		$$$</li>
+              <li>Apache TomEE (JEE7 Web Profile)   		free</li>
+            </ul>
+            <li>Apache Tomcat – a subset of Java EE</li>
+            <ul>
+              <li>Only the web part of Java EE; Simpler to use free</li>
+            </ul>
+          </ul>            
+        </section>
+
+        <section>
+          <h3>JEE Application Server offers</h3>
+          <ul>
+            <li>Hosting and isolation for your (web) applications</li>
+            <li>Hot re-deployment without server restart</li>
+            <li>HTTP server (web, web services), CORBA server</li>
+            <li>Multi-threading and massively concurrent environment</li>
+            <li>Each HTTP/CORBA request served in a separate Thread</li>
+            <li>DB connection management, pooling, monitoring</li>
+          </ul>            
+        </section>
+
+        <section>
+          <h3>JEE Application Server offers</h3>
+          <ul>
+            <li>Transactions (incl. distributed XA over multiple Dbs)</li>
+            <li>Asynchronous task execution (message queue, JMS)</li>
+            <li>Centralized logging and monitoring</li>
+            <li>Authentication and authorization (based on roles)</li>
+            <li>Clustering and replication for your components</li>
+            <li>Instantiation and dependency injection for your components</li>          
+          </ul>            
+        </section>
+
+        <section>
+          <h4>Java EE Application Clustering</h4>
+          <img class="embedded-image" src="images/JEE-cluster.svg" />
+        </section>
+
+        <section>
+          <h3>References</h3>
+          <ul>  
+            <li><a href="https://docs.oracle.com/javaee/7/index.html">JEE7 platform</a> Enterprise Edition (Java EE7 by Oracle)</li> 
+          </ul>  
+        </section>
+
+      </div>
+    </div>
+    
+	<script src="../../../01-html-resources/presentations/lib/js/head.min.js"></script>
+	<script src="../../../01-html-resources/presentations/js/reveal.js"></script>
+	<script src="../../../01-html-resources/presentations/js/jquery-3.1.0.min.js"></script>
+
+	<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../../../01-html-resources/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../../01-html-resources/presentations/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../../../01-html-resources/presentations/plugin/notes/notes.js', async: true }
+				]
+			});
+			
+	        $(document).ready(function(){
+			   console.log("document loaded");
+			   /**
+			    * insert header and footer into every slide
+			    */ 
+			   var header = $('#header').html();
+               if ( window.location.search.match( /print-pdf/gi ) ) {
+                    Reveal.addEventListener( 'ready', function( event ) {
+                       $('.slide-background').append(header);
+                    });
+               } else {
+                    $('div.reveal').append(header);
+               }
+	        });
+	</script>
+		    
+  </body>
+</html>
+    

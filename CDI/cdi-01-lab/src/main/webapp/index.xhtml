@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>CDI-scopes</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+    </h:head>
+    <h:body>
+      <h1>CDI Scopes</h1>
+      
+      <a href="admin.xhtml" target="_admin">Admin</a> | <a href="conversation.xhtml" target="_conversation">Conversation</a>
+
+      <h1>CDI Scopes</h1>
+      <h:panelGrid columns="3" styleClass="itx-panel-grid">
+
+        <h:outputLabel value="ApplicationScoped: " />
+        <h:outputLabel value="#{ascoped.id}" />
+        <h:outputLabel value="#{ascoped.name}" />
+
+        <h:outputLabel value="SessionScoped: " />
+        <h:outputLabel value="#{sscoped.id}" />
+        <h:outputLabel value="#{sscoped.name}" />
+
+        <h:outputLabel value="RequestScoped: " />
+        <h:outputLabel value="#{rscoped.id}" />
+        <h:outputLabel value="#{rscoped.name}" />
+
+      </h:panelGrid>
+
+      <h1>JSF Scopes</h1>
+      <h:panelGrid columns="3" styleClass="itx-panel-grid">
+
+        <h:outputLabel value="ViewScoped: " />
+        <h:outputLabel value="#{vscoped.id}" />
+        <h:outputLabel value="#{vscoped.name}" />
+
+      </h:panelGrid>
+      
+    </h:body>
+</html>

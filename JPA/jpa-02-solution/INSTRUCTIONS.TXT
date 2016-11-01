@@ -1,0 +1,52 @@
+JPA Lab 02 
+This is simple CRUD demo using single database entity.
+Architecture:
+- ite.examples.jpa.crud.dto - package for Data Transfer Objects
+- ite.examples.jpa.crud.entities - JPA entities
+- ite.examples.jpa.crud.ui - Client Tier, User Interface Backing beans (JSF), PUSH stuff, ...
+- ite.examples.jpa.crud.services - Application Tier or Transactional Tier, EJB beans of the UserDataService 
+
+Client Bean Hierarchy:
+[UserViewClientBean][UI]
+  |
+  +--[UserDataService][EJB]{SLSB}
+      |
+      +--[UserManagerBean][EJB]{SLSB}
+      |   |
+      |   +--[UserMDBClientBean][EJB]{SLSB}   
+      |
+      +--[UserQueryBean][EJB]{SLSB}
+
+Transactional behavior 01:
+1. in ite.examples.jpa.crud.services.UserDataService, put annotation  
+   @TransactionAttribute(TransactionAttributeType.REQUIRED)
+   on method createUserAction(...)
+2. re-deploy and try to create new user via UI
+3. UI shows exception, Why ?
+
+Transactional behavior 02:
+1. in ite.examples.jpa.crud.services.UserDataService, throw an exception 
+   as last line of method createUserAction(...) 
+   throw new NullPointerException();
+2. re-deploy and try to create new user via UI
+3. There is no user created in the database, no JMS Topic message has been send. Why? 
+
+Transactional behavior 03:
+1. in ite.examples.jpa.crud.services.UserDataService, throw an exception 
+   as last line of method createUserAction(...) 
+   throw new DemoException();
+2. re-deploy and try to create new user via UI
+3. UI get an exception, however there is user created in the database and JMS Topic message has been send. Why?
+4. Annotate DemoException with @ApplicationException(rollback=true)
+5. re-deploy and try to create new user via UI
+6. There is no user created in the database, no JMS Topic message has been send. Why? 
+   
+Transactional behavior 04:  
+1. Use SessionContext.setRollbackOnly() to abort transaction.
+2. Hint: @Resource SessionContext 
+
+Transactional behavior 05:
+1. Turn off transactional behavior of the UserDataService completely (use BMT)
+2. use @Resource UserTransaction
+3. repeat excercises 02, 03
+

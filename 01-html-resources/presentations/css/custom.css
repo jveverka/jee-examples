@@ -1,0 +1,24 @@
+
+.embedded-image {
+    border: 0px !important;
+    margin: 0px !important;
+    background: rgba(255, 255, 255, 0) !important;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0) !important;  
+}
+
+.presentation-image-full {
+    height: 100%;
+}
+
+.small-table {
+    font-size: 20px !important;
+}
+
+.font-small {
+    font-size: 20px !important;
+}
+
+.font-opaque {
+    color: silver !important;
+}
+  

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <title>MDB</title>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+    </h:head>
+    <h:body>
+      <h1>MDB example</h1>
+      
+      <h:form>
+        <h:panelGrid columns="2" styleClass="itx-panel-grid">  
+          <h:outputLabel value="Message: " />
+          <h:inputText value="#{mdbview.message}" />
+          <h:commandButton value="Send to Topic" action="#{mdbview.sendTopicMessageAction()}" />
+          <h:commandButton value="Send to Queue" action="#{mdbview.sendQueueMessageAction()}" />
+        </h:panelGrid>  
+
+        <h:commandButton value="Reload Messages" action="#{mdbview.realodDataAction()}" />
+        <h:dataTable value="#{mdbview.messages}" var="message">
+          <h:column>
+            #{message.date}
+          </h:column>
+          <h:column>
+            #{message.tansportType}
+          </h:column>
+          <h:column>
+            #{message.message}
+          </h:column>
+        </h:dataTable>
+      </h:form>
+    </h:body>
+</html>

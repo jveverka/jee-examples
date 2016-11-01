@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>01 - Java EE7 overview</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/custom.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/reveal.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/header-footer.css">
+    <!-- <link rel="stylesheet" href="../_resources/css/theme/league.css" id="theme"> -->
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/lib/css/zenburn.css">
+  </head>
+  <body>
+
+    <div id="header-hidden">
+       <div id="header">
+          <!--
+          <div id="header-left">HEADER-LEFT</div>
+          <div id="header-right">HEADER-RIGHT</div>
+          <div id="footer-left">FOOTER-LEFT</div>
+          -->
+       </div>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+      
+        <section>
+          <h2>Java EE7 Confusions</h2>
+          <h3>veverka@itexperts.sk</h3>
+          <p/>
+          <h3>Areas of Confusion in JEE</h3>
+        </section>
+
+        <section>
+          <h3>Bean madness</h3>
+          <ul>
+             <li>
+                 <strong>Java Bean:</strong> POJO, part of Java SE API. It is convention for properties, events and methods in standard Java. Java Bean is ordinary plain Java SE object.
+                 <code>java.beans.Introspector</code>
+             </li>
+             <li>
+                 <strong>Enterprise Java Bean:</strong> refers to EJB specification, EJBs are also called session beans.
+             </li>
+             <li>
+                 <strong>Session Bean:</strong> Usually refers to an EJB bean, one of following types: Stateless, Stateful, Singleton. Runs in Standalone EJB container or in EJB container as part of JEE AS.
+             </li>
+          </ul>   
+        </section>
+
+        <section>
+          <h3>Bean madness</h3>
+          <ul>
+             <li>
+                 <strong>Client Bean:</strong> Any type or instance of bean in this list requesting container for service, or requesting CDI for injection, or calling method of other bean.
+             </li>             
+             <li>
+               <strong>Managed Bean:</strong> A managed bean is implemented by a Java class, which is called its bean class. 
+               A top-level Java class is a managed bean if it is defined to be a managed bean by any other Java EE technology specification, such as the JavaServer Faces or EJB.
+             </li>
+          </ul>   
+        </section>
+
+        <section>
+          <h3>Bean madness</h3>
+          <ul>
+             <li>
+               <strong>CDI Bean:</strong> CDI redefines the concept of a bean beyond its use in other Java technologies. In CDI, a bean is a source of contextual objects that define application state and/or logic. 
+               A Java EE component is a bean if the life-cycle of its instances may be managed by the container according to the life-cycle context model defined in the CDI specification. 
+             </li>
+             <li>
+               <strong>Backing Bean:</strong> refers to CDI, JSF or EJB bean used directly to interact with JSF views and components. Backing beans are usually called from EL expressions of JSF views.
+             </li>
+          </ul>   
+        </section>
+
+        <section>
+          <h3>JEE Tiers</h3>
+          <ul>
+             <li>
+             <strong>Web tier</strong> – usually refers to servlet container running inside JEE application server.
+             </li>
+             <li>
+             <strong>Transaction tier</strong> – usually refers to EJB container running inside JEE application server.
+             </li>
+             <li>
+             <strong>Business tier</strong> – usually refers to EJB container running inside JEE application server.
+             </li>
+          </ul>   
+        </section>
+
+        <section>
+          <h3>Managed Bean and EL access</h3>
+          <ul>
+             <li>
+             <strong>@javax.faces.bean.ManagedBean</strong> – defined in JSF 2.0 Managed Bean Annotations specification (JSR-314), 
+             it provides an alternative to the declaration of managed beans in the faces-config.xml descriptor file. 
+             </li>
+             <li>
+             <strong>@javax.inject.Named</strong> - Defined in the Dependency Injection (JSR-330) specification, 
+             is one of the built-in qualifier types of CDI (JSR-299) used to provide a name to a bean, making it accessible through EL.
+             </li>
+             <li>
+             <strong>@javax.annotation.ManagedBean</strong> - Defined by the Commons Annotations specification (JSR-250), 
+             it is used to declare a managed bean as specified in the Managed Beans specification(JSR-316).
+             </li>
+             <li>
+             Which one to use ?
+             </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Managed Bean and EL access</h3>
+          <ul>
+             <li>
+             <strong>@javax.faces.bean.ManagedBean</strong> – is obsolete, use only in JSF 2.0 environments without CDI
+             </li>
+             <li>
+             <strong>@javax.inject.Named</strong> – preferred annotation for beans addressable from EL.
+             </li>
+             <li>
+             <strong>@javax.annotation.ManagedBean</strong> – common annotation, CDI treats all POJO’s as Managed Beans! 
+             There is no need to explicitly annotate the POJO with this annotation. However Nothing stops you from doing it though.
+             </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Duplicated @...Scoped annotations</h3>
+          <ul>
+             <li>
+             @javax.faces.bean.RequestScoped<br/>
+             @javax.enterprise.context.RequestScoped
+             </li>
+             <li>
+             @javax.faces.bean.SessionScoped<br/>
+             @javax.enterprise.context.SessionScoped
+             </li>
+             <li>
+             @javax.faces.bean.ApplicationScoped</br>
+             @javax.enterprise.context.ApplicationScoped
+             </li>
+             <li>
+             Which one to use ?
+             </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Duplicated @...Scoped annotations</h3>
+          <ul>
+             <li>
+             <strong>@javax.faces.bean.</strong> … annotations are defined in the JSF Managed Beans specification (JSR-314)
+             </li>
+             <li>
+             <strong>@javax.enterprise.context.</strong> … annotations are defined in the CDI specification (JSR-299) 
+             </li>
+             <li>
+             Always use the CDI annotations, unless you are working in a JSF 2.0 environment without CDI (a very unlikely scenario). 
+             As discussed above, there is no reason to use JSF Managed Beans if CDI is present.
+             </li>
+          </ul>
+        </section>
+     
+        <section>
+          <h3>Defining a Singleton</h3>
+          <ul>
+             <li>
+             <strong>@javax.ejb.Singleton</strong> – A new type of EJB from the JSR-318 specification, it is used to maintain a single shared instance. It’s thread safe and transactional.
+             </li>
+             <li>
+             <strong>@javax.inject.Singleton</strong> – From the Dependency Injection specification (JSR-330), marks a type the injector will only instantiate once.
+             </li>
+             <li>
+             Which one to use ?
+             </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Defining a Singleton</h3>
+          <ul>
+             <li>
+             <strong>@javax.enterprise.inject.ApplicationScoped</strong> – One of the built-in scopes from the Contexts and Dependency Injection specification (JSR-299), specifies that a bean is application scoped.
+             </li>
+             <li>
+             <strong>@javax.faces.bean.ApplicationScoped</strong> – Defined in the JSF 2.0 (JSR-314) Managed Beans specification, specifies that a JSF managed bean is application scoped.
+             </li>
+             <li>
+             Which one to use ?
+             </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Defining a Singleton</h3>
+          <ul>
+             <li>
+             <strong>@javax.ejb.Singleton</strong> – is the only one that will give you out-of-the-box “enterprise” services such as concurrency and transaction management. 
+             So, if you need these features, this is the annotation to use. You can optionally add the @javax.enterprise.inject.ApplicationScoped annotation but you will not feel the difference, 
+             although, CDI will treat it differently.
+             </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Defining a Singleton</h3>
+          <ul>
+             <li>
+             <strong>@javax.enterprise.inject.ApplicationScoped</strong> – if you want to use POJO’s (called Managed Beans in the JEE world), instead of EJB’s. 
+             It is guaranteed that the class is instantiated only once. 
+             Be aware that you will lose all of the services provided by EJB’s such as concurrency and transaction management.
+             </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Defining a Singleton</h3>
+          <ul>
+             <li>
+             <strong>@javax.inject.Singleton</strong> – Not suitable for JEE environment with CDI support.
+             </li>
+             <li>
+             <strong>@javax.faces.bean.ApplicationScoped</strong> – As discussed before, in case CDI and JEE6 or JEE7 environment is present, there is no need to use this one.
+             </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>@Inject or @EJB ?</h3>
+          <ul>
+             <li>
+             <strong>@Inject</strong> - is from the Dependency Injection specification (JSR-330)
+             </li>
+             <li>
+             <strong>@EJB</strong> – is EJB specification (JSR-318).
+             </li>
+             <li>
+             Both are used for injection, so which one to use ?
+             </li>
+             <li>
+             In most of the cases you will use @Inject over @EJB unless you are working on an environment with EJB’s but no CDI (very unlikely since JEE 6), or if you need to define an EJB resource. 
+             </li>
+          </ul>
+        </section>
+     
+        <section>
+          <h3>References</h3>
+          <ul>  
+            <li><a href="https://docs.oracle.com/javaee/7/index.html">JEE7 platform</a> Enterprise Edition (Java EE7 by Oracle)</li> 
+          </ul>  
+        </section>
+
+      </div>
+    </div>
+    
+	<script src="../../../01-html-resources/presentations/lib/js/head.min.js"></script>
+	<script src="../../../01-html-resources/presentations/js/reveal.js"></script>
+	<script src="../../../01-html-resources/presentations/js/jquery-3.1.0.min.js"></script>
+
+	<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../../../01-html-resources/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../../01-html-resources/presentations/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../../../01-html-resources/presentations/plugin/notes/notes.js', async: true }
+				]
+			});
+			
+	        $(document).ready(function(){
+			   console.log("document loaded");
+			   /**
+			    * insert header and footer into every slide
+			    */ 
+			   var header = $('#header').html();
+               if ( window.location.search.match( /print-pdf/gi ) ) {
+                    Reveal.addEventListener( 'ready', function( event ) {
+                       $('.slide-background').append(header);
+                    });
+               } else {
+                    $('div.reveal').append(header);
+               }
+	        });
+	</script>
+		    
+  </body>
+</html>
+    

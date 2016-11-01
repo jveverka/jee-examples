@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>91 - Java EE7 books and links</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/custom.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/reveal.css">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/header-footer.css">
+    <!-- <link rel="stylesheet" href="../_resources/css/theme/league.css" id="theme"> -->
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="../../../01-html-resources/presentations/lib/css/zenburn.css">
+  </head>
+  <body>
+
+    <div id="header-hidden">
+       <div id="header">
+          <!--
+          <div id="header-left">HEADER-LEFT</div>
+          <div id="header-right">HEADER-RIGHT</div>
+          <div id="footer-left">FOOTER-LEFT</div>
+          -->
+       </div>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+      
+        <section>
+          <h2>Java EE7</h2>
+          <h3>veverka@itexperts.sk</h3>
+          <p/>
+          <h3>Books and Links</h3>
+        </section>
+
+        <section>
+          <h3>Books for Java EE7</h3>
+          <table>
+            <tr>
+              <td><a href="http://www.apress.com/9781430246268?gtmf=r"><img class="embedded-image" src="images/jee7.beginning.png"></a></td>
+              <td><a href="http://www.apress.com/9781430244257?gtmf=r"><img class="embedded-image" src="images/jee7.recepies.png"></a></td>
+              <td><a href="http://www.apress.com/9781430246923?gtmf=s"><img class="embedded-image" src="images/jee7.beginning.ejb3.png"></a></td>
+            </tr>
+            <tr>
+              <td><a href="http://www.apress.com/9781430249269?gtmf=s"><img class="embedded-image" src="images/jee7.pro.jpa2.png"></a></td>
+              <td><a href="http://www.apress.com/9781430250104?gtmf=r"><img class="embedded-image" src="images/jee7.pro.jsf.png"></a></td>
+              <td><a href="http://www.apress.com/9781430258483?gtmf=r"><img class="embedded-image" src="images/jee7.introducing.png"></a></td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Books for software architecture</h3>
+          <table>
+            <tr>
+              <td><a href="https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577"><img class="embedded-image" src="images/implementing.ddd.png"></a></td>
+              <td><a href="https://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420/ref=pd_bxgy_b_img_z"><img class="embedded-image" src="images/patterns.of.eap.png"></a></td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Interesting links</h3>
+          <ul>  
+            <li><a href="https://github.com/iluwatar/java-design-patterns/">Java SE design patterns</a></li> 
+            <li><a href="https://docs.oracle.com/javaee/7/tutorial/index.html">Oracle JEE7 tutorial</a></li>
+            <li><a href="https://github.com/wildfly/quickstart" >Wildfly code samples</a></li>
+            <li><a href="https://github.com/javaee-samples/javaee7-samples">Java EE7 code samples</a></li>  
+          </ul>  
+        </section>
+
+      </div>
+    </div>
+    
+	<script src="../../../01-html-resources/presentations/lib/js/head.min.js"></script>
+	<script src="../../../01-html-resources/presentations/js/reveal.js"></script>
+	<script src="../../../01-html-resources/presentations/js/jquery-3.1.0.min.js"></script>
+
+	<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../../../01-html-resources/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../../01-html-resources/presentations/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../../01-html-resources/presentations/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../../../01-html-resources/presentations/plugin/notes/notes.js', async: true }
+				]
+			});
+			
+	        $(document).ready(function(){
+			   console.log("document loaded");
+			   /**
+			    * insert header and footer into every slide
+			    */ 
+			   var header = $('#header').html();
+               if ( window.location.search.match( /print-pdf/gi ) ) {
+                    Reveal.addEventListener( 'ready', function( event ) {
+                       $('.slide-background').append(header);
+                    });
+               } else {
+                    $('div.reveal').append(header);
+               }
+	        });
+	</script>
+		    
+  </body>
+</html>
+    

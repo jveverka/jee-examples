@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:head>
+        <f:facet name="first">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        </f:facet>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
+        <h:outputStylesheet library="css" name="style-default.css"/>
+        <title>Online Trainings - Login</title>
+    </h:head>
+    <h:body>
+        
+        <h1>Online Trainings - Login</h1>
+        
+        <h:form id="trainingLoginForm">
+          <h:outputLabel value="Please login !" rendered="#{!userAccess.validUser}"/>
+          <h:panelGrid columns="2" styleClass="itx-panel-grid" rendered="#{!userAccess.validUser}">
+            <h:outputLabel value="UserName: "/>
+            <h:inputText value="#{userAccess.userName}"/>
+            <h:outputLabel value="Password: "/>
+            <h:inputSecret value="#{userAccess.password}"/>
+          </h:panelGrid> 
+          <h:commandButton value="Login" action="#{userAccess.doLoginAction()}" rendered="#{!userAccess.validUser}"/>
+        </h:form>
+
+    </h:body>
+</html>

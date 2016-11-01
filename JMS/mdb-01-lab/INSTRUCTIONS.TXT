@@ -1,0 +1,32 @@
+MDB lab 01
+Make sure that wildfly admin user was created, using bin/add-user.sh script.
+This lab requires to create MDB Topic and Queue on your wildfly server.
+In order to do so, we use admin console of wildfly server.
+http://localhost:9990/console/App.html
+TestQueue java:/jms/queue/TestQueue,java:/jboss/exported/jms/queue/TestQueue 
+TestTopic java:/jms/topic/TestTopic,java:/jboss/exported/jms/topic/TestTopic 
+
+- deploy mdb-01-lab on application and check web UI at http://localhost:8080/mdb-01-lab/index.xhtml
+- reload button shows all messages in the BlackBox cache.
+- try to send message into Topic, check server logs
+- try to send message into Queue, check server logs
+
+
+REMOTE MDB Clients Lab:
+- import mdb-01-lab-client project into your eclipse workspace
+- put project mdb-01-lab on classpath of the mdb-01-lab-client project 
+- test remote Queue and Topic clients (producers) by running Java SE Applications
+  ite.examples.mdb.remoteclient.RemoteMDBQueueProducer
+  ite.examples.mdb.remoteclient.RemoteMDBTopicProducer
+- check that messages arrived into blackbox using web UI at http://localhost:8080/mdb-01-lab/index.xhtml  
+- test remote Queue and Topic clients (consumenrs) by running Java SE Applications
+  ite.examples.mdb.remoteclient.RemoteMDBQueueConsumer
+  ite.examples.mdb.remoteclient.RemoteMDBTopicConsumer
+- check that messages arrived each producer thread which is blocked and waiting for the first message.  
+  RemoteMDBTopicConsumer thread will process the topic message and quit.
+  RemoteMDBQueueConsumer thread will wait forever, because there is already consumer for TestQueue.
+- stop RemoteMDBQueueConsumer thread, stop deployed mdb-01-lab application
+- comment @MessageDriven annotation on ite.examples.mdb.MDrivenQueueBean
+- start/deploy mdb-01-lab application and try again RemoteMDBQueueConsumer
+- it should receive TestTopic message as expected and quit.
+   

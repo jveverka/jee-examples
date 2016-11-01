@@ -1,0 +1,8 @@
+JPA Lab 05
+This example implements small security realm and stores data in the database.
+
+Entities:
+org.jv.appsec.model.User
+org.jv.appsec.model.Role
+org.jv.appsec.model.LocalCredentials
+

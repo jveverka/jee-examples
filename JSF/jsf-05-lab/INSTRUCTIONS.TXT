@@ -1,0 +1,7 @@
+This project demonstrates JSF session management on application level.
+Technologies used:
+- JSF primefaces 
+- Servlet filters 
+- webservices
+- JavaScript  
+
