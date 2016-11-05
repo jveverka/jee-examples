@@ -57,15 +57,29 @@
           </table>
         </section>
 
+        <!-- INTRO - about -->
+        <section>
+          <h2>About this presentation</h2>
+          <ul>
+             <li>Not so traditional development approach</li>
+             <li>JEE technologies for near real-time development</li>
+             <li>Servlet 3.1 and JAX-RS capabilities</li>
+             <li>WebSockets - of course !</li>
+             <li>Beyond JEE - tips for improvements</li>
+             <li>Future of JEE platform - what's expected</li>
+             <li>DEMO: HybridApplication</li> 
+          </ul>
+        </section>
+
         <!-- INTRO - explain the scope: traditional JEE7 design patterns -->
         <section>
           <h2>JEE apps are usually ...</h2>
           <ul>
-             <li><strong>Transactional</strong> - </li>
-             <li><strong>Request/Response</strong> - </li>
-             <li><strong>DB centric</strong> - </li>
-             <li><strong>Web Interface</strong> - server side rendering.</li>
-             <li><strong>Monolithical</strong> - single or few war/ear.</li>
+             <li><strong>Transactional</strong> - one transaction per request</li>
+             <li><strong>Request/Response</strong> - request->processing->response</li>
+             <li><strong>DB centric</strong> - Hibernate/JPA with SQL database</li>
+             <li><strong>Web Interface</strong> - server side rendering (JSF)</li>
+             <li><strong>Monolithical</strong> - single war or few war/ears</li>
           </ul> 
         </section>
 
@@ -73,11 +87,31 @@
         <section>
           <h2>JEE apps might be also ...</h2>
           <ul>
-             <li><strong>Reactive</strong> - </li>
-             <li><strong>Responsive</strong> - low latency responses</li>
+             <li><strong>Reactive</strong> - event driven client-server communication</li>
+             <li><strong>Near Real-Time</strong> - low latency responses</li>
              <li><strong>Effective</strong> - better http stack utilization</li>
-             <li><strong>Versatile</strong> - support different client technologies</li>
+             <li><strong>Multi-Language</strong> - support different client technologies</li>
+             <li><strong>Full-duplex </strong> communication with server during user's session.</li>
           </ul>
+        </section>
+
+        <section>
+          <h2>Suitable technologies</h2>
+          <ul>
+             <li>Backend - wildFly 10 as JEE7 server</li>
+             <li>JEE technologies for JavaSE/JavaFX clients</li>
+             <ul>
+                <li>CDI events</li>
+                <li>JMS - client server messaging</li>
+                <li>Remote EJB calls</li>
+             </ul>
+             <li>JEE technologies for HTML5 clients</li>
+             <ul>
+                <li>JAX-RS - REST APIs</li>
+                <li>WebSockets</li>
+                <li>JSF - Java Server Faces</li>
+             </ul>
+          </lu>
         </section>
 
         <!-- INTRO - explain the scope: how can we reach it with JEE7 technologies -->
@@ -97,26 +131,6 @@
             <li>Demo: WildFly, JSF, JavaScript, JavaFx, IoT device</li>
             <li>What's planned in JEE8</li>
           </ul>
-        </section>
-
-        <section>
-          <h2>Real-Time application ?</h2>
-          <ul>
-             <li>Continuous communication with server during user's session.</li>
-             <li>Backend - JEE7 server</li>
-             <li>Suitable JEE technologies for JavaSE/JavaFX clients</li>
-             <ul>
-                <li>CDI events</li>
-                <li>JMS</li>
-                <li>Remote EJB calls</li>
-             </ul>
-             <li>Suitable JEE technologies for HTML5 clients</li>
-             <ul>
-                <li>JAX-RS - REST APIs</li>
-                <li>WebSockets</li>
-                <li>JSF - Java Server Faces</li>
-             </ul>
-          </lu>
         </section>
 
         <section>
@@ -518,6 +532,7 @@ public static void main(String[] args) {
           <section>
             <h2>References</h2>
             <ul>
+              <li><a href="https://github.com/jveverka/jee-examples"><strong>github/jveverka/jee-examples</strong></a> - this presentation with all examples</li>
               <li><a href="http://www.reactivemanifesto.org"><strong>The Reactive Manifesto</strong></a> - principles of reactive systems</li>
               <li><a href="https://developers.google.com/protocol-buffers/"><strong>Google Protocol Buffers</strong></a> - efficient message transport</li>
               <li><a href="http://lab.hakim.se/reveal-js/#/"><strong>Reveal JS</strong></a> - made this presentation possible, thanx!</li>

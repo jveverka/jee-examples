@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<web-app>
+
+    <!-- BEGIN SWAGGER CONFIGURATION NEEDED IN web.xml for SWAGGER TO WORK -->
+    <servlet>
+        <servlet-name>DefaultJaxrsConfig</servlet-name>
+        <servlet-class>io.swagger.jaxrs.config.DefaultJaxrsConfig</servlet-class>
+        <init-param>
+            <param-name>api.version</param-name>
+            <param-value>1.0.0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>swagger.api.basepath</param-name>
+            <param-value>http://localhost:8080/servlet-09_jaxrs-swagger/ws</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <listener>
+        <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+    </listener>
+    <!-- END SWAGGER CONFIGURATION NEEDED IN web.xml for SWAGGER TO WORK -->
+
+</web-app>

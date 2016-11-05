@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+buildDir="build_gradle"
+
+eclipse {
+   wtp {
+      facet {
+          facet name: 'java', version: '1.8'
+          facet name: 'jst.web', version: '3.1'
+          facet name: 'wst.jsdt.web', version: '1.0'
+      }
+   }
+}
+ 
+sourceSets{  
+    main{  
+        java{  
+            srcDirs 'src/main/java'  
+        }
+    }  
+}  
+        
+repositories {
+   mavenLocal()
+   mavenCentral()
+}
+
+dependencies {
+   compile  'javax:javaee-api:7.0'
+   compile  'io.swagger:swagger-jaxrs:1.5.10'
+   compile  'org.reflections:reflections:0.9.10'
+   testCompile 'org.glassfish.jersey.core:jersey-client:2.22.2'
+   testCompile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.22.2'
+   testCompile 'org.testng:testng:6.9.13.6'
+   testCompile 'com.google.code.gson:gson:2.7'   
+}
+
+war {
+}
