@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <title>JEE7 real - time</title>
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-    <meta name="author" content="Hakim El Hattab">
+    <meta name="author" content="Juraj Veverka">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
@@ -62,12 +62,12 @@
           <h2>About this presentation</h2>
           <ul>
              <li>Not so traditional development approach</li>
-             <li>JEE technologies for near real-time development</li>
+             <li>JEE technologies for near real-time experience</li>
              <li>Servlet 3.1 and JAX-RS capabilities</li>
              <li>WebSockets - of course !</li>
              <li>Beyond JEE - tips for improvements</li>
-             <li>Future of JEE platform - what's expected</li>
-             <li>DEMO: HybridApplication</li> 
+             <li>Future of JEE platform - what's expected in JEE8/9</li>
+             <li>DEMO: <a href="https://github.com/jveverka/jee-examples/tree/master/HybridApplicationNG">HybridApplication</a></li> 
           </ul>
         </section>
 
@@ -96,52 +96,26 @@
         </section>
 
         <section>
-          <h2>Suitable technologies</h2>
+          <h2>JEE - Java clients</h2>
           <ul>
-             <li>Backend - wildFly 10 as JEE7 server</li>
+             <li>Backend - WildFly 10 as JEE7 server</li>
              <li>JEE technologies for JavaSE/JavaFX clients</li>
              <ul>
                 <li>CDI events</li>
                 <li>JMS - client server messaging</li>
                 <li>Remote EJB calls</li>
+                <li>ACC - Application Client Container</li>
              </ul>
-             <li>JEE technologies for HTML5 clients</li>
-             <ul>
-                <li>JAX-RS - REST APIs</li>
-                <li>WebSockets</li>
-                <li>JSF - Java Server Faces</li>
-             </ul>
-          </lu>
-        </section>
-
-        <!-- INTRO - explain the scope: how can we reach it with JEE7 technologies -->
-        <section>
-          <h2>JEE Technologies for Real-Time apps</h2>
-          <ul>
-            <li>JEE7 Technologies for real-time app development</li>
-              <ul>
-                 <li>WebSockets, HTTP protocol upgrade</li>
-                 <li>JMS, CDI Events, Async REST</li>
-              </ul>
-            <li>Client technologies</li>
-              <ul>
-                 <li>JSF, JavaScript, JavaSE</li>
-              </ul>
-            <li>JEE7 and beyond, extend classical JEE7 apps.</li>
-            <li>Demo: WildFly, JSF, JavaScript, JavaFx, IoT device</li>
-            <li>What's planned in JEE8</li>
+             <li>Does not integrate well in multi-language environment</li>
           </ul>
+        </section>
+        
+        <section>
+          <h2>Java SE Clients</h2>
         </section>
 
         <section>
-          <h2>JEE technologies for HTML5 clients</h2>
-          <ul>
-             <li>Servlet 3.1 - Asynchronous processing, JSR340</li>
-             <li>Servlet 3.1 - Protocol upgrade, JSR340</li>
-             <li>JAX-RS 2.0 - REST APIs, JSR339</li>
-             <li>WebSockets 1.0 - JSR356</li>
-             <li>JSF 2.2 - Java Server Faces, JSR344, kind of suitable ...</li>
-          </ul>
+          <h2>ACC Clients</h2>
         </section>
 
         <section data-state="jee7TechnologiesState">
@@ -152,6 +126,43 @@
           </object>
           <embed id="jee7TechologiesImage" src="images/JEE7-technologies.svg">
           -->
+        </section>
+             
+        <section>
+          <h2>JEE - HTTP clients</h2>
+          <ul>
+             <li>Backend - wildFly 10 as JEE7 server</li>
+             <li>JEE technologies for HTTP/HTML5 clients</li>
+             <ul>
+                <li>JAX-RS - REST APIs</li>
+                <li>HTTP protocol upgrade</li>
+                <li>WebSockets</li>
+                <li>JSF - Java Server Faces *</li>
+             </ul>
+             <li>Integrates very well in multi-language environment</li>
+             <li>Suitable for Web Browser clients</li>
+             <li>Suitable M2M integrations</li>
+          </lu>
+        </section>
+
+        <section>
+          <h2>JEE - HTTP RT clients</h2>
+          <ul>
+             <li>Servlet 3.1 - Asynchronous processing, JSR340</li>
+             <li>Servlet 3.1 - Protocol upgrade, JSR340</li>
+             <li>JAX-RS 2.0 - REST APIs, JSR339</li>
+             <li>WebSockets 1.0 - JSR356</li>
+             <li>JSF 2.2 - Java Server Faces, JSR344, kind of suitable ...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>JSF ... is a problem</h2>
+          <ul>
+             <li>JSF is excellent for server-side rendering</li>
+             <li>Can be adapted for real-time user experience</li>
+             <li>Not recommended for new applications</li>
+          </ul>
         </section>
 
         <section>
@@ -164,7 +175,7 @@
                 <li>Full duplex TCP connection</li>
                 <li>Close from client or server</li>
              </ol>
-             <li>Demo on Github: TODO</li>
+             <li>Demo on Github: <a href="https://github.com/jveverka/jee-examples/tree/master/Servlets/servlet-04_protocol-upgrade">servlet-04_protocol-upgrade</a></li>
              <li>WebSocket is based on HTTP protocol upgrade</li>
           </ul>
         </section>
@@ -212,13 +223,14 @@ public class ProtocolUpgradeServlet extends HttpServlet {
         </section>
 
         <section>
-          <h2>WebSockets</h2>
+          <h2>HTTP protocol upgrade - advandages</h2>
           <ul>
-             <li>WebSocket API - <a href="https://www.w3.org/TR/websockets/">W3C</a></li>
-             <li>WebSocket MDN - <a href="https://developer.mozilla.org/en/docs/Web/API/WebSocket">API and method overview.</a></li>
-             <li>IETF - <a href="https://tools.ietf.org/html/rfc6455">RFC-6455</a></li>
-             <li>JSR 356 - <a href="https://jcp.org/en/jsr/detail?id=356">Java API for WebSocket</a></li>
-          </lu>
+             <li>Usually only one open port</li>
+             <li>Servlet container handles all inbound traffic</li>
+             <li>Not limited to HTTP anymore</li>
+             <li>Easy to intercept with Servlet filters</li>
+             <li>Easier security setup</li>
+          </ul>
         </section>
 
         <section>
@@ -245,31 +257,32 @@ public class ProtocolUpgradeServlet extends HttpServlet {
              <li>Better/Faster for serialization of structured data</li>
              <li>Supported languges - C++, C#, GO, Java, Python, Ruby, ...</li>
              <li>Instead sending JSON/XML as payload, send smaller packets.</li>
-             <li>Faster serialization</li>
-             <li>Faster deserialization</li> 
+             <li>Optimizes HTTP payload</li>
+             <li>Defines protocol contract</li> 
           </ul>
         </section>
 
         <section>
           <h2>JAX-RS with protocol buffers</h2>
           <ol>
-             <li>Install protoc or use mvn or gradle plugins</li>
-             <li>Write your protocol in proto3 language</li>
+             <li>Install <a href="https://github.com/google/protobuf/releases">protoc</a> or use maven or gradle plugins</li>
+             <li>Write your protocol in <a href="https://developers.google.com/protocol-buffers/docs/proto3">proto3</a> language</li>
              <li>Compile .proto file into java using protoc</li>
-             <li>Implement JAX-RS provider for writing/reading messages</li>
-             <li>Use compiled java protocol and provider on server and client</li>
+             <li>Implement JAX-RS providers for writing/reading messages</li>
+             <li>Use compiled java protocol and providers on server and client</li>
           </ol>
         </section>
 
         <section>
           <h2>JAX-RS with protocol buffers</h2>
           <ul>
-             <li>Simple demo endpoints</li>
+             <li>Demo Github: <a href="https://github.com/jveverka/jee-examples/tree/master/Servlets/servlet-07_proto-buffers">servlet-07_proto-buffers</a></li>
+             <li>Endpoints</li>
              <ul>
                 <li><code>http://.../data/getAllUsers</code></li>
                 <li><code>http://.../data/getUserByName?userName=john</code></li>
              </ul>
-             <li>Comlete demo sources on Github: TODO</li>
+             <li>Supports 'application/protobuf' media type</li>
           </ul>
         </section>
 
@@ -358,15 +371,27 @@ public static void main(String[] args) {
         </section>  
 
         <section>
-          <h2>WebSockets is solution</h2>
+          <h2>WebSockets</h2>
           <ul>
              <li>TCP based, bi-directional, full-duplex messaging</li> 
              <li>Dramatic reduction in network latency and traffic.</li>
              <li>WebSocket frame is just <strong>2</strong> bytes overhead.</li>
              <li>Good adoption by majority of web browsers.</li> 
              <li>Mature JavaScript API.</li> 
-             <li>Supports HTTP proxies, filtering, authentication.</li> 
+             <li>Supports HTTP proxies, filtering, authentication.</li>
+             <li>Suitable also for native client integration</li> 
           </ul>
+        </section>
+
+        <section>
+          <h2>WebSockets</h2>
+          <ul>
+             <li>WebSocket API - <a href="https://www.w3.org/TR/websockets/">W3C</a></li>
+             <li>WebSocket MDN - <a href="https://developer.mozilla.org/en/docs/Web/API/WebSocket">API and method overview.</a></li>
+             <li>IETF - <a href="https://tools.ietf.org/html/rfc6455">RFC-6455</a></li>
+             <li>JSR 356 - <a href="https://jcp.org/en/jsr/detail?id=356">Java API for WebSocket</a></li>
+             <li>HTTP protocol upgrade is used</li>
+          </lu>
         </section>
 
         <section>
@@ -378,7 +403,73 @@ public static void main(String[] args) {
         </section>
 
         <section>
-          <h2>WebSockets with protocol buffers</h2>
+          <h2>WebSockets with proto buffers</h2>
+          <ul>
+             <li>Easy to use proto messages instead JSOM or XML</li>
+             <li>Reuse existing REST API proto messages</li>
+             <li>Use binary transport</li>
+             <li>Use <strong>@PathParam</strong> to process different message types</li>
+             <li>Use Wrapper message in case of single WS endpoint</li>  
+          </ul>
+        </section>
+
+        <section>
+          <h2>WebSockets with proto buffers</h2>
+          Proto wrapper message
+          <pre><code>
+message WrapperMessage {
+    oneof msg {
+       LoginRequest loginRequest = 1;
+       LoginResponse loginResponse = 2;
+       TestRequest testRequest = 3;
+       TestResponse testResponse = 4;
+       ...
+    }
+}                 
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>WebSockets with proto buffers</h2>
+          Server or Client end-point
+          <pre><code>
+@ServerEndpoint("/ws/wsendpoint")
+public class WSEndpoint {
+    @OnMessage
+    public void onMessage(String message, Session session) {
+       //JSON or XML handling
+    }
+	
+    @OnMessage
+    public void onMessage(byte[] message, Session session) {
+       WrapperMessage wm = WrapperMessage.parseFrom(message);
+       int messageTypeId = wm.getMsgCase().getNumber();
+       switch (messageTypeId) {
+          //message handling by type
+       }
+    }
+}          
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>WebSockets with proto buffers</h2>
+          Sending proto messages
+          <pre><code>
+public void sendMessage(Session session, Message message, 
+                        boolean useBinary) throws IOException {
+  if (useBinary) {
+    message.writeTo(new ByteArrayOutputStream());
+    ByteBuffer bb = ByteBuffer.wrap(entityOutputStream.toByteArray());
+    session.getAsyncRemote().sendBinary(bb);
+  } else {
+    String jsonMessage = JsonFormat.printer()
+                                   .includingDefaultValueFields()
+                                   .print(message);
+    session.getAsyncRemote().sendText(jsonMessage);
+  }
+}          
+          </code></pre>
         </section>
 
         <section>
@@ -409,18 +500,45 @@ public static void main(String[] args) {
              <li>Clients using REST APIs and WebSocket connections</li>
              <li>Clients using only WebSocket connections</li>
              <li>Web Browser clients - JSON</li>
-             <li>Other clients - JSON / XML / Protocol buffers</li>  
+             <li>Other clients - JSON / XML / Proto messages</li>  
           </ul>
         </section>  
 
         <section>
           <h2>Session synchronizations</h2>
           <ul>
-             <li>For clients using HTTP sessiion and WebSockets</li>
+             <li>For clients using HTTP session and WebSockets</li>
              <li>HttpsSession is usually bound to user identity</li>
-             <li>Disconnect WebSockets on http session timeout</li> 
+             <li>WebSocket session is not bount to HttpSession</li>
+             <li>Keep both session types in sync</li> 
+             <li>Disconnect WebSockets on HttpSession timeout !</li> 
+             <li>Unattended WebSockets may lead to security leaks</li>
+             <li>Verify client identity on Websocket connect</li>
+          </ul>
+        </section>
+
+                
+        <section>
+          <h2>Beyond JEE7: SWAGGER.io</h2>
+          <ul>
+             <li><a href="">swagger.io</a> - OpenAPI Specification</li>
+             <li>Define a standard, language-agnostic interface to REST APIs</li>
+             <li>Like WSDL but easier and better !</li>
+             <li>Machine readable API</li>
+             <li>Easier integrations in microservice way</li>
+             <li>Easy to use with WildFly JAX-RS</li>
+             <li>Github demo: <a htrf="https://github.com/jveverka/jee-examples/tree/master/Servlets/servlet-09_jaxrs-swagger">servlet-09_jaxrs-swagger</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Beyond JEE7: HTTP 2.0</h2>
+          <ul>
+              <li>Important step towards faster REST/HTTP integration</li>
+              <li></li>
           </ul>
         </section>  
+          
         
         <!-- JEE8 FUTURE IMPROVEMENTS -->        
         <section>
@@ -429,7 +547,7 @@ public static void main(String[] args) {
              <li>JEE8 standard - Q3/2017</li>
              <li>Servlet 4.0, HTTP/2</li>
              <ul>
-                <li>HTTP/2 - </li>
+                <li>HTTP/2 - eficient and fast HTTP</li>
                 <li>Server Sent Events - MediaType.SERVER_SENT_EVENT JAX-RS 2.1</li>
              </ul>
              <li>Asynch CDI events ?</li>
@@ -451,7 +569,7 @@ public static void main(String[] args) {
 
         <section>
           <h2>Emerging technologies</h2>
-          Not part of JEE7, maybe later ...<br/>
+          Not part of JEE, maybe later ...<br/>
           <ul>
             <li><a href="http://socket.io">http://socket.io ??</a></li>
             <li><a href="https://blogs.oracle.com/OracleCoherence/entry/coherencerx_reactive_extensions_for_oracle">coherenceRx ??</a></li>
@@ -470,10 +588,9 @@ public static void main(String[] args) {
              <ul>
                <li>Clients</li>
                <ul>
-                 <li>JSF - PrimeFaces UI</li>
-                 <li>JavaScript - Bootstrap, Angular2, ...</li>
+                 <li>JavaScript - Bootstrap client</li>
                  <li>JavaFx - JVM fat client, UI</li>
-                 <li>RPi - JVM client, WS only</li>
+                 <li>RPi - JVM WebSocket client </li>
                </ul>
                <li>Backend</li>
                <ul>
