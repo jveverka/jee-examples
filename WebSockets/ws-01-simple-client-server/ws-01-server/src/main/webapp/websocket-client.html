@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    </head>
+ 
+    <body>
+        <meta charset="utf-8">
+        <title>HelloWorld Web sockets</title>
+        <script language="javascript" type="text/javascript">
+            var wsUri = getRootUri() + "/ws-01-server/data";
+            var id = 0;
+            var websocket;
+ 
+            function getRootUri() {
+                return (document.location.protocol == "http:" ? "ws://" : " wss://") + 
+                       (document.location.hostname == "" ? "localhost" : document.location.hostname) + 
+                       ":" + document.location.port;
+            }
+ 
+            function init() {
+                output = document.getElementById("output");
+            }
+
+            function connect() {
+                websocket = new WebSocket(wsUri);
+                websocket.onopen = function(evt) {
+                    onOpen(evt)
+                };
+                websocket.onmessage = function(evt) {
+                    onMessage(evt)
+                };
+                websocket.onerror = function(evt) {
+                    onError(evt)
+                };
+                websocket.onclose = function(evt) {
+                    onClose(evt)
+                };
+            }
+ 
+            function sendMessage() {
+                id = id + 1;
+                timestamp = new Date().getTime();
+                message = { timestamp: timestamp, id: id, message: textID.value };
+                stringMessage = JSON.stringify(message);
+                doSend(stringMessage);
+            }
+
+            function disconnect() {
+            	websocket.close();
+                connectBtn = document.getElementById("btnConnect");
+                connectBtn.disabled = false;
+                disconnectBtn = document.getElementById("btnDisconnect");
+                disconnectBtn.disabled = true;
+                sendBtn = document.getElementById("btnSend");
+                sendBtn.disabled = true;
+            }
+                
+            function onOpen(evt) {
+                writeToScreen("Connected to Endpoint!");
+                connectBtn = document.getElementById("btnConnect");
+                connectBtn.disabled = true;
+                disconnectBtn = document.getElementById("btnDisconnect");
+                disconnectBtn.disabled = false;
+                sendBtn = document.getElementById("btnSend");
+                sendBtn.disabled = false;
+            }
+ 
+            function onMessage(evt) {
+                writeToScreen("Message Received: " + evt.data);
+            }
+ 
+            function onError(evt) {
+                writeToScreen('<span style="color: red;">ERROR (onError):</span> ' + evt.data);
+                connectBtn = document.getElementById("btnConnect");
+                connectBtn.disabled = false;
+                disconnectBtn = document.getElementById("btnDisconnect");
+                disconnectBtn.disabled = true;
+                sendBtn = document.getElementById("btnSend");
+                sendBtn.disabled = true;
+            }
+
+            function onClose(evt) {
+                writeToScreen('<span style="color: red;">ERROR (onClose):</span> ' + evt.data);
+                connectBtn = document.getElementById("btnConnect");
+                connectBtn.disabled = false;
+                disconnectBtn = document.getElementById("btnDisconnect");
+                disconnectBtn.disabled = true;
+                sendBtn = document.getElementById("btnSend");
+                sendBtn.disabled = true;
+            }    
+                
+            function doSend(message) {
+                writeToScreen("Message Sent: " + message);
+                websocket.send(message);
+            }
+ 
+            function writeToScreen(message) {
+                var pre = document.createElement("p");
+                pre.style.wordWrap = "break-word";
+                pre.innerHTML = message;
+                  
+                output.appendChild(pre);
+            }
+ 
+            window.addEventListener("load", init, false);
+ 
+        </script>
+ 
+        <h1 style="text-align: center;">Test WebSocket Client</h1>
+ 
+        <br/>
+ 
+        <div style="text-align: center;">
+            <form action="">
+                <input onclick="connect()" id="btnConnect" value="Connect" type="button" />
+                <input onclick="disconnect()" id="btnDisconnect" value="Disconnect" type="button" disabled />
+                <input onclick="sendMessage()" id="btnSend" value="Send" type="button" disabled />
+                <input id="textID" name="message" value="Hello from browser WebSocket client!" type="text" size="64"/><br/>
+            </form>
+        </div>
+        
+        <div id="output"></div>
+</body>
+</html>
