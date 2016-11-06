@@ -101,6 +101,10 @@ function showTestResults(testResultListResponse) {
 		td.innerHTML = (repeat/(duration/1000)).toFixed(2);
 		row.appendChild(td);
 
+		td = document.createElement('td');
+		td.innerHTML = (duration/repeat).toFixed(2); //(repeat/(duration/1000)).toFixed(2);
+		row.appendChild(td);
+
 		$('#testResults').append(row);
 	}
 	if (runningTestsCounter > 0) runningTestsCounter--;

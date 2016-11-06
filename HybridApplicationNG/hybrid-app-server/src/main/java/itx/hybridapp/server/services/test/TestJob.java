@@ -68,13 +68,14 @@ public class TestJob implements Callable<TestResult> {
 			logger.info("all responses arrived: " + isInTime);
 			duration = System.currentTimeMillis() - started;
 			logger.info("Test Job finished: " + jobId + " in " + duration + "ms");
-			
+			logger.info("Test Job payload : " + request.getPayload());
 			logger.info("checking results ...");
 			boolean allOK = true;
 			for (int i=0; i<results.length; i++) {
 				if (!results[i]) {
+					logger.info("result check failed for: " + i);
 					allOK = false;
-					break;
+					//break;
 				}
 			}
 			
@@ -129,7 +130,7 @@ public class TestJob implements Callable<TestResult> {
 	}
 	
 	private long getAwaitPeriod(long repeat) {
-		long result = 2*repeat;
+		long result = 3*repeat;
 		if (result > 10000) {
 			return result;
 		}
