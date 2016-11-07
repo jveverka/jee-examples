@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::EJB</title>
+  </head>
+  <body>
+    <div class="container">
+    <p></p>
+    <a href="../../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / EJB / ejb-01-lab</h3>
+        <h4>EJB local and remote calls</h4>
+        This implements demo showing local EJB calls and remote EJB access from external JMV instance.
+        
+        <h5>Server</h5>
+        <p>
+        This project defines various bean scopes
+        Try to use following injection combinations and check the bean behavior
+        </p>
+
+1. Inject DependentBean into<br/>
+ - Singleton<br/>
+ - ApplicationScoped<br/>
+
+2. Inject DependentBean into<br/>
+ - SessionScoped<br/>
+ - RequestScoped<br/>
+        
+        <h5>Client</h5>
+        <p>
+        This project has compilation and runtime dependency on ejb-01-lab project.
+        It it also necessary to add ApplicationUser into wildfly realm. In order to 
+        do that, use bin/add-user.sh script. Created user ejbuser with password ejbuser123.
+        </p>
+    <div/> 
+    <div/>
+  </body>
+</html>
+
+
+      

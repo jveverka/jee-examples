@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::EJB</title>
+  </head>
+  <body>
+    <div class="container">
+    <p></p>
+    <a href="../../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / EJB / ejb-03-lab</h3>
+        <h4>EJB local and remote calls with roles</h4>
+
+<h5>EJB Lab 03 Server</h5>
+<p>
+This lab is designed to demonstrate basic EJB Authorization/Security features.
+ejb-03-lab-client is designed test remote EJB calls with different user roles.
+bean ite.examples.ejb.security.BackendServiceBeanImpl is EJB bean to be called.
+ite.examples.ejb.securit.RemoteEJBClient is remote client class. 
+set local variable currentUser to change client credentials.
+</p>
+
+1. deploy ejb-03-lab<br/>
+2. try to run client application with all 3 provided client identities
+   as result you should see client can access all methods of remote EJB bean without any problem.<br/>
+3. stop application server<br/>
+
+4. uncomment @RolesAllowed annotations and re-deploy ejb-03-lab<br/>
+5. retry to run client application with all 3 provided client identities<br/>
+   as result you should see that different clients can access different methods of remote EJB bean.<br/>
+   some methods are forbidden to certain clients.<br/>
+
+<h5>Client</h5>
+<p>
+This project has compilation and runtime dependency on ejb-03-lab project.
+It it also necessary to add ApplicationUsers into wildfly realm. In order to 
+do that, use bin/add-user.sh script. 
+</p>
+Created user ejbguest with password ejbguest123 and role guest.<br/>
+Created user ejbuser with password ejbuser123 and role users.<br/>
+Created user ejbadmin with password ejbadmin123 and role admins.<br/>
+    <div/>
+  </body>
+</html>
+
+
+      

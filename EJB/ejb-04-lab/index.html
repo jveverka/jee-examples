@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::EJB</title>
+  </head>
+  <body>
+    <div class="container">
+    <p></p>
+    <a href="../../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / EJB / ejb-04-lab</h3>
+        <h4>EJB remote access demo within same instance of JEE AS</h4>
+<p>        
+This EJB remote access demo within same instance of JEE AS (WildFly 10.1.0).<br/>
+This is gradle multi-project, it consists of following sub-projects<br/> 
+  ejb-common  - contains only definition of remote data service interface (java project)<br/>
+  ejb-service - contains implementation of remote and local data service interface, uses local data service (dynamic web project)<br/>
+  ejb-client  - uses remote implementation of data service from ejb-service module (dynamic web project)<br/>
+</p>
+
+<p>
+Notes:<br/>
+- ejb-service has to be deployed in order to ejb-client work<br/>
+- ejb-client contains example of two possibilities of JNDI lookup<br/>
+  1. injection: @Resource(lookup = "java:global/ejb-service/SingletonDataService!ite.examples.ejbservice.services.DataServiceRemote")<br/>
+  2. programatically: ds = (DataServiceRemote) new InitialContext().lookup("java:global/ejb-service/SingletonDataService!ite.examples.ejbservice.services.DataServiceRemote");<br/>
+</p>  
+    <div/>
+  </body>
+</html>
+
+
+      

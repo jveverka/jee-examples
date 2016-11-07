@@ -2,8 +2,8 @@ apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 buildDir="build_gradle"
 
 ext.libraries = [
@@ -13,7 +13,7 @@ ext.libraries = [
 eclipse {
    wtp {
       facet {
-          facet name: 'java', version: '1.7'
+          facet name: 'java', version: '1.8'
           facet name: 'jst.web', version: '3.1'
           facet name: 'wst.jsdt.web', version: '1.0'
       }
