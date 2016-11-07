@@ -1,4 +1,0 @@
-This project has compilation and runtime dependency on mdb-01-lab project.
-It it also necessary to add ApplicationUser into wildfly realm. In order to 
-do that, use bin/add-user.sh script. Created user jmsuser with password jmsuser123.
-role of the jmsuser has to be guest.

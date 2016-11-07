@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::JMS</title>
+  </head>
+  <body>
+    <div class="container">
+    <p></p>
+    <a href="../../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / JMS / mdb-01-demo</h3>
+        <h4>JMS/MDB demo</h4>
+        <p>
+        This demo implements JEE server application using JMS/MDB with web own interface.
+        External JMS client is implemented to access JMS subsystem running in WildFly server.
+        </p>
+        
+        <p>
+        Make sure that wildfly admin user was created, using bin/add-user.sh script.
+        This lab requires to create MDB Topic and Queue on your wildfly server.
+        In order to do so, we use admin console of wildfly server.<br/>
+        http://localhost:9990/console/App.html<br/>
+        TestQueue java:/jms/queue/TestQueue,java:/jboss/exported/jms/queue/TestQueue<br/> 
+        TestTopic java:/jms/topic/TestTopic,java:/jboss/exported/jms/topic/TestTopic<br/> 
+        </p>
+        <ul>
+           <li>deploy mdb-01-lab on application and check web UI at http://localhost:8080/mdb-01-lab/index.xhtml</li>
+           <li>reload button shows all messages in the BlackBox cache.</li>
+           <li>try to send message into Topic, check server logs</li>
+           <li>try to send message into Queue, check server logs</li>
+        </ul>   
+
+
+<h5>REMOTE MDB Clients Lab:</h5>
+        <ul>
+<li> import mdb-01-lab-client project into your eclipse workspace</li>
+<li> put project mdb-01-lab on classpath of the mdb-01-lab-client project</li> 
+<li> test remote Queue and Topic clients (producers) by running Java SE Applications
+  ite.examples.mdb.remoteclient.RemoteMDBQueueProducer
+  ite.examples.mdb.remoteclient.RemoteMDBTopicProducer
+</li>
+<li> check that messages arrived into blackbox using web UI at http://localhost:8080/mdb-01-lab/index.xhtml</li>  
+<li>test remote Queue and Topic clients (consumenrs) by running Java SE Applications
+  ite.examples.mdb.remoteclient.RemoteMDBQueueConsumer
+  ite.examples.mdb.remoteclient.RemoteMDBTopicConsumer
+</li>  
+<li>check that messages arrived each producer thread which is blocked and waiting for the first message.  
+  RemoteMDBTopicConsumer thread will process the topic message and quit.
+  RemoteMDBQueueConsumer thread will wait forever, because there is already consumer for TestQueue.
+</li>  
+<li>stop RemoteMDBQueueConsumer thread, stop deployed mdb-01-lab application</li>
+<li>comment @MessageDriven annotation on ite.examples.mdb.MDrivenQueueBean</li>
+<li>start/deploy mdb-01-lab application and try again RemoteMDBQueueConsumer</li>
+<li>it should receive TestTopic message as expected and quit.</li>
+        </ul>
+   
+
+<h5>Client project:</h5>
+<p>
+This project has compilation and runtime dependency on mdb-01-lab project.
+It it also necessary to add ApplicationUser into wildfly realm. In order to 
+do that, use bin/add-user.sh script. Created user jmsuser with password jmsuser123.
+role of the jmsuser has to be guest.
+</p>
+        
+    <div/> 
+    <div/>
+  </body>
+</html>
+
+
+      
