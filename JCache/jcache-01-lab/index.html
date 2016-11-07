@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../01-html-resources/docs/images/favicon.ico" rel="shortcut icon">  
+    <!--Import Google Icon Font-->
+    <link href="../../01-html-resources/docs/css/materialicons.css" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="../../01-html-resources/docs/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--Import prism.css for code markup-->
+    <link href="../../01-html-resources/docs/css/prism.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JEE7::JCache</title>
+  </head>
+  <body>
+    <div class="container">
+    <p></p>
+    <a href="../../index.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
+    
+    <div class="container">
+      <h3>JEE7 / JCache / jcache-01-lab</h3>
+        <h4>JCache demo on WildFly</h4>
+        <p>
+        This is simple JCache example (Infinispan). <code>http://localhost:8080/jcache-01-lab/</code> is simple UI where you can write and read jcache.
+        Try this from different browser sessions.
+        </p>
+        this example requires Wiladflye AS infinispan subsystem configuration:
+
+<pre><code>
+&lt;subsystem xmlns="urn:jboss:domain:infinispan:4.0"&gt;
+    &lt;cache-container name="jcacheTest" default-cache="jcacheTestdb"&gt;
+        &lt;local-cache name="jcacheTestdb"&gt;
+            &lt;transaction mode="NON_XA"/&gt;
+        &lt;/local-cache&gt;
+    &lt;/cache-container&gt;
+&lt;/subsystem&gt;
+</code></pre>
+
+<p>
+<code>ite.examples.jcache.services.CacheAccessBean</code> stateless bean is facade interface 
+for transactional (container-managed transaction) cache access
+in case 'null' or empty key is attempted to insert into cache, NPE is thrown causing transaction abort
+and data is not stored in cache.
+</p>
+
+note that file <code>META-INF/MANIFEST.MF</code> has to have dependency on org.infinispan
+dependencies: org.infinispan export 
+    <div/> 
+    <div/>
+  </body>
+</html>
+   
+      

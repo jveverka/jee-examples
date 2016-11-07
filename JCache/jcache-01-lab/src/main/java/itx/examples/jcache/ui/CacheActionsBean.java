@@ -1,4 +1,4 @@
-package ite.examples.jcache.ui;
+package itx.examples.jcache.ui;
 
 import java.io.Serializable;
 import java.util.logging.Logger;
@@ -9,7 +9,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import ite.examples.jcache.services.CacheAccessBean;
+import itx.examples.jcache.services.CacheAccessBean;
 
 @SessionScoped
 @Named("cacheActions")

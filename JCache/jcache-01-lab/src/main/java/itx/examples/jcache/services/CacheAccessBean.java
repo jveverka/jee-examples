@@ -1,4 +1,4 @@
-package ite.examples.jcache.services;
+package itx.examples.jcache.services;
 
 import java.util.logging.Logger;
 
