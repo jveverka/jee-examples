@@ -91,7 +91,7 @@
              <li><strong>Near Real-Time</strong> - low latency responses</li>
              <li><strong>Effective</strong> - better http stack utilization</li>
              <li><strong>Multi-Language</strong> - support different client technologies</li>
-             <li><strong>Full-duplex </strong> communication with server during user's session.</li>
+             <li><strong>Full-duplex </strong> - communication with server during user's session.</li>
           </ul>
         </section>
 
@@ -517,6 +517,63 @@ public void sendMessage(Session session, Message message,
           </ul>
         </section>
 
+        <section>
+          <h2>Beyond JEE7: JCache</h2>
+          <ul>
+             <li>WildFly subsystem - infinispan</li>
+             <li>In-Memory data store</li>
+             <li>Used by wildfly internally</li>
+             <ul>
+                 <li>clustering</li>
+                 <li>web container</li>
+                 <li>ejb container</li>
+                 <li>hibernate subsystem</li>
+             </ul>
+             <li>Local or distributed cache (clustering/HA)</li>
+             <li>Data eviction strategies: <a href="https://docs.jboss.org/author/display/ISPN/Eviction">NONE, LRU, LIRS</a></li>
+             <li>Data expiration strategies: time criteria</li>
+             <li>Github demo: <a href="https://github.com/jveverka/jee-examples/tree/master/JCache/jcache-01-lab">jcache-01-lab</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Beyond JEE7: JCache</h2>
+          Define custom application cache<br/>
+          standalone-full.xml
+          <pre><code>
+&lt;subsystem xmlns="urn:jboss:domain:infinispan:4.0"&gt;
+  ...
+  &lt;cache-container name="jcacheTest" default-cache="jcacheTestdb"&gt;
+    &lt;local-cache name="jcacheTestdb"&gt;
+      &lt;transaction mode="NON_XA"/&gt;
+    &lt;local-cache&gt;
+  &lt;/cache-container&gt;
+  ...  
+&lt;/subsystem&gt;          
+          </pre></code>
+        </section>  
+
+        <section>
+          <h2>Beyond JEE7: JCache</h2>
+          Use it in your beans.
+          <pre><code>
+@Stateless
+public class CacheAccessBean {
+  @Resource(lookup="java:jboss/infinispan/container/jcacheTest")
+  private CacheContainer container;
+  private Cache&lt;String, String&gt; cache;
+
+  @PostConstruct
+  private void init() {
+    cache = container.getCache();
+  }
+  
+  public String getData(String key) {
+    return cache.get(key);
+  } 
+}
+          </pre></code>
+        </section>  
                 
         <section>
           <h2>Beyond JEE7: SWAGGER.io</h2>
@@ -527,7 +584,7 @@ public void sendMessage(Session session, Message message,
              <li>Machine readable API</li>
              <li>Easier integrations in microservice way</li>
              <li>Easy to use with WildFly JAX-RS</li>
-             <li>Github demo: <a htrf="https://github.com/jveverka/jee-examples/tree/master/Servlets/servlet-09_jaxrs-swagger">servlet-09_jaxrs-swagger</a></li>
+             <li>Github demo: <a href="https://github.com/jveverka/jee-examples/tree/master/Servlets/servlet-09_jaxrs-swagger">servlet-09_jaxrs-swagger</a></li>
           </ul>
         </section>
 
@@ -538,7 +595,6 @@ public void sendMessage(Session session, Message message,
               <li></li>
           </ul>
         </section>  
-          
         
         <!-- JEE8 FUTURE IMPROVEMENTS -->        
         <section>
