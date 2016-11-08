@@ -73,4 +73,12 @@ message EchoData {
    int32 jobId = 1;
    int32 ordinal = 2;
    string payload = 3;
+   repeated EchoStructuredPayload structuredPayload = 4;
+}
+
+message EchoStructuredPayload {
+   int64 timestamp = 1;
+   string message = 2;
+   double value = 3;
+   bool active = 4; 
 }

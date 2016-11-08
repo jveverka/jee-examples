@@ -9629,6 +9629,30 @@ public final class CommonAccessProtocol {
      */
     com.google.protobuf.ByteString
         getPayloadBytes();
+
+    /**
+     * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+     */
+    java.util.List<itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload> 
+        getStructuredPayloadList();
+    /**
+     * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+     */
+    itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload getStructuredPayload(int index);
+    /**
+     * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+     */
+    int getStructuredPayloadCount();
+    /**
+     * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+     */
+    java.util.List<? extends itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayloadOrBuilder> 
+        getStructuredPayloadOrBuilderList();
+    /**
+     * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+     */
+    itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayloadOrBuilder getStructuredPayloadOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code useraccess.EchoData}
@@ -9645,6 +9669,7 @@ public final class CommonAccessProtocol {
       jobId_ = 0;
       ordinal_ = 0;
       payload_ = "";
+      structuredPayload_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -9688,6 +9713,15 @@ public final class CommonAccessProtocol {
               payload_ = s;
               break;
             }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                structuredPayload_ = new java.util.ArrayList<itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              structuredPayload_.add(
+                  input.readMessage(itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.parser(), extensionRegistry));
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -9696,6 +9730,9 @@ public final class CommonAccessProtocol {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          structuredPayload_ = java.util.Collections.unmodifiableList(structuredPayload_);
+        }
         makeExtensionsImmutable();
       }
     }
@@ -9711,6 +9748,7 @@ public final class CommonAccessProtocol {
               itx.hybridapp.common.protocols.CommonAccessProtocol.EchoData.class, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoData.Builder.class);
     }
 
+    private int bitField0_;
     public static final int JOBID_FIELD_NUMBER = 1;
     private int jobId_;
     /**
@@ -9763,6 +9801,41 @@ public final class CommonAccessProtocol {
       }
     }
 
+    public static final int STRUCTUREDPAYLOAD_FIELD_NUMBER = 4;
+    private java.util.List<itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload> structuredPayload_;
+    /**
+     * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+     */
+    public java.util.List<itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload> getStructuredPayloadList() {
+      return structuredPayload_;
+    }
+    /**
+     * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+     */
+    public java.util.List<? extends itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayloadOrBuilder> 
+        getStructuredPayloadOrBuilderList() {
+      return structuredPayload_;
+    }
+    /**
+     * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+     */
+    public int getStructuredPayloadCount() {
+      return structuredPayload_.size();
+    }
+    /**
+     * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+     */
+    public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload getStructuredPayload(int index) {
+      return structuredPayload_.get(index);
+    }
+    /**
+     * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+     */
+    public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayloadOrBuilder getStructuredPayloadOrBuilder(
+        int index) {
+      return structuredPayload_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -9784,6 +9857,9 @@ public final class CommonAccessProtocol {
       if (!getPayloadBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, payload_);
       }
+      for (int i = 0; i < structuredPayload_.size(); i++) {
+        output.writeMessage(4, structuredPayload_.get(i));
+      }
     }
 
     public int getSerializedSize() {
@@ -9801,6 +9877,10 @@ public final class CommonAccessProtocol {
       }
       if (!getPayloadBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, payload_);
+      }
+      for (int i = 0; i < structuredPayload_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, structuredPayload_.get(i));
       }
       memoizedSize = size;
       return size;
@@ -9824,6 +9904,8 @@ public final class CommonAccessProtocol {
           == other.getOrdinal());
       result = result && getPayload()
           .equals(other.getPayload());
+      result = result && getStructuredPayloadList()
+          .equals(other.getStructuredPayloadList());
       return result;
     }
 
@@ -9840,6 +9922,10 @@ public final class CommonAccessProtocol {
       hash = (53 * hash) + getOrdinal();
       hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
       hash = (53 * hash) + getPayload().hashCode();
+      if (getStructuredPayloadCount() > 0) {
+        hash = (37 * hash) + STRUCTUREDPAYLOAD_FIELD_NUMBER;
+        hash = (53 * hash) + getStructuredPayloadList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -9954,6 +10040,7 @@ public final class CommonAccessProtocol {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getStructuredPayloadFieldBuilder();
         }
       }
       public Builder clear() {
@@ -9964,6 +10051,12 @@ public final class CommonAccessProtocol {
 
         payload_ = "";
 
+        if (structuredPayloadBuilder_ == null) {
+          structuredPayload_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          structuredPayloadBuilder_.clear();
+        }
         return this;
       }
 
@@ -9986,9 +10079,21 @@ public final class CommonAccessProtocol {
 
       public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoData buildPartial() {
         itx.hybridapp.common.protocols.CommonAccessProtocol.EchoData result = new itx.hybridapp.common.protocols.CommonAccessProtocol.EchoData(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         result.jobId_ = jobId_;
         result.ordinal_ = ordinal_;
         result.payload_ = payload_;
+        if (structuredPayloadBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            structuredPayload_ = java.util.Collections.unmodifiableList(structuredPayload_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.structuredPayload_ = structuredPayload_;
+        } else {
+          result.structuredPayload_ = structuredPayloadBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -10040,6 +10145,32 @@ public final class CommonAccessProtocol {
           payload_ = other.payload_;
           onChanged();
         }
+        if (structuredPayloadBuilder_ == null) {
+          if (!other.structuredPayload_.isEmpty()) {
+            if (structuredPayload_.isEmpty()) {
+              structuredPayload_ = other.structuredPayload_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureStructuredPayloadIsMutable();
+              structuredPayload_.addAll(other.structuredPayload_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.structuredPayload_.isEmpty()) {
+            if (structuredPayloadBuilder_.isEmpty()) {
+              structuredPayloadBuilder_.dispose();
+              structuredPayloadBuilder_ = null;
+              structuredPayload_ = other.structuredPayload_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              structuredPayloadBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getStructuredPayloadFieldBuilder() : null;
+            } else {
+              structuredPayloadBuilder_.addAllMessages(other.structuredPayload_);
+            }
+          }
+        }
         onChanged();
         return this;
       }
@@ -10065,6 +10196,7 @@ public final class CommonAccessProtocol {
         }
         return this;
       }
+      private int bitField0_;
 
       private int jobId_ ;
       /**
@@ -10186,6 +10318,246 @@ public final class CommonAccessProtocol {
         onChanged();
         return this;
       }
+
+      private java.util.List<itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload> structuredPayload_ =
+        java.util.Collections.emptyList();
+      private void ensureStructuredPayloadIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          structuredPayload_ = new java.util.ArrayList<itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload>(structuredPayload_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayloadOrBuilder> structuredPayloadBuilder_;
+
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public java.util.List<itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload> getStructuredPayloadList() {
+        if (structuredPayloadBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(structuredPayload_);
+        } else {
+          return structuredPayloadBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public int getStructuredPayloadCount() {
+        if (structuredPayloadBuilder_ == null) {
+          return structuredPayload_.size();
+        } else {
+          return structuredPayloadBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload getStructuredPayload(int index) {
+        if (structuredPayloadBuilder_ == null) {
+          return structuredPayload_.get(index);
+        } else {
+          return structuredPayloadBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public Builder setStructuredPayload(
+          int index, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload value) {
+        if (structuredPayloadBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureStructuredPayloadIsMutable();
+          structuredPayload_.set(index, value);
+          onChanged();
+        } else {
+          structuredPayloadBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public Builder setStructuredPayload(
+          int index, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder builderForValue) {
+        if (structuredPayloadBuilder_ == null) {
+          ensureStructuredPayloadIsMutable();
+          structuredPayload_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          structuredPayloadBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public Builder addStructuredPayload(itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload value) {
+        if (structuredPayloadBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureStructuredPayloadIsMutable();
+          structuredPayload_.add(value);
+          onChanged();
+        } else {
+          structuredPayloadBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public Builder addStructuredPayload(
+          int index, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload value) {
+        if (structuredPayloadBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureStructuredPayloadIsMutable();
+          structuredPayload_.add(index, value);
+          onChanged();
+        } else {
+          structuredPayloadBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public Builder addStructuredPayload(
+          itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder builderForValue) {
+        if (structuredPayloadBuilder_ == null) {
+          ensureStructuredPayloadIsMutable();
+          structuredPayload_.add(builderForValue.build());
+          onChanged();
+        } else {
+          structuredPayloadBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public Builder addStructuredPayload(
+          int index, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder builderForValue) {
+        if (structuredPayloadBuilder_ == null) {
+          ensureStructuredPayloadIsMutable();
+          structuredPayload_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          structuredPayloadBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public Builder addAllStructuredPayload(
+          java.lang.Iterable<? extends itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload> values) {
+        if (structuredPayloadBuilder_ == null) {
+          ensureStructuredPayloadIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, structuredPayload_);
+          onChanged();
+        } else {
+          structuredPayloadBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public Builder clearStructuredPayload() {
+        if (structuredPayloadBuilder_ == null) {
+          structuredPayload_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          structuredPayloadBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public Builder removeStructuredPayload(int index) {
+        if (structuredPayloadBuilder_ == null) {
+          ensureStructuredPayloadIsMutable();
+          structuredPayload_.remove(index);
+          onChanged();
+        } else {
+          structuredPayloadBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder getStructuredPayloadBuilder(
+          int index) {
+        return getStructuredPayloadFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayloadOrBuilder getStructuredPayloadOrBuilder(
+          int index) {
+        if (structuredPayloadBuilder_ == null) {
+          return structuredPayload_.get(index);  } else {
+          return structuredPayloadBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public java.util.List<? extends itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayloadOrBuilder> 
+           getStructuredPayloadOrBuilderList() {
+        if (structuredPayloadBuilder_ != null) {
+          return structuredPayloadBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(structuredPayload_);
+        }
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder addStructuredPayloadBuilder() {
+        return getStructuredPayloadFieldBuilder().addBuilder(
+            itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder addStructuredPayloadBuilder(
+          int index) {
+        return getStructuredPayloadFieldBuilder().addBuilder(
+            index, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .useraccess.EchoStructuredPayload structuredPayload = 4;</code>
+       */
+      public java.util.List<itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder> 
+           getStructuredPayloadBuilderList() {
+        return getStructuredPayloadFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayloadOrBuilder> 
+          getStructuredPayloadFieldBuilder() {
+        if (structuredPayloadBuilder_ == null) {
+          structuredPayloadBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayloadOrBuilder>(
+                  structuredPayload_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          structuredPayload_ = null;
+        }
+        return structuredPayloadBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -10235,6 +10607,703 @@ public final class CommonAccessProtocol {
 
   }
 
+  public interface EchoStructuredPayloadOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:useraccess.EchoStructuredPayload)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int64 timestamp = 1;</code>
+     */
+    long getTimestamp();
+
+    /**
+     * <code>optional string message = 2;</code>
+     */
+    java.lang.String getMessage();
+    /**
+     * <code>optional string message = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+
+    /**
+     * <code>optional double value = 3;</code>
+     */
+    double getValue();
+
+    /**
+     * <code>optional bool active = 4;</code>
+     */
+    boolean getActive();
+  }
+  /**
+   * Protobuf type {@code useraccess.EchoStructuredPayload}
+   */
+  public  static final class EchoStructuredPayload extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:useraccess.EchoStructuredPayload)
+      EchoStructuredPayloadOrBuilder {
+    // Use EchoStructuredPayload.newBuilder() to construct.
+    private EchoStructuredPayload(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private EchoStructuredPayload() {
+      timestamp_ = 0L;
+      message_ = "";
+      value_ = 0D;
+      active_ = false;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private EchoStructuredPayload(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              timestamp_ = input.readInt64();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              message_ = s;
+              break;
+            }
+            case 25: {
+
+              value_ = input.readDouble();
+              break;
+            }
+            case 32: {
+
+              active_ = input.readBool();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return itx.hybridapp.common.protocols.CommonAccessProtocol.internal_static_useraccess_EchoStructuredPayload_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return itx.hybridapp.common.protocols.CommonAccessProtocol.internal_static_useraccess_EchoStructuredPayload_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.class, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder.class);
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 1;
+    private long timestamp_;
+    /**
+     * <code>optional int64 timestamp = 1;</code>
+     */
+    public long getTimestamp() {
+      return timestamp_;
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object message_;
+    /**
+     * <code>optional string message = 2;</code>
+     */
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        message_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string message = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 3;
+    private double value_;
+    /**
+     * <code>optional double value = 3;</code>
+     */
+    public double getValue() {
+      return value_;
+    }
+
+    public static final int ACTIVE_FIELD_NUMBER = 4;
+    private boolean active_;
+    /**
+     * <code>optional bool active = 4;</code>
+     */
+    public boolean getActive() {
+      return active_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (timestamp_ != 0L) {
+        output.writeInt64(1, timestamp_);
+      }
+      if (!getMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
+      }
+      if (value_ != 0D) {
+        output.writeDouble(3, value_);
+      }
+      if (active_ != false) {
+        output.writeBool(4, active_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, timestamp_);
+      }
+      if (!getMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+      }
+      if (value_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(3, value_);
+      }
+      if (active_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, active_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload)) {
+        return super.equals(obj);
+      }
+      itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload other = (itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload) obj;
+
+      boolean result = true;
+      result = result && (getTimestamp()
+          == other.getTimestamp());
+      result = result && getMessage()
+          .equals(other.getMessage());
+      result = result && (
+          java.lang.Double.doubleToLongBits(getValue())
+          == java.lang.Double.doubleToLongBits(
+              other.getValue()));
+      result = result && (getActive()
+          == other.getActive());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimestamp());
+      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessage().hashCode();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getValue()));
+      hash = (37 * hash) + ACTIVE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getActive());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code useraccess.EchoStructuredPayload}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:useraccess.EchoStructuredPayload)
+        itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayloadOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return itx.hybridapp.common.protocols.CommonAccessProtocol.internal_static_useraccess_EchoStructuredPayload_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return itx.hybridapp.common.protocols.CommonAccessProtocol.internal_static_useraccess_EchoStructuredPayload_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.class, itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.Builder.class);
+      }
+
+      // Construct using itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        timestamp_ = 0L;
+
+        message_ = "";
+
+        value_ = 0D;
+
+        active_ = false;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return itx.hybridapp.common.protocols.CommonAccessProtocol.internal_static_useraccess_EchoStructuredPayload_descriptor;
+      }
+
+      public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload getDefaultInstanceForType() {
+        return itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.getDefaultInstance();
+      }
+
+      public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload build() {
+        itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload buildPartial() {
+        itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload result = new itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload(this);
+        result.timestamp_ = timestamp_;
+        result.message_ = message_;
+        result.value_ = value_;
+        result.active_ = active_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload) {
+          return mergeFrom((itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload other) {
+        if (other == itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload.getDefaultInstance()) return this;
+        if (other.getTimestamp() != 0L) {
+          setTimestamp(other.getTimestamp());
+        }
+        if (!other.getMessage().isEmpty()) {
+          message_ = other.message_;
+          onChanged();
+        }
+        if (other.getValue() != 0D) {
+          setValue(other.getValue());
+        }
+        if (other.getActive() != false) {
+          setActive(other.getActive());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long timestamp_ ;
+      /**
+       * <code>optional int64 timestamp = 1;</code>
+       */
+      public long getTimestamp() {
+        return timestamp_;
+      }
+      /**
+       * <code>optional int64 timestamp = 1;</code>
+       */
+      public Builder setTimestamp(long value) {
+        
+        timestamp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 timestamp = 1;</code>
+       */
+      public Builder clearTimestamp() {
+        
+        timestamp_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object message_ = "";
+      /**
+       * <code>optional string message = 2;</code>
+       */
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          message_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string message = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        java.lang.Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string message = 2;</code>
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string message = 2;</code>
+       */
+      public Builder clearMessage() {
+        
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string message = 2;</code>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        message_ = value;
+        onChanged();
+        return this;
+      }
+
+      private double value_ ;
+      /**
+       * <code>optional double value = 3;</code>
+       */
+      public double getValue() {
+        return value_;
+      }
+      /**
+       * <code>optional double value = 3;</code>
+       */
+      public Builder setValue(double value) {
+        
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double value = 3;</code>
+       */
+      public Builder clearValue() {
+        
+        value_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private boolean active_ ;
+      /**
+       * <code>optional bool active = 4;</code>
+       */
+      public boolean getActive() {
+        return active_;
+      }
+      /**
+       * <code>optional bool active = 4;</code>
+       */
+      public Builder setActive(boolean value) {
+        
+        active_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool active = 4;</code>
+       */
+      public Builder clearActive() {
+        
+        active_ = false;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:useraccess.EchoStructuredPayload)
+    }
+
+    // @@protoc_insertion_point(class_scope:useraccess.EchoStructuredPayload)
+    private static final itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload();
+    }
+
+    public static itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<EchoStructuredPayload>
+        PARSER = new com.google.protobuf.AbstractParser<EchoStructuredPayload>() {
+      public EchoStructuredPayload parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new EchoStructuredPayload(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<EchoStructuredPayload> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<EchoStructuredPayload> getParserForType() {
+      return PARSER;
+    }
+
+    public itx.hybridapp.common.protocols.CommonAccessProtocol.EchoStructuredPayload getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_useraccess_WrapperMessage_descriptor;
   private static final 
@@ -10265,6 +11334,11 @@ public final class CommonAccessProtocol {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_useraccess_EchoData_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_useraccess_EchoStructuredPayload_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_useraccess_EchoStructuredPayload_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -10334,11 +11408,14 @@ public final class CommonAccessProtocol {
       "\002 \001(\t\022+\n\007message\030\003 \001(\0132\032.useraccess.Wrap" +
       "perMessage\"_\n\031HttpSessionPublishMessage\022" +
       "\025\n\rhttpSessionId\030\001 \001(\t\022+\n\007message\030\002 \001(\0132",
-      "\032.useraccess.WrapperMessage\";\n\010EchoData\022" +
+      "\032.useraccess.WrapperMessage\"y\n\010EchoData\022" +
       "\r\n\005jobId\030\001 \001(\005\022\017\n\007ordinal\030\002 \001(\005\022\017\n\007paylo" +
-      "ad\030\003 \001(\tB6\n\036itx.hybridapp.common.protoco" +
-      "lsB\024CommonAccessProtocolP\000P\001P\002P\003P\004b\006prot" +
-      "o3"
+      "ad\030\003 \001(\t\022<\n\021structuredPayload\030\004 \003(\0132!.us" +
+      "eraccess.EchoStructuredPayload\"Z\n\025EchoSt" +
+      "ructuredPayload\022\021\n\ttimestamp\030\001 \001(\003\022\017\n\007me" +
+      "ssage\030\002 \001(\t\022\r\n\005value\030\003 \001(\001\022\016\n\006active\030\004 \001" +
+      "(\010B6\n\036itx.hybridapp.common.protocolsB\024Co" +
+      "mmonAccessProtocolP\000P\001P\002P\003P\004b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -10392,7 +11469,13 @@ public final class CommonAccessProtocol {
     internal_static_useraccess_EchoData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_useraccess_EchoData_descriptor,
-        new java.lang.String[] { "JobId", "Ordinal", "Payload", });
+        new java.lang.String[] { "JobId", "Ordinal", "Payload", "StructuredPayload", });
+    internal_static_useraccess_EchoStructuredPayload_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_useraccess_EchoStructuredPayload_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_useraccess_EchoStructuredPayload_descriptor,
+        new java.lang.String[] { "Timestamp", "Message", "Value", "Active", });
     itx.hybridapp.common.protocols.UserAccessProtocol.getDescriptor();
     itx.hybridapp.common.protocols.DataServiceProtocol.getDescriptor();
     itx.hybridapp.common.protocols.DeviceServiceProtocol.getDescriptor();

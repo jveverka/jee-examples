@@ -35,8 +35,9 @@ function submitTestJob() {
 	selectedWsId = $("#inputTestWsList").val();
 	repeat = document.getElementById('inputTestRepeatId').value;
 	payload = document.getElementById('inputTestPayloadId').value;
-	console.log('submitTestJob: ' + selectedWsId + "/" + payload + "/" + repeat);
-	webSocketSendMessage({ testJobRequest: { wsSessionId: selectedWsId, payload: payload, repeat: parseInt(repeat) } });
+	structuredPayloadSize = document.getElementById('inputTestStructuredPayloadSizeId').value;
+	console.log('submitTestJob: ' + selectedWsId + "/" + payload + "/" + repeat + "/" + structuredPayloadSize);
+	webSocketSendMessage({ testJobRequest: { wsSessionId: selectedWsId, payload: payload, repeat: parseInt(repeat), structuredPayloadSize: parseInt(structuredPayloadSize) } });
 	runningTestsCounter++;
 	setProgress(true);
 	$('#runningTestCounterId').text(runningTestsCounter);
@@ -90,6 +91,10 @@ function showTestResults(testResultListResponse) {
 		row.appendChild(td);
 
 		td = document.createElement('td');
+		td.innerHTML = testResultListResponse.testResults[i].request.structuredPayloadSize;
+		row.appendChild(td);
+
+		td = document.createElement('td');
 		td.innerHTML = testResultListResponse.testResults[i].protocol;
 		row.appendChild(td);
 
@@ -102,7 +107,7 @@ function showTestResults(testResultListResponse) {
 		row.appendChild(td);
 
 		td = document.createElement('td');
-		td.innerHTML = (duration/repeat).toFixed(2); //(repeat/(duration/1000)).toFixed(2);
+		td.innerHTML = (duration/repeat).toFixed(2); 
 		row.appendChild(td);
 
 		$('#testResults').append(row);

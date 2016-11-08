@@ -1139,7 +1139,12 @@ public final class TestServiceProtocol {
         getPayloadBytes();
 
     /**
-     * <code>optional int32 repeat = 3;</code>
+     * <code>optional int32 structuredPayloadSize = 3;</code>
+     */
+    int getStructuredPayloadSize();
+
+    /**
+     * <code>optional int32 repeat = 4;</code>
      */
     int getRepeat();
   }
@@ -1157,6 +1162,7 @@ public final class TestServiceProtocol {
     private TestJobRequest() {
       wsSessionId_ = "";
       payload_ = "";
+      structuredPayloadSize_ = 0;
       repeat_ = 0;
     }
 
@@ -1198,6 +1204,11 @@ public final class TestServiceProtocol {
               break;
             }
             case 24: {
+
+              structuredPayloadSize_ = input.readInt32();
+              break;
+            }
+            case 32: {
 
               repeat_ = input.readInt32();
               break;
@@ -1293,10 +1304,19 @@ public final class TestServiceProtocol {
       }
     }
 
-    public static final int REPEAT_FIELD_NUMBER = 3;
+    public static final int STRUCTUREDPAYLOADSIZE_FIELD_NUMBER = 3;
+    private int structuredPayloadSize_;
+    /**
+     * <code>optional int32 structuredPayloadSize = 3;</code>
+     */
+    public int getStructuredPayloadSize() {
+      return structuredPayloadSize_;
+    }
+
+    public static final int REPEAT_FIELD_NUMBER = 4;
     private int repeat_;
     /**
-     * <code>optional int32 repeat = 3;</code>
+     * <code>optional int32 repeat = 4;</code>
      */
     public int getRepeat() {
       return repeat_;
@@ -1320,8 +1340,11 @@ public final class TestServiceProtocol {
       if (!getPayloadBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, payload_);
       }
+      if (structuredPayloadSize_ != 0) {
+        output.writeInt32(3, structuredPayloadSize_);
+      }
       if (repeat_ != 0) {
-        output.writeInt32(3, repeat_);
+        output.writeInt32(4, repeat_);
       }
     }
 
@@ -1336,9 +1359,13 @@ public final class TestServiceProtocol {
       if (!getPayloadBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, payload_);
       }
+      if (structuredPayloadSize_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, structuredPayloadSize_);
+      }
       if (repeat_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, repeat_);
+          .computeInt32Size(4, repeat_);
       }
       memoizedSize = size;
       return size;
@@ -1360,6 +1387,8 @@ public final class TestServiceProtocol {
           .equals(other.getWsSessionId());
       result = result && getPayload()
           .equals(other.getPayload());
+      result = result && (getStructuredPayloadSize()
+          == other.getStructuredPayloadSize());
       result = result && (getRepeat()
           == other.getRepeat());
       return result;
@@ -1376,6 +1405,8 @@ public final class TestServiceProtocol {
       hash = (53 * hash) + getWsSessionId().hashCode();
       hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
       hash = (53 * hash) + getPayload().hashCode();
+      hash = (37 * hash) + STRUCTUREDPAYLOADSIZE_FIELD_NUMBER;
+      hash = (53 * hash) + getStructuredPayloadSize();
       hash = (37 * hash) + REPEAT_FIELD_NUMBER;
       hash = (53 * hash) + getRepeat();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -1500,6 +1531,8 @@ public final class TestServiceProtocol {
 
         payload_ = "";
 
+        structuredPayloadSize_ = 0;
+
         repeat_ = 0;
 
         return this;
@@ -1526,6 +1559,7 @@ public final class TestServiceProtocol {
         itx.hybridapp.common.protocols.TestServiceProtocol.TestJobRequest result = new itx.hybridapp.common.protocols.TestServiceProtocol.TestJobRequest(this);
         result.wsSessionId_ = wsSessionId_;
         result.payload_ = payload_;
+        result.structuredPayloadSize_ = structuredPayloadSize_;
         result.repeat_ = repeat_;
         onBuilt();
         return result;
@@ -1575,6 +1609,9 @@ public final class TestServiceProtocol {
         if (!other.getPayload().isEmpty()) {
           payload_ = other.payload_;
           onChanged();
+        }
+        if (other.getStructuredPayloadSize() != 0) {
+          setStructuredPayloadSize(other.getStructuredPayloadSize());
         }
         if (other.getRepeat() != 0) {
           setRepeat(other.getRepeat());
@@ -1743,15 +1780,41 @@ public final class TestServiceProtocol {
         return this;
       }
 
+      private int structuredPayloadSize_ ;
+      /**
+       * <code>optional int32 structuredPayloadSize = 3;</code>
+       */
+      public int getStructuredPayloadSize() {
+        return structuredPayloadSize_;
+      }
+      /**
+       * <code>optional int32 structuredPayloadSize = 3;</code>
+       */
+      public Builder setStructuredPayloadSize(int value) {
+        
+        structuredPayloadSize_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 structuredPayloadSize = 3;</code>
+       */
+      public Builder clearStructuredPayloadSize() {
+        
+        structuredPayloadSize_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int repeat_ ;
       /**
-       * <code>optional int32 repeat = 3;</code>
+       * <code>optional int32 repeat = 4;</code>
        */
       public int getRepeat() {
         return repeat_;
       }
       /**
-       * <code>optional int32 repeat = 3;</code>
+       * <code>optional int32 repeat = 4;</code>
        */
       public Builder setRepeat(int value) {
         
@@ -1760,7 +1823,7 @@ public final class TestServiceProtocol {
         return this;
       }
       /**
-       * <code>optional int32 repeat = 3;</code>
+       * <code>optional int32 repeat = 4;</code>
        */
       public Builder clearRepeat() {
         
@@ -3212,15 +3275,16 @@ public final class TestServiceProtocol {
       "\n\022test-service.proto\022\nuseraccess\"\027\n\025Test" +
       "ResultListRequest\"E\n\026TestResultListRespo" +
       "nse\022+\n\013testResults\030\001 \003(\0132\026.useraccess.Te" +
-      "stResult\"F\n\016TestJobRequest\022\023\n\013wsSessionI" +
-      "d\030\001 \001(\t\022\017\n\007payload\030\002 \001(\t\022\016\n\006repeat\030\003 \001(\005" +
-      "\"\316\001\n\nTestResult\022\016\n\006testId\030\001 \001(\005\022\017\n\007start" +
-      "ed\030\002 \001(\003\022\027\n\017publishDuration\030\003 \001(\003\022\020\n\010dur" +
-      "ation\030\004 \001(\003\022\016\n\006status\030\005 \001(\t\022\023\n\013descripti" +
-      "on\030\006 \001(\t\022\020\n\010protocol\030\007 \001(\t\022\020\n\010clientId\030\010" +
-      " \001(\t\022+\n\007request\030\t \001(\0132\032.useraccess.TestJ",
-      "obRequestB5\n\036itx.hybridapp.common.protoc" +
-      "olsB\023TestServiceProtocolb\006proto3"
+      "stResult\"e\n\016TestJobRequest\022\023\n\013wsSessionI" +
+      "d\030\001 \001(\t\022\017\n\007payload\030\002 \001(\t\022\035\n\025structuredPa" +
+      "yloadSize\030\003 \001(\005\022\016\n\006repeat\030\004 \001(\005\"\316\001\n\nTest" +
+      "Result\022\016\n\006testId\030\001 \001(\005\022\017\n\007started\030\002 \001(\003\022" +
+      "\027\n\017publishDuration\030\003 \001(\003\022\020\n\010duration\030\004 \001" +
+      "(\003\022\016\n\006status\030\005 \001(\t\022\023\n\013description\030\006 \001(\t\022" +
+      "\020\n\010protocol\030\007 \001(\t\022\020\n\010clientId\030\010 \001(\t\022+\n\007r",
+      "equest\030\t \001(\0132\032.useraccess.TestJobRequest" +
+      "B5\n\036itx.hybridapp.common.protocolsB\023Test" +
+      "ServiceProtocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3251,7 +3315,7 @@ public final class TestServiceProtocol {
     internal_static_useraccess_TestJobRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_useraccess_TestJobRequest_descriptor,
-        new java.lang.String[] { "WsSessionId", "Payload", "Repeat", });
+        new java.lang.String[] { "WsSessionId", "Payload", "StructuredPayloadSize", "Repeat", });
     internal_static_useraccess_TestResult_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_useraccess_TestResult_fieldAccessorTable = new

@@ -79,14 +79,14 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 	@Override
 	public boolean isValidHttpSession(String sessionId) {
 		boolean result = (httpSessions.get(sessionId) != null);
-		logger.info("isValidHttpSession: " + sessionId + " = " + result);
+		logger.fine("isValidHttpSession: " + sessionId + " = " + result);
 		return result;
 	}
 
 	@Override
 	public boolean isValidWsSession(String sessionId) {
 		boolean result = (sessions.get(sessionId) != null);
-		logger.info("isValidWsSession: " + sessionId + " = " + result);
+		logger.fine("isValidWsSession: " + sessionId + " = " + result);
 		return result;
 	}
 
@@ -260,7 +260,7 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 					String jsonMessage = JsonFormat.printer().includingDefaultValueFields().print(message);
 					wsSession.sendText(jsonMessage);
 				}
-				logger.severe("publishToWsSession: " + wsSessionId + " OK");
+				logger.fine("publishToWsSession: " + wsSessionId + " OK");
 				return 1;
 			}
 		} catch (IOException e) {

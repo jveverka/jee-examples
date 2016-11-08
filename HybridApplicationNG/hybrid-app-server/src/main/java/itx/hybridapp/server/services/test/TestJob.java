@@ -46,13 +46,20 @@ public class TestJob implements Callable<TestResult> {
 	@Override
 	public TestResult call() throws Exception {
 		try {
-			EchoData echoDataTemplate = EchoData.newBuilder()
+			EchoData.Builder echoDataTemplateBuilder = EchoData.newBuilder()
 				.setJobId(jobId)
 				.setPayload(request.getPayload())
-				.setOrdinal(0)
-				.build();
+				.setOrdinal(0);
+			if (request.getStructuredPayloadSize() > 0) {
+				echoDataTemplateBuilder.addAllStructuredPayload(TestUtils.getStructuredPayload(request.getStructuredPayloadSize()));
+			}
+			EchoData echoDataTemplate = echoDataTemplateBuilder.build();
+			
 			started = System.currentTimeMillis();
 			logger.info("Test Job started: " + jobId);
+			logger.info("repeat : " + request.getRepeat());
+			logger.info("payload: " + request.getPayload());
+			logger.info("payload: " + request.getStructuredPayloadSize());
 			logger.info("sending echo requests ...");
 			for (int i=0; i<request.getRepeat(); i++) {
 				EchoData echo = EchoData.newBuilder(echoDataTemplate).setOrdinal(i).build();
@@ -62,13 +69,15 @@ public class TestJob implements Callable<TestResult> {
 			}
 			publishDuration = System.currentTimeMillis() - started;
 			logger.info("All messages send! " + request.getRepeat());
-			long awaitForMs = getAwaitPeriod(request.getRepeat());
+			long awaitForMs = getAwaitPeriod(request.getRepeat(), request.getStructuredPayloadSize());
 			logger.info("waiting for echo responses for: " + awaitForMs + " ms");
 			boolean isInTime = counter.await(awaitForMs, TimeUnit.MILLISECONDS);
 			logger.info("all responses arrived: " + isInTime);
 			duration = System.currentTimeMillis() - started;
 			logger.info("Test Job finished: " + jobId + " in " + duration + "ms");
-			logger.info("Test Job payload : " + request.getPayload());
+			logger.info("repeat : " + request.getRepeat());
+			logger.info("payload: " + request.getPayload());
+			logger.info("payload: " + request.getStructuredPayloadSize());
 			logger.info("checking results ...");
 			boolean allOK = true;
 			for (int i=0; i<results.length; i++) {
@@ -126,11 +135,11 @@ public class TestJob implements Callable<TestResult> {
 		received++;
 		results[echo.getOrdinal()] = payloadData.equals(echo.getPayload());
 		counter.countDown();
-		logger.info("onEchoResponse: " + received);
+		logger.fine("onEchoResponse: " + received);
 	}
 	
-	private long getAwaitPeriod(long repeat) {
-		long result = 3*repeat;
+	private long getAwaitPeriod(long repeat, int structSize) {
+		long result = 4*repeat*(4*structSize);
 		if (result > 10000) {
 			return result;
 		}

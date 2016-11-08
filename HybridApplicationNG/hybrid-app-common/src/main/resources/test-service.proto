@@ -15,7 +15,8 @@ message TestResultListResponse {
 message TestJobRequest {
    string wsSessionId = 1;
    string payload = 2;
-   int32 repeat = 3;
+   int32 structuredPayloadSize = 3;
+   int32 repeat = 4;
 }
 
 message TestResult {

@@ -86,7 +86,6 @@ public class WSEndpoint {
 	@OnMessage
 	public void onMessage(String message, Session session) {
 		try {
-			logger.info("onMessage: " + message);
 			WrapperMessage.Builder builder = WrapperMessage.newBuilder();
 			JsonFormat.parser().merge(message, builder);
 			WrapperMessage wm = builder.build();
@@ -104,7 +103,6 @@ public class WSEndpoint {
 	@OnMessage
 	public void onMessage(byte[] message, Session session) {
 		try {
-			logger.info("onMessage: ");
 			WrapperMessage wm = WrapperMessage.parseFrom(message);
 			processMessage(session, wm, true);
 		} catch (InvalidProtocolBufferException e) {
@@ -129,7 +127,7 @@ public class WSEndpoint {
 		int messageTypeId = wm.getMsgCase().getNumber();
 		try {
 		if (uaService.isValidWsSession(session.getId())) {
-			logger.info("processing message: " + messageTypeId);
+			logger.fine("processing message: " + messageTypeId);
 			switch (messageTypeId) {
 			case WrapperMessage.ECHODATA_FIELD_NUMBER: {
 				testJobManager.onTestJobReply(wm.getEchoData());
