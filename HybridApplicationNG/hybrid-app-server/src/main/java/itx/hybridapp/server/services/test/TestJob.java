@@ -69,7 +69,7 @@ public class TestJob implements Callable<TestResult> {
 			}
 			publishDuration = System.currentTimeMillis() - started;
 			logger.info("All messages send! " + request.getRepeat());
-			long awaitForMs = getAwaitPeriod(request.getRepeat(), request.getStructuredPayloadSize());
+			long awaitForMs = calculateAwaitPeriod(request.getRepeat(), request.getStructuredPayloadSize());
 			logger.info("waiting for echo responses for: " + awaitForMs + " ms");
 			boolean isInTime = counter.await(awaitForMs, TimeUnit.MILLISECONDS);
 			logger.info("all responses arrived: " + isInTime);
@@ -138,12 +138,20 @@ public class TestJob implements Callable<TestResult> {
 		logger.fine("onEchoResponse: " + received);
 	}
 	
-	private long getAwaitPeriod(long repeat, int structSize) {
-		long result = 4*repeat*(4*structSize);
-		if (result > 10000) {
-			return result;
+	private long calculateAwaitPeriod(long repeat, int structSize) {
+		long result = 0;
+		if (structSize <= 0) {
+			result = 4*repeat;
+		} else {
+			result = 4*repeat*(4*structSize);
 		}
-		return 10000;
+		if (result < 10000) {
+			return 10000;
+		}
+		if (result < 0) {
+			return result * -1;
+		}
+		return result;
 	}
 
 }
