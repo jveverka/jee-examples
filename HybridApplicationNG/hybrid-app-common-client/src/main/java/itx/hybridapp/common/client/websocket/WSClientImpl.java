@@ -53,7 +53,7 @@ public class WSClientImpl implements WSClient, WSMessagePublisher {
  
     @OnMessage
     public void onMessage(String message, Session session) throws IOException {
-		logger.info("onMessage: " + message);
+		logger.fine("onMessage: ");
 		WrapperMessage.Builder builder = WrapperMessage.newBuilder();
 		JsonFormat.parser().merge(message, builder);
 		WrapperMessage wm = builder.build();
@@ -62,7 +62,7 @@ public class WSClientImpl implements WSClient, WSMessagePublisher {
 
     @OnMessage
     public void onMessage(byte[] message, Session session) throws IOException {
-		logger.info("onMessage: ");
+		logger.fine("onMessage: ");
 		WrapperMessage wm = WrapperMessage.parseFrom(message);
 		eventListener.onMessage(wm);
     }

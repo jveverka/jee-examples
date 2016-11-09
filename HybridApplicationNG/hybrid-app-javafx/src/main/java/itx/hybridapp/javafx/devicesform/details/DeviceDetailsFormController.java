@@ -13,6 +13,7 @@ import itx.hybridapp.common.protocols.DeviceServiceProtocol.SensorEvent;
 import itx.hybridapp.common.protocols.DeviceServiceProtocol.TimeSeriesDataRequest;
 import itx.hybridapp.common.protocols.UserAccessProtocol.TopicSubscribe;
 import itx.hybridapp.common.protocols.UserAccessProtocol.TopicUnsubscribe;
+import itx.hybridapp.javafx.Main;
 import itx.hybridapp.javafx.Scenes;
 import itx.hybridapp.javafx.messaging.Messaging;
 import itx.hybridapp.javafx.messaging.events.DeviceDataEvent;
@@ -20,7 +21,6 @@ import itx.hybridapp.javafx.messaging.events.DeviceStatusEvent;
 import itx.hybridapp.javafx.messaging.events.SceneEnterEvent;
 import itx.hybridapp.javafx.messaging.events.SceneLeaveEvent;
 import itx.hybridapp.javafx.messaging.events.TimeSeriesDataEvent;
-import itx.hybridapp.javafx.websockets.WSService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,6 +50,10 @@ public class DeviceDetailsFormController implements Initializable {
 
 	private String deviceId;
 	private boolean[] controls;
+	
+	public DeviceDetailsFormController() {
+		SELF = this;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -69,11 +73,11 @@ public class DeviceDetailsFormController implements Initializable {
 			deviceId = (String)event.getSceneContext();
 			deviceIdLabel.setText(deviceId);
 			TopicSubscribe ts = TopicSubscribe.newBuilder().setTopicId(DEVICES_TOPIC_BASE + deviceId).build();
-			WSService.getInstance().sendMessage(WrapperMessage.newBuilder().setTopicSubscribe(ts).build());
+			Main.getInstance().sendMessage(WrapperMessage.newBuilder().setTopicSubscribe(ts).build());
 			GetStatusRequest getStatus = GetStatusRequest.newBuilder().setDeviceId(deviceId).build();
-			WSService.getInstance().sendMessage(WrapperMessage.newBuilder().setGetStatusRequest(getStatus).build());
+			Main.getInstance().sendMessage(WrapperMessage.newBuilder().setGetStatusRequest(getStatus).build());
 			TimeSeriesDataRequest tsdr = TimeSeriesDataRequest.newBuilder().setDeviceId(deviceId).build();
-			WSService.getInstance().sendMessage(WrapperMessage.newBuilder().setTimeSeriesDataRequest(tsdr).build());
+			Main.getInstance().sendMessage(WrapperMessage.newBuilder().setTimeSeriesDataRequest(tsdr).build());
 		}
 	}
 
@@ -83,7 +87,7 @@ public class DeviceDetailsFormController implements Initializable {
 			logger.info("onSceneLeave: DEVICE_DETAILS ");
 			deviceIdLabel.setText(NA);
 			TopicUnsubscribe tu = TopicUnsubscribe.newBuilder().setTopicId(DEVICES_TOPIC_BASE + deviceId).build();
-			WSService.getInstance().sendMessage(WrapperMessage.newBuilder().setTopicUnsubscribe(tu).build());
+			Main.getInstance().sendMessage(WrapperMessage.newBuilder().setTopicUnsubscribe(tu).build());
 		}
 	}
 	

@@ -10,13 +10,13 @@ import itx.hybridapp.common.protocols.CommonAccessProtocol.WrapperMessage;
 import itx.hybridapp.common.protocols.DeviceServiceProtocol.DeviceListRequest;
 import itx.hybridapp.common.protocols.UserAccessProtocol.TopicSubscribe;
 import itx.hybridapp.common.protocols.UserAccessProtocol.TopicUnsubscribe;
+import itx.hybridapp.javafx.Main;
 import itx.hybridapp.javafx.Scenes;
 import itx.hybridapp.javafx.messaging.Messaging;
 import itx.hybridapp.javafx.messaging.events.DeviceInfoListChangedEvent;
 import itx.hybridapp.javafx.messaging.events.DeviceInfoListEvent;
 import itx.hybridapp.javafx.messaging.events.SceneEnterEvent;
 import itx.hybridapp.javafx.messaging.events.SceneLeaveEvent;
-import itx.hybridapp.javafx.websockets.WSService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -37,6 +37,10 @@ public class DevicesFormController implements Initializable {
 	@FXML private TableColumn<DeviceTableInfo, String> wsSessionIdCol;
 	@FXML private TableColumn<DeviceTableInfo, String> connectedCol;
 	
+	public DevicesFormController() {
+		SELF = this;
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		logger.info("initialize ...");
@@ -53,9 +57,9 @@ public class DevicesFormController implements Initializable {
 		if (Scenes.DEVICES.equals(event.getSceneId())) {
 			logger.info("onSceneEnter: DEVICES");
 			TopicSubscribe ts = TopicSubscribe.newBuilder().setTopicId(DEVICES_TOPIC_ID).build();
-			WSService.getInstance().sendMessage(WrapperMessage.newBuilder().setTopicSubscribe(ts).build());
+			Main.getInstance().sendMessage(WrapperMessage.newBuilder().setTopicSubscribe(ts).build());
 			DeviceListRequest dlr = DeviceListRequest.newBuilder().build();
-			WSService.getInstance().sendMessage(WrapperMessage.newBuilder().setDeviceListRequest(dlr).build());
+			Main.getInstance().sendMessage(WrapperMessage.newBuilder().setDeviceListRequest(dlr).build());
 		}
 	}
 	
@@ -64,7 +68,7 @@ public class DevicesFormController implements Initializable {
 		if (Scenes.DEVICES.equals(event.getSceneId())) {
 			logger.info("onSceneLeave: DEVICES");
 			TopicUnsubscribe tu = TopicUnsubscribe.newBuilder().setTopicId(DEVICES_TOPIC_ID).build();
-			WSService.getInstance().sendMessage(WrapperMessage.newBuilder().setTopicUnsubscribe(tu).build());
+			Main.getInstance().sendMessage(WrapperMessage.newBuilder().setTopicUnsubscribe(tu).build());
 		}
 	}
 	
@@ -84,7 +88,7 @@ public class DevicesFormController implements Initializable {
 	@Handler
 	public void onDeviceInfoListChanged(DeviceInfoListChangedEvent event) {
 		DeviceListRequest dlr = DeviceListRequest.newBuilder().build();
-		WSService.getInstance().sendMessage(WrapperMessage.newBuilder().setDeviceListRequest(dlr).build());
+		Main.getInstance().sendMessage(WrapperMessage.newBuilder().setDeviceListRequest(dlr).build());
 	}
 
 }

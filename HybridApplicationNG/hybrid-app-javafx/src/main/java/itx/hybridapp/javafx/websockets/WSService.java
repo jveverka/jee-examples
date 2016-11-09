@@ -10,22 +10,16 @@ public class WSService {
 	
 	private static final Logger logger = Logger.getLogger(WSService.class.getName());
 	
-	private static WSService SELF;
-	
 	private WSClient wsClient;
 	private WSEventListenerImpl wsListener;
 	
 	private WSService(String wsUrl, String mediaType) {
-		this.wsListener = new WSEventListenerImpl();
+		this.wsListener = new WSEventListenerImpl(mediaType);
 		this.wsClient = WSClient.buildClient(wsUrl, mediaType, wsListener);
 	}
 	
-	public static void init(String wsUrl, String mediaType) {
-		SELF = new WSService(wsUrl, mediaType);
-	}
-	
-	public static WSService getInstance() {
-		return SELF;
+	public static WSService getNewInstance(String wsUrl, String mediaType) {
+		return new WSService(wsUrl, mediaType);
 	}
 	
 	public void connect() {

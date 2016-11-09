@@ -2,7 +2,7 @@ package itx.hybridapp.javafx.devicesform.details;
 
 import itx.hybridapp.common.protocols.CommonAccessProtocol.WrapperMessage;
 import itx.hybridapp.common.protocols.DeviceServiceProtocol.SetControlOutputRequest;
-import itx.hybridapp.javafx.websockets.WSService;
+import itx.hybridapp.javafx.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -25,7 +25,7 @@ public abstract class SetControlButtonHandler implements EventHandler<ActionEven
 		WrapperMessage wm = WrapperMessage.newBuilder()
 				.setSetControlOutputRequest(request)
 				.build();
-		WSService.getInstance().sendMessage(wm);
+		Main.getInstance().sendMessage(wm);
 	}
 
 }

@@ -28,6 +28,7 @@ public class HomeFormController implements Initializable {
 	@FXML private Label userNameLabel;
 	@FXML private Label httpSessionLabel;
 	@FXML private Label wsSessionLabel;
+	@FXML private Label protocolLabel;
 	@FXML private Label testResuestsLabel;
 	
 	private int echoMessageCounter;
@@ -55,6 +56,7 @@ public class HomeFormController implements Initializable {
 				LoginEvent loginEvent = (LoginEvent) event;
 				userNameLabel.setText(loginEvent.getUserName());
 				httpSessionLabel.setText(loginEvent.getHttpSessionId());
+				protocolLabel.setText(loginEvent.getMediatype());
 			}
 		});
 	}

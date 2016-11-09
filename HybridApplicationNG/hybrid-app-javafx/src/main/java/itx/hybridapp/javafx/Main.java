@@ -1,12 +1,21 @@
 package itx.hybridapp.javafx;
 
+import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.security.auth.login.LoginException;
+
+import itx.hybridapp.common.protocols.CommonAccessProtocol.WrapperMessage;
 import itx.hybridapp.javafx.messaging.Messaging;
+import itx.hybridapp.javafx.messaging.events.LoginEvent;
+import itx.hybridapp.javafx.messaging.events.LoginFailedEvent;
 import itx.hybridapp.javafx.messaging.events.LogoutEvent;
 import itx.hybridapp.javafx.messaging.events.SceneEnterEvent;
 import itx.hybridapp.javafx.messaging.events.SceneLeaveEvent;
 import itx.hybridapp.javafx.services.ConfigService;
+import itx.hybridapp.javafx.services.UserAccessService;
+import itx.hybridapp.javafx.services.dto.UserInfo;
 import itx.hybridapp.javafx.websockets.WSService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +41,10 @@ public class Main extends Application {
 	
 	private Scenes currentScene;
 	
+	private UserAccessService uaService;
+	private WSService wsService;
+	private String mediaType;
+	
 	public static Main getInstance() {
 		return SELF;
 	}
@@ -51,9 +64,6 @@ public class Main extends Application {
 		currentScene = Scenes.HOME;
 		Messaging.getInstance().subscribe(this);
 
-		ConfigService config = ConfigService.getInstance();
-		WSService.init(config.getWsUrl(), config.getMediaType());
-		
 		this.primaryStage = primaryStage;
 		
 		Pane loginPage = (Pane) FXMLLoader.load(Main.class.getResource("/itx/hybridapp/javafx/loginform/loginForm.fxml"));
@@ -79,20 +89,76 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(new AppCloseHandler());
 	}
 	
-	public void setLoginScene() {
+	private void setLoginScene() {
 		primaryStage.setScene(loginScene);
 		primaryStage.setResizable(false);
 	}
 
-	public void setMainScene() {
+	private void setMainScene() {
 		currentScene = Scenes.HOME;
 		primaryStage.setScene(mainScene);
 		primaryStage.setResizable(true);
+	}
+	
+	public void doLoginAction(String mediaType, String userName, String password) {
 		try {
-			WSService.getInstance().connect();
+			logger.info("doLoginAction: " + mediaType + " " + userName);
+			this.mediaType = mediaType;
+			String baseUrl = ConfigService.getInstance().getBaseURL();
+			String wsUrl = ConfigService.getInstance().getWsUrl();
+			logger.info("HTTP URL: " + baseUrl);
+			logger.info("ws URL  : " + wsUrl);
+			uaService = UserAccessService.getNewInstance(baseUrl, mediaType);
+			List<String> roles = uaService.login(userName, password);
+			logger.severe("doLoginAction: OK");
+			roles.forEach(r -> {logger.info(r);});
+			wsService = WSService.getNewInstance(wsUrl, mediaType);
+			wsService.connect();
+			setMainScene();
+			UserInfo ui = uaService.getUserInfo();
+			LoginEvent loginEvent = LoginEvent.newBuilder()
+					.setUserName(ui.getUserName())
+					.setMediaType(mediaType)
+					.setHttpSessionId(ui.getNormalizedHttpSessionId())
+					.build();
+			Messaging.getInstance().postNow(loginEvent);
+		} catch (LoginException e) {
+			logger.severe("doLoginAction: FAILED");
+			Messaging.getInstance().postNow(LoginFailedEvent.newBuilder()
+					.setMessage("invalid credentials")
+					.build());
 		} catch (Exception e) {
-			logger.info("WS client error !");
+			logger.log(Level.SEVERE, "doLoginAction: FAILED", e);
+			Messaging.getInstance().postNow(LoginFailedEvent.newBuilder()
+					.setMessage(e.getMessage())
+					.build());
 		}
+	}
+
+	public void doLogout() {
+		logger.info("doLogout ...");
+		uaService.logout();
+		wsService.close();
+	}
+
+	public void doLogoutActionSilent() {
+		logger.info("doLogoutActionSilent ...");
+		doLogout();
+		setLoginScene();
+	}
+
+	public void doLogoutAction() {
+		logger.info("doLogoutAction ...");
+		doLogoutActionSilent();
+		Messaging.getInstance().postNow(LogoutEvent.newBuilder().build());
+	}
+	
+	public String getMediaType() {
+		return mediaType;
+	}
+	
+	public UserInfo getUserInfo() {
+		return uaService.getUserInfo();
 	}
 	
 	public void switchScenes(Scenes sceneId, Object context) {
@@ -119,6 +185,10 @@ public class Main extends Application {
 	@Handler
 	public void onLogoutEvent(LogoutEvent event) {
 		mainPage.setCenter(homePage);
+	}
+	
+	public void sendMessage(WrapperMessage wm) {
+		wsService.sendMessage(wm);
 	}
 	
 }

@@ -38,10 +38,10 @@ public class ConfigService {
 		return wsBaseUrl;
 	}
 	
-	public String getMediaType() {
+	public String getDefaultMediaType() {
 		return ProtoMediaType.APPLICATION_PROTOBUF;
 	}
-	
+
 	public String getWsUrl() {
 		return wsBaseUrl + "/ws/wsendpoint";
 	}

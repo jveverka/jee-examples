@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -12,11 +13,11 @@
    <center>
       <Pane prefHeight="320.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="loginUserName" layoutX="119.0" layoutY="154.0" />
-            <PasswordField fx:id="loginPassword" layoutX="119.0" layoutY="190.0" />
-            <Label fx:id="loginLabel" alignment="CENTER" layoutX="119.0" layoutY="131.0" prefHeight="15.0" prefWidth="170.0" text="welcome" textAlignment="CENTER" />
+            <TextField fx:id="loginUserName" layoutX="119.0" layoutY="112.0" />
+            <PasswordField fx:id="loginPassword" layoutX="119.0" layoutY="148.0" />
+            <Label fx:id="loginLabel" alignment="CENTER" layoutX="119.0" layoutY="89.0" prefHeight="15.0" prefWidth="170.0" text="welcome" textAlignment="CENTER" />
             <Button fx:id="loginButton" layoutX="173.0" layoutY="228.0" mnemonicParsing="false" text="Login" />
-            <Label alignment="CENTER" layoutX="119.0" layoutY="102.0" prefHeight="15.0" prefWidth="170.0" text="Hybrid Application" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="119.0" layoutY="60.0" prefHeight="15.0" prefWidth="170.0" text="Hybrid Application" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -26,6 +27,7 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Label>
+            <ComboBox fx:id="protocolSelector" layoutX="119.0" layoutY="186.0" prefHeight="26.0" prefWidth="170.0" promptText="Protocol" />
          </children>
       </Pane>
    </center>

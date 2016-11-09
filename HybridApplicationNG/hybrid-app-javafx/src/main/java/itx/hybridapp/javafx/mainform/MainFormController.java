@@ -45,30 +45,13 @@ public class MainFormController implements Initializable {
 		devicesButton.setOnAction(new DevicesButtonHandler());
 	}
 	
-	protected void doLogoutAction() {
-		logger.info("doLogoutAction ...");
-		try {
-			UserAccessService.getInstance().logout();
-		} catch (Exception e) {
-			logger.log(Level.SEVERE, "", e);
-		}
-		WSService.getInstance().close();
-		Main.getInstance().setLoginScene();
-		Messaging.getInstance().postNow(LogoutEvent.newBuilder().build());
-	}
-
 	@Handler
 	public void onWsDisconnect(WSDisconnectEvent event) {
 		logger.info("onWsDisconnect ...");
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					UserAccessService.getInstance().logout();
-				} catch (Exception e) {
-					logger.log(Level.SEVERE, "", e);
-				}
-				Main.getInstance().setLoginScene();
+				Main.getInstance().doLogoutActionSilent();
 			}
 		});
 	}

@@ -12,7 +12,6 @@ import itx.hybridapp.javafx.services.dto.UserInfo;
 public class UserAccessService extends UserAccessClientImpl {
 	
 	private static final Logger logger = Logger.getLogger(UserAccessService.class.getName());
-	private static UserAccessService SELF;
 	
 	private String userName;
 	private String password;
@@ -20,15 +19,12 @@ public class UserAccessService extends UserAccessClientImpl {
 	private String normalizedHttpSessionId;
 	private List<String> roles;
 	
-	private UserAccessService() {
-		super(ConfigService.getInstance().getBaseURL(),ConfigService.getInstance().getMediaType());
+	private UserAccessService(String baseUrl, String mediaType) {
+		super(baseUrl ,mediaType);
 	}
 	
-	public static UserAccessService getInstance() {
-		if (SELF == null) {
-			SELF = new UserAccessService();
-		}
-		return SELF;
+	public static UserAccessService getNewInstance(String baseUrl, String mediaType) {
+		return new UserAccessService(baseUrl, mediaType);
 	}
 	
 	public List<String> login(String userName, String password) throws LoginException {

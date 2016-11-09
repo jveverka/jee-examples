@@ -7,7 +7,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import itx.hybridapp.common.ProtoMediaType;
 import itx.hybridapp.common.client.websocket.WSEventListener;
 import itx.hybridapp.common.client.websocket.WSMessagePublisher;
 import itx.hybridapp.common.protocols.CommonAccessProtocol.WrapperMessage;
@@ -15,6 +14,7 @@ import itx.hybridapp.common.protocols.DeviceServiceProtocol.DeviceEvent;
 import itx.hybridapp.common.protocols.DeviceServiceProtocol.DeviceInfo;
 import itx.hybridapp.common.protocols.DeviceServiceProtocol.GetStatusResponse;
 import itx.hybridapp.common.protocols.DeviceServiceProtocol.TimeSeriesDataResponse;
+import itx.hybridapp.javafx.Main;
 import itx.hybridapp.javafx.messaging.Messaging;
 import itx.hybridapp.javafx.messaging.events.DeviceStatusEvent;
 import itx.hybridapp.javafx.messaging.events.DeviceDataEvent;
@@ -24,7 +24,6 @@ import itx.hybridapp.javafx.messaging.events.EchoMessageEvent;
 import itx.hybridapp.javafx.messaging.events.TimeSeriesDataEvent;
 import itx.hybridapp.javafx.messaging.events.WSConnectEvent;
 import itx.hybridapp.javafx.messaging.events.WSDisconnectEvent;
-import itx.hybridapp.javafx.services.UserAccessService;
 import itx.hybridapp.javafx.services.dto.UserInfo;
 
 public class WSEventListenerImpl implements WSEventListener {
@@ -33,6 +32,11 @@ public class WSEventListenerImpl implements WSEventListener {
 	
 	private WSMessagePublisher messagePublisher;
 	private AtomicBoolean isAuthorized = new AtomicBoolean(false);
+	private String mediaType;
+	
+	protected WSEventListenerImpl(String mediaType) {
+		this.mediaType = mediaType;
+	}
 
 	@Override
 	public void onInit(WSMessagePublisher messagePublisher) {
@@ -95,9 +99,9 @@ public class WSEventListenerImpl implements WSEventListener {
 	@Override
 	public void onSessionCreated(String wsSessionId) {
 		logger.info("onSessionCreated");
-		UserInfo ui = UserAccessService.getInstance().getUserInfo();
+		UserInfo ui = Main.getInstance().getUserInfo();
 		try {
-			messagePublisher.login(ui.getNormalizedHttpSessionId(), ProtoMediaType.APPLICATION_PROTOBUF, ui.getUserName(), ui.getPassword());
+			messagePublisher.login(ui.getNormalizedHttpSessionId(), mediaType, ui.getUserName(), ui.getPassword());
 		} catch (IOException e) {
 			logger.log(Level.SEVERE, "", e);
 		}
