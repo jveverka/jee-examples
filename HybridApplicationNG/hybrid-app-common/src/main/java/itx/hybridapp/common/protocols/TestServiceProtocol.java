@@ -379,6 +379,371 @@ public final class TestServiceProtocol {
 
   }
 
+  public interface TestClearResultListRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:useraccess.TestClearResultListRequest)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code useraccess.TestClearResultListRequest}
+   */
+  public  static final class TestClearResultListRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:useraccess.TestClearResultListRequest)
+      TestClearResultListRequestOrBuilder {
+    // Use TestClearResultListRequest.newBuilder() to construct.
+    private TestClearResultListRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TestClearResultListRequest() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private TestClearResultListRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return itx.hybridapp.common.protocols.TestServiceProtocol.internal_static_useraccess_TestClearResultListRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return itx.hybridapp.common.protocols.TestServiceProtocol.internal_static_useraccess_TestClearResultListRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.class, itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest)) {
+        return super.equals(obj);
+      }
+      itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest other = (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) obj;
+
+      boolean result = true;
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code useraccess.TestClearResultListRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:useraccess.TestClearResultListRequest)
+        itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return itx.hybridapp.common.protocols.TestServiceProtocol.internal_static_useraccess_TestClearResultListRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return itx.hybridapp.common.protocols.TestServiceProtocol.internal_static_useraccess_TestClearResultListRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.class, itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.Builder.class);
+      }
+
+      // Construct using itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return itx.hybridapp.common.protocols.TestServiceProtocol.internal_static_useraccess_TestClearResultListRequest_descriptor;
+      }
+
+      public itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest getDefaultInstanceForType() {
+        return itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.getDefaultInstance();
+      }
+
+      public itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest build() {
+        itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest buildPartial() {
+        itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest result = new itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest(this);
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) {
+          return mergeFrom((itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest other) {
+        if (other == itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.getDefaultInstance()) return this;
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:useraccess.TestClearResultListRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:useraccess.TestClearResultListRequest)
+    private static final itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest();
+    }
+
+    public static itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TestClearResultListRequest>
+        PARSER = new com.google.protobuf.AbstractParser<TestClearResultListRequest>() {
+      public TestClearResultListRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new TestClearResultListRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TestClearResultListRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TestClearResultListRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface TestResultListResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:useraccess.TestResultListResponse)
       com.google.protobuf.MessageOrBuilder {
@@ -3249,6 +3614,11 @@ public final class TestServiceProtocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_useraccess_TestResultListRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_useraccess_TestClearResultListRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_useraccess_TestClearResultListRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_useraccess_TestResultListResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -3273,18 +3643,19 @@ public final class TestServiceProtocol {
   static {
     java.lang.String[] descriptorData = {
       "\n\022test-service.proto\022\nuseraccess\"\027\n\025Test" +
-      "ResultListRequest\"E\n\026TestResultListRespo" +
-      "nse\022+\n\013testResults\030\001 \003(\0132\026.useraccess.Te" +
-      "stResult\"e\n\016TestJobRequest\022\023\n\013wsSessionI" +
-      "d\030\001 \001(\t\022\017\n\007payload\030\002 \001(\t\022\035\n\025structuredPa" +
-      "yloadSize\030\003 \001(\005\022\016\n\006repeat\030\004 \001(\005\"\316\001\n\nTest" +
-      "Result\022\016\n\006testId\030\001 \001(\005\022\017\n\007started\030\002 \001(\003\022" +
-      "\027\n\017publishDuration\030\003 \001(\003\022\020\n\010duration\030\004 \001" +
-      "(\003\022\016\n\006status\030\005 \001(\t\022\023\n\013description\030\006 \001(\t\022" +
-      "\020\n\010protocol\030\007 \001(\t\022\020\n\010clientId\030\010 \001(\t\022+\n\007r",
-      "equest\030\t \001(\0132\032.useraccess.TestJobRequest" +
-      "B5\n\036itx.hybridapp.common.protocolsB\023Test" +
-      "ServiceProtocolb\006proto3"
+      "ResultListRequest\"\034\n\032TestClearResultList" +
+      "Request\"E\n\026TestResultListResponse\022+\n\013tes" +
+      "tResults\030\001 \003(\0132\026.useraccess.TestResult\"e" +
+      "\n\016TestJobRequest\022\023\n\013wsSessionId\030\001 \001(\t\022\017\n" +
+      "\007payload\030\002 \001(\t\022\035\n\025structuredPayloadSize\030" +
+      "\003 \001(\005\022\016\n\006repeat\030\004 \001(\005\"\316\001\n\nTestResult\022\016\n\006" +
+      "testId\030\001 \001(\005\022\017\n\007started\030\002 \001(\003\022\027\n\017publish" +
+      "Duration\030\003 \001(\003\022\020\n\010duration\030\004 \001(\003\022\016\n\006stat" +
+      "us\030\005 \001(\t\022\023\n\013description\030\006 \001(\t\022\020\n\010protoco",
+      "l\030\007 \001(\t\022\020\n\010clientId\030\010 \001(\t\022+\n\007request\030\t \001" +
+      "(\0132\032.useraccess.TestJobRequestB5\n\036itx.hy" +
+      "bridapp.common.protocolsB\023TestServicePro" +
+      "tocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3304,20 +3675,26 @@ public final class TestServiceProtocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_useraccess_TestResultListRequest_descriptor,
         new java.lang.String[] { });
-    internal_static_useraccess_TestResultListResponse_descriptor =
+    internal_static_useraccess_TestClearResultListRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_useraccess_TestClearResultListRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_useraccess_TestClearResultListRequest_descriptor,
+        new java.lang.String[] { });
+    internal_static_useraccess_TestResultListResponse_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_useraccess_TestResultListResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_useraccess_TestResultListResponse_descriptor,
         new java.lang.String[] { "TestResults", });
     internal_static_useraccess_TestJobRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_useraccess_TestJobRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_useraccess_TestJobRequest_descriptor,
         new java.lang.String[] { "WsSessionId", "Payload", "StructuredPayloadSize", "Repeat", });
     internal_static_useraccess_TestResult_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_useraccess_TestResult_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_useraccess_TestResult_descriptor,

@@ -16,5 +16,7 @@ public interface TestJobManager {
 	public void submitTestJob(TestJobRequest request);
 	
 	public void onTestJobReply(EchoData echoData);
+	
+	public void clearTestResults();
 
 }

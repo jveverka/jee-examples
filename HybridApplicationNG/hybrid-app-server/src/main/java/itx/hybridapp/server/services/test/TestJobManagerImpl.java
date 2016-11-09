@@ -114,4 +114,11 @@ public class TestJobManagerImpl implements TestJobManager {
 		publishTestResultListResponse();
 	}
 
+	@Override
+	public void clearTestResults() {
+		logger.info("clearTestResults: ");
+		results.clear();
+		publishTestResultListResponse();
+	}
+
 }

@@ -297,6 +297,15 @@ public final class CommonAccessProtocol {
      */
     itx.hybridapp.common.protocols.TestServiceProtocol.TestJobRequestOrBuilder getTestJobRequestOrBuilder();
 
+    /**
+     * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+     */
+    itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest getTestClearResultListRequest();
+    /**
+     * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+     */
+    itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequestOrBuilder getTestClearResultListRequestOrBuilder();
+
     public itx.hybridapp.common.protocols.CommonAccessProtocol.WrapperMessage.MsgCase getMsgCase();
   }
   /**
@@ -772,6 +781,20 @@ public final class CommonAccessProtocol {
               msgCase_ = 31;
               break;
             }
+            case 258: {
+              itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.Builder subBuilder = null;
+              if (msgCase_ == 32) {
+                subBuilder = ((itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_).toBuilder();
+              }
+              msg_ =
+                  input.readMessage(itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_);
+                msg_ = subBuilder.buildPartial();
+              }
+              msgCase_ = 32;
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -830,6 +853,7 @@ public final class CommonAccessProtocol {
       TESTRESULTLISTREQUEST(29),
       TESTRESULTLISTRESPONSE(30),
       TESTJOBREQUEST(31),
+      TESTCLEARRESULTLISTREQUEST(32),
       MSG_NOT_SET(0);
       private final int value;
       private MsgCase(int value) {
@@ -876,6 +900,7 @@ public final class CommonAccessProtocol {
           case 29: return TESTRESULTLISTREQUEST;
           case 30: return TESTRESULTLISTRESPONSE;
           case 31: return TESTJOBREQUEST;
+          case 32: return TESTCLEARRESULTLISTREQUEST;
           case 0: return MSG_NOT_SET;
           default: return null;
         }
@@ -1511,6 +1536,26 @@ public final class CommonAccessProtocol {
       return itx.hybridapp.common.protocols.TestServiceProtocol.TestJobRequest.getDefaultInstance();
     }
 
+    public static final int TESTCLEARRESULTLISTREQUEST_FIELD_NUMBER = 32;
+    /**
+     * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+     */
+    public itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest getTestClearResultListRequest() {
+      if (msgCase_ == 32) {
+         return (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_;
+      }
+      return itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+     */
+    public itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequestOrBuilder getTestClearResultListRequestOrBuilder() {
+      if (msgCase_ == 32) {
+         return (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_;
+      }
+      return itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.getDefaultInstance();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1615,6 +1660,9 @@ public final class CommonAccessProtocol {
       }
       if (msgCase_ == 31) {
         output.writeMessage(31, (itx.hybridapp.common.protocols.TestServiceProtocol.TestJobRequest) msg_);
+      }
+      if (msgCase_ == 32) {
+        output.writeMessage(32, (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_);
       }
     }
 
@@ -1746,6 +1794,10 @@ public final class CommonAccessProtocol {
       if (msgCase_ == 31) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(31, (itx.hybridapp.common.protocols.TestServiceProtocol.TestJobRequest) msg_);
+      }
+      if (msgCase_ == 32) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(32, (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_);
       }
       memoizedSize = size;
       return size;
@@ -1891,6 +1943,10 @@ public final class CommonAccessProtocol {
           result = result && getTestJobRequest()
               .equals(other.getTestJobRequest());
           break;
+        case 32:
+          result = result && getTestClearResultListRequest()
+              .equals(other.getTestClearResultListRequest());
+          break;
         case 0:
         default:
       }
@@ -2028,6 +2084,10 @@ public final class CommonAccessProtocol {
         case 31:
           hash = (37 * hash) + TESTJOBREQUEST_FIELD_NUMBER;
           hash = (53 * hash) + getTestJobRequest().hashCode();
+          break;
+        case 32:
+          hash = (37 * hash) + TESTCLEARRESULTLISTREQUEST_FIELD_NUMBER;
+          hash = (53 * hash) + getTestClearResultListRequest().hashCode();
           break;
         case 0:
         default:
@@ -2391,6 +2451,13 @@ public final class CommonAccessProtocol {
             result.msg_ = testJobRequestBuilder_.build();
           }
         }
+        if (msgCase_ == 32) {
+          if (testClearResultListRequestBuilder_ == null) {
+            result.msg_ = msg_;
+          } else {
+            result.msg_ = testClearResultListRequestBuilder_.build();
+          }
+        }
         result.msgCase_ = msgCase_;
         onBuilt();
         return result;
@@ -2556,6 +2623,10 @@ public final class CommonAccessProtocol {
           }
           case TESTJOBREQUEST: {
             mergeTestJobRequest(other.getTestJobRequest());
+            break;
+          }
+          case TESTCLEARRESULTLISTREQUEST: {
+            mergeTestClearResultListRequest(other.getTestClearResultListRequest());
             break;
           }
           case MSG_NOT_SET: {
@@ -6631,6 +6702,136 @@ public final class CommonAccessProtocol {
         msgCase_ = 31;
         onChanged();;
         return testJobRequestBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest, itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.Builder, itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequestOrBuilder> testClearResultListRequestBuilder_;
+      /**
+       * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+       */
+      public itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest getTestClearResultListRequest() {
+        if (testClearResultListRequestBuilder_ == null) {
+          if (msgCase_ == 32) {
+            return (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_;
+          }
+          return itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.getDefaultInstance();
+        } else {
+          if (msgCase_ == 32) {
+            return testClearResultListRequestBuilder_.getMessage();
+          }
+          return itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+       */
+      public Builder setTestClearResultListRequest(itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest value) {
+        if (testClearResultListRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          msg_ = value;
+          onChanged();
+        } else {
+          testClearResultListRequestBuilder_.setMessage(value);
+        }
+        msgCase_ = 32;
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+       */
+      public Builder setTestClearResultListRequest(
+          itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.Builder builderForValue) {
+        if (testClearResultListRequestBuilder_ == null) {
+          msg_ = builderForValue.build();
+          onChanged();
+        } else {
+          testClearResultListRequestBuilder_.setMessage(builderForValue.build());
+        }
+        msgCase_ = 32;
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+       */
+      public Builder mergeTestClearResultListRequest(itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest value) {
+        if (testClearResultListRequestBuilder_ == null) {
+          if (msgCase_ == 32 &&
+              msg_ != itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.getDefaultInstance()) {
+            msg_ = itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.newBuilder((itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            msg_ = value;
+          }
+          onChanged();
+        } else {
+          if (msgCase_ == 32) {
+            testClearResultListRequestBuilder_.mergeFrom(value);
+          }
+          testClearResultListRequestBuilder_.setMessage(value);
+        }
+        msgCase_ = 32;
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+       */
+      public Builder clearTestClearResultListRequest() {
+        if (testClearResultListRequestBuilder_ == null) {
+          if (msgCase_ == 32) {
+            msgCase_ = 0;
+            msg_ = null;
+            onChanged();
+          }
+        } else {
+          if (msgCase_ == 32) {
+            msgCase_ = 0;
+            msg_ = null;
+          }
+          testClearResultListRequestBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+       */
+      public itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.Builder getTestClearResultListRequestBuilder() {
+        return getTestClearResultListRequestFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+       */
+      public itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequestOrBuilder getTestClearResultListRequestOrBuilder() {
+        if ((msgCase_ == 32) && (testClearResultListRequestBuilder_ != null)) {
+          return testClearResultListRequestBuilder_.getMessageOrBuilder();
+        } else {
+          if (msgCase_ == 32) {
+            return (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_;
+          }
+          return itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .useraccess.TestClearResultListRequest testClearResultListRequest = 32;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest, itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.Builder, itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequestOrBuilder> 
+          getTestClearResultListRequestFieldBuilder() {
+        if (testClearResultListRequestBuilder_ == null) {
+          if (!(msgCase_ == 32)) {
+            msg_ = itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.getDefaultInstance();
+          }
+          testClearResultListRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest, itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.Builder, itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequestOrBuilder>(
+                  (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_,
+                  getParentForChildren(),
+                  isClean());
+          msg_ = null;
+        }
+        msgCase_ = 32;
+        onChanged();;
+        return testClearResultListRequestBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -11351,7 +11552,7 @@ public final class CommonAccessProtocol {
       "\n\014common.proto\022\nuseraccess\032\021user-access." +
       "proto\032\022data-service.proto\032\024device-servic" +
       "e.proto\032\022chat-service.proto\032\022test-servic" +
-      "e.proto\"\343\016\n\016WrapperMessage\0220\n\014loginReque" +
+      "e.proto\"\261\017\n\016WrapperMessage\0220\n\014loginReque" +
       "st\030\001 \001(\0132\030.useraccess.LoginRequestH\000\0222\n\r" +
       "loginResponse\030\002 \001(\0132\031.useraccess.LoginRe" +
       "sponseH\000\022.\n\013testRequest\030\003 \001(\0132\027.useracce" +
@@ -11398,24 +11599,26 @@ public final class CommonAccessProtocol {
       "tRequestH\000\022D\n\026testResultListResponse\030\036 \001" +
       "(\0132\".useraccess.TestResultListResponseH\000" +
       "\0224\n\016testJobRequest\030\037 \001(\0132\032.useraccess.Te",
-      "stJobRequestH\000B\005\n\003msg\"S\n\023TopicPublishMes" +
-      "sage\022\017\n\007topicId\030\001 \001(\t\022+\n\007message\030\002 \001(\0132\032" +
-      ".useraccess.WrapperMessage\"[\n\027WsSessionP" +
-      "ublishMessage\022\023\n\013wsSessionId\030\001 \001(\t\022+\n\007me" +
-      "ssage\030\002 \001(\0132\032.useraccess.WrapperMessage\"" +
-      "\200\001\n WsSessionPublishWithReplyMessage\022\023\n\013" +
-      "wsSessionId\030\001 \001(\t\022\032\n\022replyToWsSessionId\030" +
-      "\002 \001(\t\022+\n\007message\030\003 \001(\0132\032.useraccess.Wrap" +
-      "perMessage\"_\n\031HttpSessionPublishMessage\022" +
-      "\025\n\rhttpSessionId\030\001 \001(\t\022+\n\007message\030\002 \001(\0132",
-      "\032.useraccess.WrapperMessage\"y\n\010EchoData\022" +
-      "\r\n\005jobId\030\001 \001(\005\022\017\n\007ordinal\030\002 \001(\005\022\017\n\007paylo" +
-      "ad\030\003 \001(\t\022<\n\021structuredPayload\030\004 \003(\0132!.us" +
-      "eraccess.EchoStructuredPayload\"Z\n\025EchoSt" +
-      "ructuredPayload\022\021\n\ttimestamp\030\001 \001(\003\022\017\n\007me" +
-      "ssage\030\002 \001(\t\022\r\n\005value\030\003 \001(\001\022\016\n\006active\030\004 \001" +
-      "(\010B6\n\036itx.hybridapp.common.protocolsB\024Co" +
-      "mmonAccessProtocolP\000P\001P\002P\003P\004b\006proto3"
+      "stJobRequestH\000\022L\n\032testClearResultListReq" +
+      "uest\030  \001(\0132&.useraccess.TestClearResultL" +
+      "istRequestH\000B\005\n\003msg\"S\n\023TopicPublishMessa" +
+      "ge\022\017\n\007topicId\030\001 \001(\t\022+\n\007message\030\002 \001(\0132\032.u" +
+      "seraccess.WrapperMessage\"[\n\027WsSessionPub" +
+      "lishMessage\022\023\n\013wsSessionId\030\001 \001(\t\022+\n\007mess" +
+      "age\030\002 \001(\0132\032.useraccess.WrapperMessage\"\200\001" +
+      "\n WsSessionPublishWithReplyMessage\022\023\n\013ws" +
+      "SessionId\030\001 \001(\t\022\032\n\022replyToWsSessionId\030\002 " +
+      "\001(\t\022+\n\007message\030\003 \001(\0132\032.useraccess.Wrappe",
+      "rMessage\"_\n\031HttpSessionPublishMessage\022\025\n" +
+      "\rhttpSessionId\030\001 \001(\t\022+\n\007message\030\002 \001(\0132\032." +
+      "useraccess.WrapperMessage\"y\n\010EchoData\022\r\n" +
+      "\005jobId\030\001 \001(\005\022\017\n\007ordinal\030\002 \001(\005\022\017\n\007payload" +
+      "\030\003 \001(\t\022<\n\021structuredPayload\030\004 \003(\0132!.user" +
+      "access.EchoStructuredPayload\"Z\n\025EchoStru" +
+      "cturedPayload\022\021\n\ttimestamp\030\001 \001(\003\022\017\n\007mess" +
+      "age\030\002 \001(\t\022\r\n\005value\030\003 \001(\001\022\016\n\006active\030\004 \001(\010" +
+      "B6\n\036itx.hybridapp.common.protocolsB\024Comm" +
+      "onAccessProtocolP\000P\001P\002P\003P\004b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11439,7 +11642,7 @@ public final class CommonAccessProtocol {
     internal_static_useraccess_WrapperMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_useraccess_WrapperMessage_descriptor,
-        new java.lang.String[] { "LoginRequest", "LoginResponse", "TestRequest", "TestResponse", "TopicSubscribe", "TopicUnsubscribe", "RegisterDevice", "GetStatusRequest", "GetStatusResponse", "SetControlOutputRequest", "DeviceEvent", "DeviceListRequest", "DeviceListResponse", "DeviceListChanged", "TopicPublishMessage", "WsSessionPublishMessage", "HttpSessionPublishMessage", "WsSessionPublishWithReplyMessage", "SensorDataRequest", "TimeSeriesDataRequest", "TimeSeriesDataResponse", "UserInfoData", "ChatListRequest", "ChatListResponse", "ChatHistoryRequest", "ChatHistoryResponse", "ChatPublishEvent", "EchoData", "TestResultListRequest", "TestResultListResponse", "TestJobRequest", "Msg", });
+        new java.lang.String[] { "LoginRequest", "LoginResponse", "TestRequest", "TestResponse", "TopicSubscribe", "TopicUnsubscribe", "RegisterDevice", "GetStatusRequest", "GetStatusResponse", "SetControlOutputRequest", "DeviceEvent", "DeviceListRequest", "DeviceListResponse", "DeviceListChanged", "TopicPublishMessage", "WsSessionPublishMessage", "HttpSessionPublishMessage", "WsSessionPublishWithReplyMessage", "SensorDataRequest", "TimeSeriesDataRequest", "TimeSeriesDataResponse", "UserInfoData", "ChatListRequest", "ChatListResponse", "ChatHistoryRequest", "ChatHistoryResponse", "ChatPublishEvent", "EchoData", "TestResultListRequest", "TestResultListResponse", "TestJobRequest", "TestClearResultListRequest", "Msg", });
     internal_static_useraccess_TopicPublishMessage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_useraccess_TopicPublishMessage_fieldAccessorTable = new

@@ -45,6 +45,7 @@ message WrapperMessage {
        TestResultListRequest testResultListRequest = 29;
        TestResultListResponse testResultListResponse = 30;
        TestJobRequest testJobRequest = 31;
+       TestClearResultListRequest testClearResultListRequest = 32;
     }
 }
 

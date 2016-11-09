@@ -43,6 +43,10 @@ function submitTestJob() {
 	$('#runningTestCounterId').text(runningTestsCounter);
 }
 
+function clearTestJobList() {
+	webSocketSendMessage({ testClearResultListRequest: {} });
+}
+
 function showWSSessions(userInfoData) {
 	console.log('showWSSessions');
 	$('#inputTestWsList').empty();

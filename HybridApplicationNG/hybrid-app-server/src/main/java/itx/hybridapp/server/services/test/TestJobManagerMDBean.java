@@ -44,6 +44,8 @@ public class TestJobManagerMDBean implements MessageListener {
 					} else if (messageTypeId == WrapperMessage.ECHODATA_FIELD_NUMBER) {
 						EchoData echo = messageWrapper.getMessage().getEchoData();
 						testJobManager.onTestJobReply(echo);
+					} else if (messageTypeId == WrapperMessage.TESTCLEARRESULTLISTREQUEST_FIELD_NUMBER) {
+						testJobManager.clearTestResults();
 					}
 				}
 			}
