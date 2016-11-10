@@ -306,6 +306,24 @@ public final class CommonAccessProtocol {
      */
     itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequestOrBuilder getTestClearResultListRequestOrBuilder();
 
+    /**
+     * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+     */
+    itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest getKillHttpSessionRequest();
+    /**
+     * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+     */
+    itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequestOrBuilder getKillHttpSessionRequestOrBuilder();
+
+    /**
+     * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+     */
+    itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest getKillWsSessionRequest();
+    /**
+     * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+     */
+    itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequestOrBuilder getKillWsSessionRequestOrBuilder();
+
     public itx.hybridapp.common.protocols.CommonAccessProtocol.WrapperMessage.MsgCase getMsgCase();
   }
   /**
@@ -333,6 +351,7 @@ public final class CommonAccessProtocol {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      int mutable_bitField1_ = 0;
       try {
         boolean done = false;
         while (!done) {
@@ -795,6 +814,34 @@ public final class CommonAccessProtocol {
               msgCase_ = 32;
               break;
             }
+            case 266: {
+              itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.Builder subBuilder = null;
+              if (msgCase_ == 33) {
+                subBuilder = ((itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) msg_).toBuilder();
+              }
+              msg_ =
+                  input.readMessage(itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) msg_);
+                msg_ = subBuilder.buildPartial();
+              }
+              msgCase_ = 33;
+              break;
+            }
+            case 274: {
+              itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.Builder subBuilder = null;
+              if (msgCase_ == 34) {
+                subBuilder = ((itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) msg_).toBuilder();
+              }
+              msg_ =
+                  input.readMessage(itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) msg_);
+                msg_ = subBuilder.buildPartial();
+              }
+              msgCase_ = 34;
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -854,6 +901,8 @@ public final class CommonAccessProtocol {
       TESTRESULTLISTRESPONSE(30),
       TESTJOBREQUEST(31),
       TESTCLEARRESULTLISTREQUEST(32),
+      KILLHTTPSESSIONREQUEST(33),
+      KILLWSSESSIONREQUEST(34),
       MSG_NOT_SET(0);
       private final int value;
       private MsgCase(int value) {
@@ -901,6 +950,8 @@ public final class CommonAccessProtocol {
           case 30: return TESTRESULTLISTRESPONSE;
           case 31: return TESTJOBREQUEST;
           case 32: return TESTCLEARRESULTLISTREQUEST;
+          case 33: return KILLHTTPSESSIONREQUEST;
+          case 34: return KILLWSSESSIONREQUEST;
           case 0: return MSG_NOT_SET;
           default: return null;
         }
@@ -1556,6 +1607,46 @@ public final class CommonAccessProtocol {
       return itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest.getDefaultInstance();
     }
 
+    public static final int KILLHTTPSESSIONREQUEST_FIELD_NUMBER = 33;
+    /**
+     * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+     */
+    public itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest getKillHttpSessionRequest() {
+      if (msgCase_ == 33) {
+         return (itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) msg_;
+      }
+      return itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+     */
+    public itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequestOrBuilder getKillHttpSessionRequestOrBuilder() {
+      if (msgCase_ == 33) {
+         return (itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) msg_;
+      }
+      return itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.getDefaultInstance();
+    }
+
+    public static final int KILLWSSESSIONREQUEST_FIELD_NUMBER = 34;
+    /**
+     * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+     */
+    public itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest getKillWsSessionRequest() {
+      if (msgCase_ == 34) {
+         return (itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) msg_;
+      }
+      return itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+     */
+    public itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequestOrBuilder getKillWsSessionRequestOrBuilder() {
+      if (msgCase_ == 34) {
+         return (itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) msg_;
+      }
+      return itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.getDefaultInstance();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1663,6 +1754,12 @@ public final class CommonAccessProtocol {
       }
       if (msgCase_ == 32) {
         output.writeMessage(32, (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_);
+      }
+      if (msgCase_ == 33) {
+        output.writeMessage(33, (itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) msg_);
+      }
+      if (msgCase_ == 34) {
+        output.writeMessage(34, (itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) msg_);
       }
     }
 
@@ -1798,6 +1895,14 @@ public final class CommonAccessProtocol {
       if (msgCase_ == 32) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(32, (itx.hybridapp.common.protocols.TestServiceProtocol.TestClearResultListRequest) msg_);
+      }
+      if (msgCase_ == 33) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(33, (itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) msg_);
+      }
+      if (msgCase_ == 34) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(34, (itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) msg_);
       }
       memoizedSize = size;
       return size;
@@ -1947,6 +2052,14 @@ public final class CommonAccessProtocol {
           result = result && getTestClearResultListRequest()
               .equals(other.getTestClearResultListRequest());
           break;
+        case 33:
+          result = result && getKillHttpSessionRequest()
+              .equals(other.getKillHttpSessionRequest());
+          break;
+        case 34:
+          result = result && getKillWsSessionRequest()
+              .equals(other.getKillWsSessionRequest());
+          break;
         case 0:
         default:
       }
@@ -2088,6 +2201,14 @@ public final class CommonAccessProtocol {
         case 32:
           hash = (37 * hash) + TESTCLEARRESULTLISTREQUEST_FIELD_NUMBER;
           hash = (53 * hash) + getTestClearResultListRequest().hashCode();
+          break;
+        case 33:
+          hash = (37 * hash) + KILLHTTPSESSIONREQUEST_FIELD_NUMBER;
+          hash = (53 * hash) + getKillHttpSessionRequest().hashCode();
+          break;
+        case 34:
+          hash = (37 * hash) + KILLWSSESSIONREQUEST_FIELD_NUMBER;
+          hash = (53 * hash) + getKillWsSessionRequest().hashCode();
           break;
         case 0:
         default:
@@ -2458,6 +2579,20 @@ public final class CommonAccessProtocol {
             result.msg_ = testClearResultListRequestBuilder_.build();
           }
         }
+        if (msgCase_ == 33) {
+          if (killHttpSessionRequestBuilder_ == null) {
+            result.msg_ = msg_;
+          } else {
+            result.msg_ = killHttpSessionRequestBuilder_.build();
+          }
+        }
+        if (msgCase_ == 34) {
+          if (killWsSessionRequestBuilder_ == null) {
+            result.msg_ = msg_;
+          } else {
+            result.msg_ = killWsSessionRequestBuilder_.build();
+          }
+        }
         result.msgCase_ = msgCase_;
         onBuilt();
         return result;
@@ -2627,6 +2762,14 @@ public final class CommonAccessProtocol {
           }
           case TESTCLEARRESULTLISTREQUEST: {
             mergeTestClearResultListRequest(other.getTestClearResultListRequest());
+            break;
+          }
+          case KILLHTTPSESSIONREQUEST: {
+            mergeKillHttpSessionRequest(other.getKillHttpSessionRequest());
+            break;
+          }
+          case KILLWSSESSIONREQUEST: {
+            mergeKillWsSessionRequest(other.getKillWsSessionRequest());
             break;
           }
           case MSG_NOT_SET: {
@@ -6832,6 +6975,266 @@ public final class CommonAccessProtocol {
         msgCase_ = 32;
         onChanged();;
         return testClearResultListRequestBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest, itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.Builder, itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequestOrBuilder> killHttpSessionRequestBuilder_;
+      /**
+       * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+       */
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest getKillHttpSessionRequest() {
+        if (killHttpSessionRequestBuilder_ == null) {
+          if (msgCase_ == 33) {
+            return (itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) msg_;
+          }
+          return itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.getDefaultInstance();
+        } else {
+          if (msgCase_ == 33) {
+            return killHttpSessionRequestBuilder_.getMessage();
+          }
+          return itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+       */
+      public Builder setKillHttpSessionRequest(itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest value) {
+        if (killHttpSessionRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          msg_ = value;
+          onChanged();
+        } else {
+          killHttpSessionRequestBuilder_.setMessage(value);
+        }
+        msgCase_ = 33;
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+       */
+      public Builder setKillHttpSessionRequest(
+          itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.Builder builderForValue) {
+        if (killHttpSessionRequestBuilder_ == null) {
+          msg_ = builderForValue.build();
+          onChanged();
+        } else {
+          killHttpSessionRequestBuilder_.setMessage(builderForValue.build());
+        }
+        msgCase_ = 33;
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+       */
+      public Builder mergeKillHttpSessionRequest(itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest value) {
+        if (killHttpSessionRequestBuilder_ == null) {
+          if (msgCase_ == 33 &&
+              msg_ != itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.getDefaultInstance()) {
+            msg_ = itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.newBuilder((itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) msg_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            msg_ = value;
+          }
+          onChanged();
+        } else {
+          if (msgCase_ == 33) {
+            killHttpSessionRequestBuilder_.mergeFrom(value);
+          }
+          killHttpSessionRequestBuilder_.setMessage(value);
+        }
+        msgCase_ = 33;
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+       */
+      public Builder clearKillHttpSessionRequest() {
+        if (killHttpSessionRequestBuilder_ == null) {
+          if (msgCase_ == 33) {
+            msgCase_ = 0;
+            msg_ = null;
+            onChanged();
+          }
+        } else {
+          if (msgCase_ == 33) {
+            msgCase_ = 0;
+            msg_ = null;
+          }
+          killHttpSessionRequestBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+       */
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.Builder getKillHttpSessionRequestBuilder() {
+        return getKillHttpSessionRequestFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+       */
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequestOrBuilder getKillHttpSessionRequestOrBuilder() {
+        if ((msgCase_ == 33) && (killHttpSessionRequestBuilder_ != null)) {
+          return killHttpSessionRequestBuilder_.getMessageOrBuilder();
+        } else {
+          if (msgCase_ == 33) {
+            return (itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) msg_;
+          }
+          return itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .useraccess.KillHttpSessionRequest killHttpSessionRequest = 33;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest, itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.Builder, itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequestOrBuilder> 
+          getKillHttpSessionRequestFieldBuilder() {
+        if (killHttpSessionRequestBuilder_ == null) {
+          if (!(msgCase_ == 33)) {
+            msg_ = itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.getDefaultInstance();
+          }
+          killHttpSessionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest, itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.Builder, itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequestOrBuilder>(
+                  (itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) msg_,
+                  getParentForChildren(),
+                  isClean());
+          msg_ = null;
+        }
+        msgCase_ = 33;
+        onChanged();;
+        return killHttpSessionRequestBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest, itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.Builder, itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequestOrBuilder> killWsSessionRequestBuilder_;
+      /**
+       * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+       */
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest getKillWsSessionRequest() {
+        if (killWsSessionRequestBuilder_ == null) {
+          if (msgCase_ == 34) {
+            return (itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) msg_;
+          }
+          return itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.getDefaultInstance();
+        } else {
+          if (msgCase_ == 34) {
+            return killWsSessionRequestBuilder_.getMessage();
+          }
+          return itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+       */
+      public Builder setKillWsSessionRequest(itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest value) {
+        if (killWsSessionRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          msg_ = value;
+          onChanged();
+        } else {
+          killWsSessionRequestBuilder_.setMessage(value);
+        }
+        msgCase_ = 34;
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+       */
+      public Builder setKillWsSessionRequest(
+          itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.Builder builderForValue) {
+        if (killWsSessionRequestBuilder_ == null) {
+          msg_ = builderForValue.build();
+          onChanged();
+        } else {
+          killWsSessionRequestBuilder_.setMessage(builderForValue.build());
+        }
+        msgCase_ = 34;
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+       */
+      public Builder mergeKillWsSessionRequest(itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest value) {
+        if (killWsSessionRequestBuilder_ == null) {
+          if (msgCase_ == 34 &&
+              msg_ != itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.getDefaultInstance()) {
+            msg_ = itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.newBuilder((itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) msg_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            msg_ = value;
+          }
+          onChanged();
+        } else {
+          if (msgCase_ == 34) {
+            killWsSessionRequestBuilder_.mergeFrom(value);
+          }
+          killWsSessionRequestBuilder_.setMessage(value);
+        }
+        msgCase_ = 34;
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+       */
+      public Builder clearKillWsSessionRequest() {
+        if (killWsSessionRequestBuilder_ == null) {
+          if (msgCase_ == 34) {
+            msgCase_ = 0;
+            msg_ = null;
+            onChanged();
+          }
+        } else {
+          if (msgCase_ == 34) {
+            msgCase_ = 0;
+            msg_ = null;
+          }
+          killWsSessionRequestBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+       */
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.Builder getKillWsSessionRequestBuilder() {
+        return getKillWsSessionRequestFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+       */
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequestOrBuilder getKillWsSessionRequestOrBuilder() {
+        if ((msgCase_ == 34) && (killWsSessionRequestBuilder_ != null)) {
+          return killWsSessionRequestBuilder_.getMessageOrBuilder();
+        } else {
+          if (msgCase_ == 34) {
+            return (itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) msg_;
+          }
+          return itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .useraccess.KillWsSessionRequest killWsSessionRequest = 34;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest, itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.Builder, itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequestOrBuilder> 
+          getKillWsSessionRequestFieldBuilder() {
+        if (killWsSessionRequestBuilder_ == null) {
+          if (!(msgCase_ == 34)) {
+            msg_ = itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.getDefaultInstance();
+          }
+          killWsSessionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest, itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.Builder, itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequestOrBuilder>(
+                  (itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) msg_,
+                  getParentForChildren(),
+                  isClean());
+          msg_ = null;
+        }
+        msgCase_ = 34;
+        onChanged();;
+        return killWsSessionRequestBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -11552,7 +11955,7 @@ public final class CommonAccessProtocol {
       "\n\014common.proto\022\nuseraccess\032\021user-access." +
       "proto\032\022data-service.proto\032\024device-servic" +
       "e.proto\032\022chat-service.proto\032\022test-servic" +
-      "e.proto\"\261\017\n\016WrapperMessage\0220\n\014loginReque" +
+      "e.proto\"\271\020\n\016WrapperMessage\0220\n\014loginReque" +
       "st\030\001 \001(\0132\030.useraccess.LoginRequestH\000\0222\n\r" +
       "loginResponse\030\002 \001(\0132\031.useraccess.LoginRe" +
       "sponseH\000\022.\n\013testRequest\030\003 \001(\0132\027.useracce" +
@@ -11601,24 +12004,28 @@ public final class CommonAccessProtocol {
       "\0224\n\016testJobRequest\030\037 \001(\0132\032.useraccess.Te",
       "stJobRequestH\000\022L\n\032testClearResultListReq" +
       "uest\030  \001(\0132&.useraccess.TestClearResultL" +
-      "istRequestH\000B\005\n\003msg\"S\n\023TopicPublishMessa" +
-      "ge\022\017\n\007topicId\030\001 \001(\t\022+\n\007message\030\002 \001(\0132\032.u" +
-      "seraccess.WrapperMessage\"[\n\027WsSessionPub" +
-      "lishMessage\022\023\n\013wsSessionId\030\001 \001(\t\022+\n\007mess" +
-      "age\030\002 \001(\0132\032.useraccess.WrapperMessage\"\200\001" +
-      "\n WsSessionPublishWithReplyMessage\022\023\n\013ws" +
-      "SessionId\030\001 \001(\t\022\032\n\022replyToWsSessionId\030\002 " +
-      "\001(\t\022+\n\007message\030\003 \001(\0132\032.useraccess.Wrappe",
-      "rMessage\"_\n\031HttpSessionPublishMessage\022\025\n" +
-      "\rhttpSessionId\030\001 \001(\t\022+\n\007message\030\002 \001(\0132\032." +
-      "useraccess.WrapperMessage\"y\n\010EchoData\022\r\n" +
-      "\005jobId\030\001 \001(\005\022\017\n\007ordinal\030\002 \001(\005\022\017\n\007payload" +
-      "\030\003 \001(\t\022<\n\021structuredPayload\030\004 \003(\0132!.user" +
-      "access.EchoStructuredPayload\"Z\n\025EchoStru" +
-      "cturedPayload\022\021\n\ttimestamp\030\001 \001(\003\022\017\n\007mess" +
-      "age\030\002 \001(\t\022\r\n\005value\030\003 \001(\001\022\016\n\006active\030\004 \001(\010" +
-      "B6\n\036itx.hybridapp.common.protocolsB\024Comm" +
-      "onAccessProtocolP\000P\001P\002P\003P\004b\006proto3"
+      "istRequestH\000\022D\n\026killHttpSessionRequest\030!" +
+      " \001(\0132\".useraccess.KillHttpSessionRequest" +
+      "H\000\022@\n\024killWsSessionRequest\030\" \001(\0132 .usera" +
+      "ccess.KillWsSessionRequestH\000B\005\n\003msg\"S\n\023T" +
+      "opicPublishMessage\022\017\n\007topicId\030\001 \001(\t\022+\n\007m" +
+      "essage\030\002 \001(\0132\032.useraccess.WrapperMessage" +
+      "\"[\n\027WsSessionPublishMessage\022\023\n\013wsSession" +
+      "Id\030\001 \001(\t\022+\n\007message\030\002 \001(\0132\032.useraccess.W",
+      "rapperMessage\"\200\001\n WsSessionPublishWithRe" +
+      "plyMessage\022\023\n\013wsSessionId\030\001 \001(\t\022\032\n\022reply" +
+      "ToWsSessionId\030\002 \001(\t\022+\n\007message\030\003 \001(\0132\032.u" +
+      "seraccess.WrapperMessage\"_\n\031HttpSessionP" +
+      "ublishMessage\022\025\n\rhttpSessionId\030\001 \001(\t\022+\n\007" +
+      "message\030\002 \001(\0132\032.useraccess.WrapperMessag" +
+      "e\"y\n\010EchoData\022\r\n\005jobId\030\001 \001(\005\022\017\n\007ordinal\030" +
+      "\002 \001(\005\022\017\n\007payload\030\003 \001(\t\022<\n\021structuredPayl" +
+      "oad\030\004 \003(\0132!.useraccess.EchoStructuredPay" +
+      "load\"Z\n\025EchoStructuredPayload\022\021\n\ttimesta",
+      "mp\030\001 \001(\003\022\017\n\007message\030\002 \001(\t\022\r\n\005value\030\003 \001(\001" +
+      "\022\016\n\006active\030\004 \001(\010B6\n\036itx.hybridapp.common" +
+      ".protocolsB\024CommonAccessProtocolP\000P\001P\002P\003" +
+      "P\004b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11642,7 +12049,7 @@ public final class CommonAccessProtocol {
     internal_static_useraccess_WrapperMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_useraccess_WrapperMessage_descriptor,
-        new java.lang.String[] { "LoginRequest", "LoginResponse", "TestRequest", "TestResponse", "TopicSubscribe", "TopicUnsubscribe", "RegisterDevice", "GetStatusRequest", "GetStatusResponse", "SetControlOutputRequest", "DeviceEvent", "DeviceListRequest", "DeviceListResponse", "DeviceListChanged", "TopicPublishMessage", "WsSessionPublishMessage", "HttpSessionPublishMessage", "WsSessionPublishWithReplyMessage", "SensorDataRequest", "TimeSeriesDataRequest", "TimeSeriesDataResponse", "UserInfoData", "ChatListRequest", "ChatListResponse", "ChatHistoryRequest", "ChatHistoryResponse", "ChatPublishEvent", "EchoData", "TestResultListRequest", "TestResultListResponse", "TestJobRequest", "TestClearResultListRequest", "Msg", });
+        new java.lang.String[] { "LoginRequest", "LoginResponse", "TestRequest", "TestResponse", "TopicSubscribe", "TopicUnsubscribe", "RegisterDevice", "GetStatusRequest", "GetStatusResponse", "SetControlOutputRequest", "DeviceEvent", "DeviceListRequest", "DeviceListResponse", "DeviceListChanged", "TopicPublishMessage", "WsSessionPublishMessage", "HttpSessionPublishMessage", "WsSessionPublishWithReplyMessage", "SensorDataRequest", "TimeSeriesDataRequest", "TimeSeriesDataResponse", "UserInfoData", "ChatListRequest", "ChatListResponse", "ChatHistoryRequest", "ChatHistoryResponse", "ChatPublishEvent", "EchoData", "TestResultListRequest", "TestResultListResponse", "TestJobRequest", "TestClearResultListRequest", "KillHttpSessionRequest", "KillWsSessionRequest", "Msg", });
     internal_static_useraccess_TopicPublishMessage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_useraccess_TopicPublishMessage_fieldAccessorTable = new

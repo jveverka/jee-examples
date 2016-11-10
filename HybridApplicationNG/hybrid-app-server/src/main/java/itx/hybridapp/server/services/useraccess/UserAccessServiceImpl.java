@@ -18,6 +18,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import com.google.protobuf.Message;
@@ -29,9 +30,10 @@ import itx.hybridapp.common.protocols.UserAccessProtocol.HttpSessionWsSessionsIn
 import itx.hybridapp.common.protocols.UserAccessProtocol.TopicInfo;
 import itx.hybridapp.common.protocols.UserAccessProtocol.UserInfoData;
 import itx.hybridapp.common.protocols.UserAccessProtocol.WsSessionInfo;
+import itx.hybridapp.server.services.dto.HttpSessionData;
 import itx.hybridapp.server.services.dto.UserInfo;
 import itx.hybridapp.server.services.dto.UserWsInfo;
-import itx.hybridapp.server.services.dto.WSSessionInfo;
+import itx.hybridapp.server.services.dto.WSSessionData;
 
 @Singleton
 @Startup
@@ -45,8 +47,8 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 	@Inject
 	private UserCredentialsService ucService;
 	
-	private Map<String, UserInfo> httpSessions;                 //active http sessions by http sessionid
-	private Map<String, WSSessionInfo> sessions;                //web-socket sessions by ws session id
+	private Map<String, HttpSessionData> httpSessions;                 //active http sessions by http sessionid
+	private Map<String, WSSessionData> sessions;                //web-socket sessions by ws session id
 	private Map<String, List<String>> wsSessionsForHttpSession; //indexed by http session id
 	private Map<String, List<String>> wsSessionsForTopic;       //indexed by topic id
 	
@@ -66,12 +68,12 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 	}
 
 	@Override
-	public List<String> loginHttpSession(String sessionId, String protocol, String userName, String password) throws LoginException {
-		logger.info("loginHttpSession: " + sessionId + ": " + userName);
+	public List<String> loginHttpSession(HttpSession session, String protocol, String userName, String password) throws LoginException {
+		logger.info("loginHttpSession: " + session.getId() + ": " + userName);
 		List<String> roles = ucService.verifyCredentials(userName, password);
 		logger.info("loginHttpSession: OK");
-		UserInfo ui = new UserInfo(sessionId, userName, protocol, roles);
-		httpSessions.put(sessionId, ui);
+		HttpSessionData ui = new HttpSessionData(session, userName, protocol, roles);
+		httpSessions.put(session.getId(), ui);
 		publishUserInfoChange();
 		return roles;
 	}
@@ -91,17 +93,21 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 	}
 
 	@Override
-	public void logoutHttpSession(String httpSessionId) {
+	public void logoutHttpSession(String httpSessionId, boolean closeOnRemove) {
 		logger.info("logoutHttpSession: " + httpSessionId);
-		UserInfo ui = httpSessions.remove(httpSessionId);
+		HttpSessionData ui = httpSessions.remove(httpSessionId);
 		if (ui == null) {
 			logger.warning("unknown httpSessionId: " + httpSessionId);
+		} else {
+			if (closeOnRemove) {
+				ui.logout();
+			}
 		}
 		List<String> wsSessions = wsSessionsForHttpSession.remove(httpSessionId);
 		if (wsSessions != null) {
 			wsSessions.forEach(s -> { 
 				removeWsSessionId(s,wsSessionsForTopic); 
-				WSSessionInfo wsSessionInfo = sessions.remove(s);
+				WSSessionData wsSessionInfo = sessions.remove(s);
 				if (wsSessionInfo != null) { 
 					wsSessionInfo.close();
 				}
@@ -113,15 +119,16 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 	}
 
 	@Override
-	public void changeHttpSessionId(String oldSessionId, String newSessionId) {
-		logger.info("changeHttpSessionId: " + oldSessionId + " -> " + newSessionId);
-		UserInfo ui = httpSessions.remove(oldSessionId);
+	public void changeHttpSessionId(String oldSessionId, HttpSession newSession) {
+		logger.info("changeHttpSessionId: " + oldSessionId + " -> " + newSession.getId());
+		HttpSessionData ui = httpSessions.remove(oldSessionId);
 		if (ui != null) {
-			httpSessions.put(newSessionId, ui);
+			HttpSessionData newSessionData = new HttpSessionData(newSession, ui.getUserName(), ui.getProtocol(), ui.getRoles());
+			httpSessions.put(newSession.getId(), newSessionData);
 		}
 		List<String> wsSessions = wsSessionsForHttpSession.remove(oldSessionId);
 		if (wsSessions != null) {
-			wsSessionsForHttpSession.put(newSessionId, wsSessions);
+			wsSessionsForHttpSession.put(newSession.getId(), wsSessions);
 		}
 		publishUserInfoChange();
 	}
@@ -129,7 +136,7 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 	@Override
 	public UserInfo getUserHttpSessionInfo(String httpSessionId) throws LoginException {
 		logger.info("getUserHttpSessionInfo: " + httpSessionId);
-		UserInfo ui = httpSessions.get(httpSessionId);
+		HttpSessionData ui = httpSessions.get(httpSessionId);
 		if (ui != null) {
 			return new UserInfo(ui.getHttpSessionId(), ui.getUserName(), ui.getProtocol(), new ArrayList<>(ui.getRoles()));
 		}
@@ -139,7 +146,7 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 	@Override
 	public UserWsInfo getUserWsSessionInfo(String wsSessionId) throws LoginException {
 		logger.info("getUserWsSessionInfo: " + wsSessionId);
-		WSSessionInfo wsInfo = sessions.get(wsSessionId);
+		WSSessionData wsInfo = sessions.get(wsSessionId);
 		if (wsInfo != null) {
 			return new UserWsInfo(wsSessionId, wsInfo.getUserName(), wsInfo.getProtocol(), null); 
 		}
@@ -150,7 +157,7 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 	public List<String> loginWsSession(Session wsSession, String protocol, String userName, String password) throws LoginException {
 		logger.info("loginWsSession standalone");
 		List<String> roles = ucService.verifyCredentials(userName, password);
-		sessions.put(wsSession.getId(), new WSSessionInfo(userName, wsSession, protocol, roles));
+		sessions.put(wsSession.getId(), new WSSessionData(userName, wsSession, protocol, roles));
 		publishUserInfoChange();
 		return roles;
 	}
@@ -161,7 +168,7 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 		logger.info("loginWsSession with associated http session");
 		if (isValidHttpSession(httpSessionId)) {
 			List<String> roles = ucService.verifyCredentials(userName, password);
-			sessions.put(wsSession.getId(), new WSSessionInfo(userName, wsSession, protocol, roles));
+			sessions.put(wsSession.getId(), new WSSessionData(userName, wsSession, protocol, roles));
 			List<String> wsSessions = wsSessionsForHttpSession.get(httpSessionId);
 			if (wsSessions == null) {
 				wsSessions = Collections.synchronizedList(new ArrayList<String>());
@@ -178,8 +185,8 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 	public void addWsSession(Session wsSession, String httpSessionId, String protocol) throws LoginException {
 		logger.info("addWsSession and associate it with http session");
 		if (isValidHttpSession(httpSessionId)) {
-			UserInfo ui = httpSessions.get(httpSessionId);
-			sessions.put(wsSession.getId(), new WSSessionInfo(ui.getUserName(), wsSession, protocol, ui.getRoles()));
+			HttpSessionData ui = httpSessions.get(httpSessionId);
+			sessions.put(wsSession.getId(), new WSSessionData(ui.getUserName(), wsSession, protocol, ui.getRoles()));
 			List<String> wsSessions = wsSessionsForHttpSession.get(httpSessionId);
 			if (wsSessions == null) {
 				wsSessions = Collections.synchronizedList(new ArrayList<String>());
@@ -194,12 +201,12 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 
 	@Override
 	public void removeWsSession(String wsSessionId, boolean closeOnRemove) {
-		logger.info("removeWsSession");
+		logger.info("removeWsSession: " + closeOnRemove);
 		removeWsSessionId(wsSessionId, wsSessionsForHttpSession);
 		removeWsSessionId(wsSessionId, wsSessionsForTopic);
-		WSSessionInfo wsSessionInfo = sessions.remove(wsSessionId);
-		if (closeOnRemove) {
-			wsSessionInfo.close();
+		WSSessionData wsSessionData = sessions.remove(wsSessionId);
+		if (wsSessionData != null && closeOnRemove) {
+			wsSessionData.close();
 		}
 		publishUserInfoChange();
 	}
@@ -248,7 +255,7 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 
 	@Override
 	public int publishToWsSession(String wsSessionId, Message message) {
-		WSSessionInfo wsSession = sessions.get(wsSessionId);
+		WSSessionData wsSession = sessions.get(wsSessionId);
 		try {
 			if (wsSession != null) {
 				if (wsSession.usesBinaryProtocol()) {
@@ -291,11 +298,11 @@ public class UserAccessServiceImpl implements UserAccessService, MessagePublishe
 		toRemove.forEach(k -> { treeList.remove(k); });
 	}
 	
-	private int publishToSessionGroup(String groupId, Map<String, List<String>> treeList, Map<String, WSSessionInfo> sessions, Message message) {
+	private int publishToSessionGroup(String groupId, Map<String, List<String>> treeList, Map<String, WSSessionData> sessions, Message message) {
 		List<String> wsSessions = treeList.get(groupId);
 		if (wsSessions != null) {
 			wsSessions.forEach(s -> { 
-				WSSessionInfo session = sessions.get(s);
+				WSSessionData session = sessions.get(s);
 				if (session != null) {
 					session.sendMessage(message); 
 				}

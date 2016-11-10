@@ -46,6 +46,8 @@ message WrapperMessage {
        TestResultListResponse testResultListResponse = 30;
        TestJobRequest testJobRequest = 31;
        TestClearResultListRequest testClearResultListRequest = 32;
+       KillHttpSessionRequest killHttpSessionRequest = 33;
+       KillWsSessionRequest killWsSessionRequest = 34;
     }
 }
 
@@ -83,3 +85,4 @@ message EchoStructuredPayload {
    double value = 3;
    bool active = 4; 
 }
+

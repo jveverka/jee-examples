@@ -45,6 +45,17 @@ function showUserInfoData(userInfoData) {
 		td = document.createElement('td');
 		td.innerHTML = userInfoData.httpSessions[i].protocol; 
 		row.appendChild(td);
+		
+		//kill http session button
+		td = document.createElement('td');
+		button = document.createElement('button');
+		button.setAttribute('type','submit');
+		button.setAttribute('class','btn btn-default');
+		button.innerHTML = 'kill';
+		button.onclick = (function() { var sessionId = userInfoData.httpSessions[i].httpSessionId; return function() {killHttpSession(sessionId);} })();
+		td.appendChild(button);
+		row.appendChild(td);
+		
 		tbody.appendChild(row);
 	}
 	table.appendChild(tbody);
@@ -68,6 +79,17 @@ function showUserInfoData(userInfoData) {
 		td = document.createElement('td');
 		td.innerHTML = userInfoData.wsSessions[i].protocol; 
 		row.appendChild(td);
+		
+		//kill ws session button
+		td = document.createElement('td');
+		button = document.createElement('button');
+		button.setAttribute('type','submit');
+		button.setAttribute('class','btn btn-default');
+		button.innerHTML = 'kill';
+		button.onclick = (function() { var sessionId = userInfoData.wsSessions[i].wsSessionId; return function() {killWsSession(sessionId);} })();
+		td.appendChild(button);
+		row.appendChild(td);
+
 		tbody.appendChild(row);
 	}
 	table.appendChild(tbody);
@@ -124,4 +146,14 @@ function showUserInfoData(userInfoData) {
 	$('#adminDataHolder').append(header);
 	$('#adminDataHolder').append(table);
 
+}
+
+function killHttpSession(sessionId) {
+	console.log('killHttpSession: ' + sessionId);
+	sendAjaxPOST(urlPrefix + "ws/useraccess/killHttpSession", { httpSessionId: sessionId }, undefined, undefined, undefined );	
+}
+
+function killWsSession(sessionId) {
+	console.log('killWsSession: ' + sessionId);
+	sendAjaxPOST(urlPrefix + "ws/useraccess/killWsSession", { wsSessionId: sessionId }, undefined, undefined, undefined );	
 }

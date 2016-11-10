@@ -54,3 +54,11 @@ message HttpSessionWsSessionsInfo {
    string httpSessionId = 1;
    repeated string wsSessionId = 2;
 }
+
+message KillHttpSessionRequest {
+   string httpSessionId = 1;
+}
+
+message KillWsSessionRequest {
+   string wsSessionId = 1;
+}

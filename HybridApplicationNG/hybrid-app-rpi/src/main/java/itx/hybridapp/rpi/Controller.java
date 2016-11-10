@@ -11,6 +11,7 @@ import itx.hybridapp.rpi.services.config.ConfigService;
 public class Controller {
 	
 	private static final Logger logger = Logger.getLogger(Controller.class.getName());
+	private static final int WAIT_PERIOD = 3000;
 	
 	@Inject
 	private ConfigService config;
@@ -25,11 +26,12 @@ public class Controller {
 			try {
 				logger.info("ws client start");
 				wsClient.startClientBlocking();
+				Thread.sleep(WAIT_PERIOD);
 				logger.info("stopped, reconecting ...");
 			} catch (Exception e) {
 				try {
 					logger.info("waiting ...");
-					Thread.sleep(3000);
+					Thread.sleep(WAIT_PERIOD);
 				} catch (InterruptedException exc) {
 					logger.severe("InterruptedException");
 				}

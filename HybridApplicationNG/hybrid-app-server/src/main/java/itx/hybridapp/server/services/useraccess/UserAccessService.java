@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 import javax.security.auth.login.LoginException;
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import itx.hybridapp.server.services.dto.UserInfo;
@@ -14,8 +15,8 @@ public interface UserAccessService {
 	
 	/**
 	 * login user by verifying username and password
-	 * @param sessionId
-	 *   http unique session id of the user
+	 * @param httpSession
+	 *   http session of the user
 	 * @param userName
 	 *   unique user id
 	 * @param password
@@ -25,14 +26,14 @@ public interface UserAccessService {
 	 * @throws LoginException
 	 *   is thrown in case username and password verification fails
 	 */
-	public List<String> loginHttpSession(String httpSessionId, String protocol, String userName, String password) throws LoginException;
+	public List<String> loginHttpSession(HttpSession httpSession, String protocol, String userName, String password) throws LoginException;
 	
 	/**
 	 * change http sessionid, called by servlet container when http session id is changed
 	 * @param oldSessionId
-	 * @param newSessionId
+	 * @param newSession
 	 */
-	public void changeHttpSessionId(String oldSessionId, String newSessionId);
+	public void changeHttpSessionId(String oldSessionId, HttpSession newSession);
 	
 	/**
 	 * verify if this http session is valid (has been registered using login previously)
@@ -74,8 +75,10 @@ public interface UserAccessService {
 	 * remove this http session from management
 	 * @param sessionId
 	 *   http unique session id 
+	 * @param closeOnRemove
+	 *   if true httpsession will invalidated on remove  
 	 */
-	public void logoutHttpSession(String httpSessionId);
+	public void logoutHttpSession(String httpSessionId, boolean closeOnRemove);
 
 	/**
 	 * login client using websocket session only

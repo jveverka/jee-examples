@@ -12,7 +12,7 @@ import com.google.protobuf.Message;
 import itx.hybridapp.common.ProtoMediaType;
 import itx.hybridapp.server.utils.WSUtils;
 
-public class WSSessionInfo {
+public class WSSessionData {
 	
 	private Session session;
 	private String userName;
@@ -20,7 +20,7 @@ public class WSSessionInfo {
 	private List<String> roles;
 	private boolean isBinaryProtocol;
 	
-	public WSSessionInfo(String userName, Session session, String protocol, List<String> roles) {
+	public WSSessionData(String userName, Session session, String protocol, List<String> roles) {
 		this.userName = userName;
 		this.session = session;
 		this.protocol = protocol;

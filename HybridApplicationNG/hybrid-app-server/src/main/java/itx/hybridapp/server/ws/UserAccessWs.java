@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -37,10 +38,10 @@ public class UserAccessWs {
 	@Consumes({ProtoMediaType.APPLICATION_PROTOBUF, MediaType.APPLICATION_JSON})
 	public Response login(UserAccessProtocol.LoginRequest loginRequest) {
 		logger.info("login: " + request.getContentType());
-		String sessionId = request.getSession().getId();
+		HttpSession session = request.getSession();
 		try {
 			String protocol = ProtoMediaType.getProtocolOrDefault(request.getContentType());
-			List<String> roles = uaService.loginHttpSession(sessionId, protocol, loginRequest.getUserName(), loginRequest.getPassword());
+			List<String> roles = uaService.loginHttpSession(session, protocol, loginRequest.getUserName(), loginRequest.getPassword());
 			LoginResponse.Builder builder = LoginResponse.newBuilder();
 			roles.forEach(s -> builder.addRole(s));
 			builder.setUserName(loginRequest.getUserName());
@@ -69,9 +70,36 @@ public class UserAccessWs {
 	public Response logout() {
 		logger.info("logout: " + request.getContentType());
 		String sessionId = request.getSession().getId();
-		uaService.logoutHttpSession(sessionId);
-		request.getSession().invalidate();
+		uaService.logoutHttpSession(sessionId, true);
 		return Response.ok().build();
+	}
+	
+	@POST
+	@Path("/killHttpSession")
+	@Consumes({ProtoMediaType.APPLICATION_PROTOBUF, MediaType.APPLICATION_JSON})
+	public Response killHttpSession(UserAccessProtocol.KillHttpSessionRequest killHttpSessionRequest) {
+		String sessionId = request.getSession().getId();
+		if (uaService.isValidHttpSession(sessionId)) {
+			logger.info("killHttpSession: " + killHttpSessionRequest.getHttpSessionId());
+			uaService.logoutHttpSession(killHttpSessionRequest.getHttpSessionId(), true);
+			return Response.ok().build();
+		} else {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+	}
+
+	@POST
+	@Path("/killWsSession")
+	@Consumes({ProtoMediaType.APPLICATION_PROTOBUF, MediaType.APPLICATION_JSON})
+	public Response killWsSession(UserAccessProtocol.KillWsSessionRequest killWsSessionRequest) {
+		String sessionId = request.getSession().getId();
+		if (uaService.isValidHttpSession(sessionId)) {
+			logger.info("killWsSession: " + killWsSessionRequest.getWsSessionId());
+			uaService.removeWsSession(killWsSessionRequest.getWsSessionId(), true);
+			return Response.ok().build();
+		} else {
+			return Response.status(Status.FORBIDDEN).build();
+		}
 	}
 
 }

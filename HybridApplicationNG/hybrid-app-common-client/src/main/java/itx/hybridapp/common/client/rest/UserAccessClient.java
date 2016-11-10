@@ -18,4 +18,8 @@ public interface UserAccessClient {
 	
 	public void logout();
 	
+	public void killHttpSession(String httpSessionId) throws LoginException;
+	
+	public void killWsSessionId(String wsSessionId) throws LoginException;
+	
 }

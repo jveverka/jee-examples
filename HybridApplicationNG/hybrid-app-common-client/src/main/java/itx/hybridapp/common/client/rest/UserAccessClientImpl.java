@@ -13,6 +13,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import itx.hybridapp.common.client.ClientUtils;
+import itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest;
+import itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest;
 import itx.hybridapp.common.protocols.UserAccessProtocol.LoginRequest;
 import itx.hybridapp.common.protocols.UserAccessProtocol.LoginResponse;
 
@@ -74,6 +76,28 @@ public class UserAccessClientImpl implements UserAccessClient {
 		}
 		builder.post(null);
 		jsessionId = null;
+	}
+
+	@Override
+	public void killHttpSession(String httpSessionId) throws LoginException {
+		WebTarget target = client.target(baseURL + ClientUtils.KILLHTTPSESSION_URL);
+		KillHttpSessionRequest killRequest = KillHttpSessionRequest.newBuilder().setHttpSessionId(httpSessionId).build();
+		Builder builder = target.request();
+		Response response = builder.post(Entity.entity(killRequest, mediaType));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			throw new LoginException("not authorized");
+		}
+	}
+
+	@Override
+	public void killWsSessionId(String wsSessionId) throws LoginException {
+		WebTarget target = client.target(baseURL + ClientUtils.KILLWSSESSION_URL);
+		KillWsSessionRequest killRequest = KillWsSessionRequest.newBuilder().setWsSessionId(wsSessionId).build();
+		Builder builder = target.request();
+		Response response = builder.post(Entity.entity(killRequest, mediaType));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			throw new LoginException("not authorized");
+		}
 	}
 	
 }

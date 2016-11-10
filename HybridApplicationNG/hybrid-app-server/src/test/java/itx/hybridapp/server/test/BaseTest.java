@@ -1,5 +1,6 @@
 package itx.hybridapp.server.test;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import org.mockito.internal.util.reflection.Whitebox;
@@ -32,8 +33,12 @@ public abstract class BaseTest {
 		return deviceService;
 	}
 	
-	protected Session createSession(String id) {
+	protected Session createWsSession(String id) {
 		return new MockSession(id);
+	}
+
+	protected HttpSession createHttpSession(String id) {
+		return new MockHttpSession(id);
 	}
 
 }

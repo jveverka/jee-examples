@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import org.testng.Assert;
@@ -26,11 +27,12 @@ public class UserAccessServiceTest extends BaseTest {
 		try {
 			logger.info("testLoginLogoutHttpSession");
 			String httpSessionId = "session1";
+			HttpSession httpSession = createHttpSession(httpSessionId);
 			UserAccessService uaService = createUserAccessService();
 			Assert.assertFalse(uaService.isValidHttpSession("session1"));
-			uaService.loginHttpSession(httpSessionId, ProtoMediaType.APPLICATION_JSON, "user", "user123");
+			uaService.loginHttpSession(httpSession, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			Assert.assertTrue(uaService.isValidHttpSession("session1"));
-			uaService.logoutHttpSession(httpSessionId);
+			uaService.logoutHttpSession(httpSessionId, true);
 			Assert.assertFalse(uaService.isValidHttpSession(httpSessionId));
 		} catch (Exception e) {
 			logger.log(Level.SEVERE,"", e);
@@ -44,7 +46,7 @@ public class UserAccessServiceTest extends BaseTest {
 			logger.info("testLoginLogoutWsSession");
 			String wsSessionId = "wssession1";
 			UserAccessService uaService = createUserAccessService();
-			Session wsSession = createSession(wsSessionId);
+			Session wsSession = createWsSession(wsSessionId);
 			Assert.assertFalse(uaService.isValidWsSession(wsSessionId));
 			uaService.loginWsSession(wsSession, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			Assert.assertTrue(uaService.isValidWsSession(wsSessionId));
@@ -63,8 +65,9 @@ public class UserAccessServiceTest extends BaseTest {
 			String httpSessionId = "session1";
 			String wsSessionId = "wssession1";
 			UserAccessServiceImpl uaService = createUserAccessService();
-			Session wsSession = createSession(wsSessionId);
-			uaService.loginHttpSession(httpSessionId, ProtoMediaType.APPLICATION_JSON, "user", "user123");
+			Session wsSession = createWsSession(wsSessionId);
+			HttpSession httpSession = createHttpSession(httpSessionId);
+			uaService.loginHttpSession(httpSession, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			Assert.assertTrue(uaService.isValidHttpSession(httpSessionId));
 			Assert.assertFalse(uaService.isValidWsSession(wsSessionId));
 			uaService.addWsSession(wsSession, httpSessionId, ProtoMediaType.APPLICATION_JSON);
@@ -80,7 +83,7 @@ public class UserAccessServiceTest extends BaseTest {
 			Assert.assertTrue(sessionRelationList.get(0).getWsSessionIdCount() == 1);
 			Assert.assertEquals(sessionRelationList.get(0).getWsSessionId(0), wsSessionId);
 			
-			uaService.logoutHttpSession(httpSessionId);
+			uaService.logoutHttpSession(httpSessionId, true);
 			Assert.assertFalse(uaService.isValidHttpSession(httpSessionId));
 			Assert.assertFalse(uaService.isValidWsSession(wsSessionId));
 		} catch (Exception e) {
@@ -96,14 +99,15 @@ public class UserAccessServiceTest extends BaseTest {
 			String httpSessionId = "session1";
 			String wsSessionId = "wssession1";
 			UserAccessService uaService = createUserAccessService();
-			Session wsSession = createSession(wsSessionId);
-			uaService.loginHttpSession(httpSessionId, ProtoMediaType.APPLICATION_JSON, "user", "user123");
+			Session wsSession = createWsSession(wsSessionId);
+			HttpSession httpSession = createHttpSession(httpSessionId);
+			uaService.loginHttpSession(httpSession, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			Assert.assertTrue(uaService.isValidHttpSession(httpSessionId));
 			Assert.assertFalse(uaService.isValidWsSession(wsSessionId));
 			uaService.loginWsSession(wsSession, httpSessionId, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			Assert.assertTrue(uaService.isValidHttpSession(httpSessionId));
 			Assert.assertTrue(uaService.isValidWsSession(wsSessionId));
-			uaService.logoutHttpSession(httpSessionId);
+			uaService.logoutHttpSession(httpSessionId, true);
 			Assert.assertFalse(uaService.isValidHttpSession(httpSessionId));
 			Assert.assertFalse(uaService.isValidWsSession(wsSessionId));
 		} catch (Exception e) {
@@ -119,14 +123,15 @@ public class UserAccessServiceTest extends BaseTest {
 			String httpSessionId = "session1";
 			String wsSessionId = "wssession1";
 			UserAccessService uaService = createUserAccessService();
-			Session wsSession = createSession(wsSessionId);
-			uaService.loginHttpSession(httpSessionId, ProtoMediaType.APPLICATION_JSON, "user", "user123");
+			Session wsSession = createWsSession(wsSessionId);
+			HttpSession httpSession = createHttpSession(httpSessionId);
+			uaService.loginHttpSession(httpSession, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			Assert.assertTrue(uaService.isValidHttpSession(httpSessionId));
 			Assert.assertFalse(uaService.isValidWsSession(wsSessionId));
 			uaService.loginWsSession(wsSession, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			Assert.assertTrue(uaService.isValidHttpSession(httpSessionId));
 			Assert.assertTrue(uaService.isValidWsSession(wsSessionId));
-			uaService.logoutHttpSession(httpSessionId);
+			uaService.logoutHttpSession(httpSessionId, true);
 			Assert.assertFalse(uaService.isValidHttpSession(httpSessionId));
 			Assert.assertTrue(uaService.isValidWsSession(wsSessionId));
 			uaService.removeWsSession(wsSessionId, true);
@@ -161,8 +166,9 @@ public class UserAccessServiceTest extends BaseTest {
 			sendMessages = messagePublisher.publishToHttpSession(httpSessionId, message);
 			Assert.assertTrue(sendMessages == 0);
 
-			Session wsSession = createSession(wsSessionId);
-			uaService.loginHttpSession(httpSessionId, ProtoMediaType.APPLICATION_JSON, "user", "user123");
+			Session wsSession = createWsSession(wsSessionId);
+			HttpSession httpSession = createHttpSession(httpSessionId);
+			uaService.loginHttpSession(httpSession, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			uaService.loginWsSession(wsSession, httpSessionId, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			Assert.assertTrue(uaService.isValidHttpSession(httpSessionId));
 			Assert.assertTrue(uaService.isValidWsSession(wsSessionId));
@@ -209,7 +215,7 @@ public class UserAccessServiceTest extends BaseTest {
 			sendMessages = messagePublisher.publishToHttpSession(httpSessionId, message);
 			Assert.assertTrue(sendMessages == 0);
 
-			uaService.logoutHttpSession(httpSessionId);
+			uaService.logoutHttpSession(httpSessionId, true);
 			
 			sendMessages = messagePublisher.publishToWsSession(wsSessionId, message);
 			Assert.assertTrue(sendMessages == 0);

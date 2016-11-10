@@ -7552,6 +7552,1012 @@ public final class UserAccessProtocol {
 
   }
 
+  public interface KillHttpSessionRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:useraccess.KillHttpSessionRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string httpSessionId = 1;</code>
+     */
+    java.lang.String getHttpSessionId();
+    /**
+     * <code>optional string httpSessionId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getHttpSessionIdBytes();
+  }
+  /**
+   * Protobuf type {@code useraccess.KillHttpSessionRequest}
+   */
+  public  static final class KillHttpSessionRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:useraccess.KillHttpSessionRequest)
+      KillHttpSessionRequestOrBuilder {
+    // Use KillHttpSessionRequest.newBuilder() to construct.
+    private KillHttpSessionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private KillHttpSessionRequest() {
+      httpSessionId_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private KillHttpSessionRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              httpSessionId_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return itx.hybridapp.common.protocols.UserAccessProtocol.internal_static_useraccess_KillHttpSessionRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return itx.hybridapp.common.protocols.UserAccessProtocol.internal_static_useraccess_KillHttpSessionRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.class, itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.Builder.class);
+    }
+
+    public static final int HTTPSESSIONID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object httpSessionId_;
+    /**
+     * <code>optional string httpSessionId = 1;</code>
+     */
+    public java.lang.String getHttpSessionId() {
+      java.lang.Object ref = httpSessionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        httpSessionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string httpSessionId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getHttpSessionIdBytes() {
+      java.lang.Object ref = httpSessionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        httpSessionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getHttpSessionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, httpSessionId_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getHttpSessionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, httpSessionId_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest)) {
+        return super.equals(obj);
+      }
+      itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest other = (itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) obj;
+
+      boolean result = true;
+      result = result && getHttpSessionId()
+          .equals(other.getHttpSessionId());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + HTTPSESSIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getHttpSessionId().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code useraccess.KillHttpSessionRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:useraccess.KillHttpSessionRequest)
+        itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return itx.hybridapp.common.protocols.UserAccessProtocol.internal_static_useraccess_KillHttpSessionRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return itx.hybridapp.common.protocols.UserAccessProtocol.internal_static_useraccess_KillHttpSessionRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.class, itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.Builder.class);
+      }
+
+      // Construct using itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        httpSessionId_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return itx.hybridapp.common.protocols.UserAccessProtocol.internal_static_useraccess_KillHttpSessionRequest_descriptor;
+      }
+
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest getDefaultInstanceForType() {
+        return itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.getDefaultInstance();
+      }
+
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest build() {
+        itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest buildPartial() {
+        itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest result = new itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest(this);
+        result.httpSessionId_ = httpSessionId_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) {
+          return mergeFrom((itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest other) {
+        if (other == itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest.getDefaultInstance()) return this;
+        if (!other.getHttpSessionId().isEmpty()) {
+          httpSessionId_ = other.httpSessionId_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object httpSessionId_ = "";
+      /**
+       * <code>optional string httpSessionId = 1;</code>
+       */
+      public java.lang.String getHttpSessionId() {
+        java.lang.Object ref = httpSessionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          httpSessionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string httpSessionId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getHttpSessionIdBytes() {
+        java.lang.Object ref = httpSessionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          httpSessionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string httpSessionId = 1;</code>
+       */
+      public Builder setHttpSessionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        httpSessionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string httpSessionId = 1;</code>
+       */
+      public Builder clearHttpSessionId() {
+        
+        httpSessionId_ = getDefaultInstance().getHttpSessionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string httpSessionId = 1;</code>
+       */
+      public Builder setHttpSessionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        httpSessionId_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:useraccess.KillHttpSessionRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:useraccess.KillHttpSessionRequest)
+    private static final itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest();
+    }
+
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<KillHttpSessionRequest>
+        PARSER = new com.google.protobuf.AbstractParser<KillHttpSessionRequest>() {
+      public KillHttpSessionRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new KillHttpSessionRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<KillHttpSessionRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<KillHttpSessionRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public itx.hybridapp.common.protocols.UserAccessProtocol.KillHttpSessionRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface KillWsSessionRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:useraccess.KillWsSessionRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string wsSessionId = 1;</code>
+     */
+    java.lang.String getWsSessionId();
+    /**
+     * <code>optional string wsSessionId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getWsSessionIdBytes();
+  }
+  /**
+   * Protobuf type {@code useraccess.KillWsSessionRequest}
+   */
+  public  static final class KillWsSessionRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:useraccess.KillWsSessionRequest)
+      KillWsSessionRequestOrBuilder {
+    // Use KillWsSessionRequest.newBuilder() to construct.
+    private KillWsSessionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private KillWsSessionRequest() {
+      wsSessionId_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private KillWsSessionRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              wsSessionId_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return itx.hybridapp.common.protocols.UserAccessProtocol.internal_static_useraccess_KillWsSessionRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return itx.hybridapp.common.protocols.UserAccessProtocol.internal_static_useraccess_KillWsSessionRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.class, itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.Builder.class);
+    }
+
+    public static final int WSSESSIONID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object wsSessionId_;
+    /**
+     * <code>optional string wsSessionId = 1;</code>
+     */
+    public java.lang.String getWsSessionId() {
+      java.lang.Object ref = wsSessionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        wsSessionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string wsSessionId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWsSessionIdBytes() {
+      java.lang.Object ref = wsSessionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        wsSessionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getWsSessionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, wsSessionId_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getWsSessionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, wsSessionId_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest)) {
+        return super.equals(obj);
+      }
+      itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest other = (itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) obj;
+
+      boolean result = true;
+      result = result && getWsSessionId()
+          .equals(other.getWsSessionId());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + WSSESSIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getWsSessionId().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code useraccess.KillWsSessionRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:useraccess.KillWsSessionRequest)
+        itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return itx.hybridapp.common.protocols.UserAccessProtocol.internal_static_useraccess_KillWsSessionRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return itx.hybridapp.common.protocols.UserAccessProtocol.internal_static_useraccess_KillWsSessionRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.class, itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.Builder.class);
+      }
+
+      // Construct using itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        wsSessionId_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return itx.hybridapp.common.protocols.UserAccessProtocol.internal_static_useraccess_KillWsSessionRequest_descriptor;
+      }
+
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest getDefaultInstanceForType() {
+        return itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.getDefaultInstance();
+      }
+
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest build() {
+        itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest buildPartial() {
+        itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest result = new itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest(this);
+        result.wsSessionId_ = wsSessionId_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) {
+          return mergeFrom((itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest other) {
+        if (other == itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest.getDefaultInstance()) return this;
+        if (!other.getWsSessionId().isEmpty()) {
+          wsSessionId_ = other.wsSessionId_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object wsSessionId_ = "";
+      /**
+       * <code>optional string wsSessionId = 1;</code>
+       */
+      public java.lang.String getWsSessionId() {
+        java.lang.Object ref = wsSessionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          wsSessionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string wsSessionId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWsSessionIdBytes() {
+        java.lang.Object ref = wsSessionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          wsSessionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string wsSessionId = 1;</code>
+       */
+      public Builder setWsSessionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        wsSessionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string wsSessionId = 1;</code>
+       */
+      public Builder clearWsSessionId() {
+        
+        wsSessionId_ = getDefaultInstance().getWsSessionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string wsSessionId = 1;</code>
+       */
+      public Builder setWsSessionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        wsSessionId_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:useraccess.KillWsSessionRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:useraccess.KillWsSessionRequest)
+    private static final itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest();
+    }
+
+    public static itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<KillWsSessionRequest>
+        PARSER = new com.google.protobuf.AbstractParser<KillWsSessionRequest>() {
+      public KillWsSessionRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new KillWsSessionRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<KillWsSessionRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<KillWsSessionRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public itx.hybridapp.common.protocols.UserAccessProtocol.KillWsSessionRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_useraccess_LoginRequest_descriptor;
   private static final 
@@ -7597,6 +8603,16 @@ public final class UserAccessProtocol {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_useraccess_HttpSessionWsSessionsInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_useraccess_KillHttpSessionRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_useraccess_KillHttpSessionRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_useraccess_KillWsSessionRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_useraccess_KillWsSessionRequest_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -7625,8 +8641,11 @@ public final class UserAccessProtocol {
       "(\t\"1\n\tTopicInfo\022\017\n\007topicId\030\001 \001(\t\022\023\n\013wsSe" +
       "ssionId\030\002 \003(\t\"G\n\031HttpSessionWsSessionsIn" +
       "fo\022\025\n\rhttpSessionId\030\001 \001(\t\022\023\n\013wsSessionId" +
-      "\030\002 \003(\tB4\n\036itx.hybridapp.common.protocols",
-      "B\022UserAccessProtocolb\006proto3"
+      "\030\002 \003(\t\"/\n\026KillHttpSessionRequest\022\025\n\rhttp",
+      "SessionId\030\001 \001(\t\"+\n\024KillWsSessionRequest\022" +
+      "\023\n\013wsSessionId\030\001 \001(\tB4\n\036itx.hybridapp.co" +
+      "mmon.protocolsB\022UserAccessProtocolb\006prot" +
+      "o3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7694,6 +8713,18 @@ public final class UserAccessProtocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_useraccess_HttpSessionWsSessionsInfo_descriptor,
         new java.lang.String[] { "HttpSessionId", "WsSessionId", });
+    internal_static_useraccess_KillHttpSessionRequest_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_useraccess_KillHttpSessionRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_useraccess_KillHttpSessionRequest_descriptor,
+        new java.lang.String[] { "HttpSessionId", });
+    internal_static_useraccess_KillWsSessionRequest_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_useraccess_KillWsSessionRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_useraccess_KillWsSessionRequest_descriptor,
+        new java.lang.String[] { "WsSessionId", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

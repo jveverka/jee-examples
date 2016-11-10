@@ -3,6 +3,7 @@ package itx.hybridapp.server.test;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import org.testng.Assert;
@@ -24,14 +25,15 @@ public class DeviceServiceTest extends BaseTest {
 			String wsSessionId = "wssession1";
 			String deviceWsSessionId = "devicews1";
 			String deviceId = "device1";
+			HttpSession httpSession = createHttpSession(httpSessionId);
 			UserAccessService uaService = createUserAccessService();
 			DeviceService ds = createDeviceService(uaService);
 			// web client login
-			uaService.loginHttpSession(httpSessionId, ProtoMediaType.APPLICATION_JSON, "user", "user123");
-			Session wsSession = createSession(wsSessionId);
+			uaService.loginHttpSession(httpSession, ProtoMediaType.APPLICATION_JSON, "user", "user123");
+			Session wsSession = createWsSession(wsSessionId);
 			uaService.loginWsSession(wsSession, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			//device login
-			Session deviceWsSession = createSession(deviceWsSessionId);
+			Session deviceWsSession = createWsSession(deviceWsSessionId);
 			uaService.loginWsSession(deviceWsSession, ProtoMediaType.APPLICATION_JSON, "user", "user123");
 			ds.registerDevice(deviceWsSessionId, deviceId);
 			ds.publishGetDeviceStatus(deviceId, wsSessionId);

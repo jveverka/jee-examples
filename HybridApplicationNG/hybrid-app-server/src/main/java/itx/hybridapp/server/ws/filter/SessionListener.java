@@ -28,14 +28,13 @@ public class SessionListener implements HttpSessionListener, HttpSessionIdListen
 	public void sessionDestroyed(HttpSessionEvent se) {
 		String sessionId = se.getSession().getId();
 		logger.info("sessionDestroyed: " + sessionId);
-		uaService.logoutHttpSession(sessionId);
+		uaService.logoutHttpSession(sessionId, false);
 	}
 
 	@Override
 	public void sessionIdChanged(HttpSessionEvent event, String oldSessionId) {
 		logger.info("sessionIdChanged: ");
-		String newSessionId = event.getSession().getId();
-		uaService.changeHttpSessionId(oldSessionId, newSessionId);
+		uaService.changeHttpSessionId(oldSessionId, event.getSession());
 	}
 
 }
