@@ -6,3 +6,4 @@ build_gradle
 .project
 manifest.mf
 MANIFEST.MF
+/.gradle/

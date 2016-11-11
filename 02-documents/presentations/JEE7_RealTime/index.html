@@ -67,7 +67,8 @@
              <li>WebSockets - of course !</li>
              <li>Beyond JEE - tips for improvements</li>
              <li>Future of JEE platform - what's expected in JEE8/9</li>
-             <li>DEMO: <a href="https://github.com/jveverka/jee-examples/tree/master/HybridApplicationNG">HybridApplication</a></li> 
+             <li>DEMO: <a href="https://github.com/jveverka/jee-examples/tree/master/HybridApplicationNG">HybridApplication</a></li>
+             <li>Not Included: hard real-time</li> 
           </ul>
         </section>
 
@@ -76,6 +77,7 @@
           <h2>JEE apps are usually ...</h2>
           <ul>
              <li><strong>Transactional</strong> - one transaction per request</li>
+             <li><strong>Thread model</strong> - one thread per request</li>
              <li><strong>Request/Response</strong> - request->processing->response</li>
              <li><strong>DB centric</strong> - Hibernate/JPA with SQL database</li>
              <li><strong>Web Interface</strong> - server side rendering (JSF)</li>
@@ -106,16 +108,24 @@
                 <li>Remote EJB calls</li>
                 <li>ACC - Application Client Container</li>
              </ul>
-             <li>Does not integrate well in multi-language environment</li>
           </ul>
         </section>
         
         <section>
           <h2>Java SE Clients</h2>
+          <img class="embedded-image" data-src="images/RemoteEJBandJMSAccess.svg"/>
         </section>
 
         <section>
-          <h2>ACC Clients</h2>
+          <h2>Java SE Clients</h2>
+          <ul>
+             <li>Does not integrate well in multi-language environment</li>
+             <li>Practically limited to Java SE clients</li>
+             <li>Not suitable for modern deployments</li>
+             <li>Remote EJB call example - <a href="https://github.com/jveverka/jee-examples/tree/master/EJB/ejb-01-lab">ejb-01-lab</a></li>
+             <li>Remote EJB call example with roles - <a href="https://github.com/jveverka/jee-examples/tree/master/EJB/ejb-03-lab">ejb-03-lab</a></li>
+             <li>Remote JMS Topic and Queue access - <a href="https://github.com/jveverka/jee-examples/tree/master/JMS/mdb-01-demo">mdb-01-demo</a></li>
+          </ul>
         </section>
 
         <section data-state="jee7TechnologiesState">
@@ -160,9 +170,15 @@
           <h2>JSF ... is a problem</h2>
           <ul>
              <li>JSF is excellent for server-side rendering</li>
+             <li>Problematic for real-time applications</li>
              <li>Can be adapted for real-time user experience</li>
-             <li>Not recommended for new applications</li>
+             <li>Use combination of JSF views and websockets</li>
           </ul>
+        </section>
+        
+        <section>
+          <h2>JSF ... is a problem</h2>
+          
         </section>
 
         <section>
@@ -670,8 +686,89 @@ public class CacheAccessBean {
                  <li>proto3 over WebSocket</li>
                  <li>may use JSON as well</li>
                </ul>
-               <li><strong>proto3</strong> - C#, Python, Ruby ... clients !</li>
+               <li><strong>proto3</strong> - ready for C#, Python, Ruby ... clients !</li>
              </ul>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             <img class="embedded-image" data-src="images/HybridApp.architecture.detail.svg"/>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Features:<br/>
+             <ul>
+                <li><strong>Admin</strong> - management of user sessions</li>
+                <li><strong>Devices</strong> - control connected devices, sensor readings</li>
+                <li><strong>Chat</strong> - in real time of course :)</li>
+                <li><strong>Test</strong> - websocket performance tests</li>
+             </ul>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Performance testing using echo messages:<br/>
+             <ul>
+                <li>compare json/protocol buffer perfomance</li>
+                <li>test different echo message sizes</li>
+                <li>test test performance with complex messages</li>
+                <li>calculate messges/s and RTT</li>
+                <li>test against javascript/JavaFx/JavaSE clients</li>
+                <li>test against Explorer, Edge, Chrome, Firefox</li>
+                <li>test against x86_64 / ARMv6 / ARMv7 clients</li>
+                <li>run tests in parallel</li> 
+             </ul>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Echo message proto3<br/>
+             <pre><code>
+message EchoData {
+   int32 jobId = 1;
+   int32 ordinal = 2;
+   string payload = 3;
+   repeated EchoStructuredPayload structuredPayload = 4;
+}
+
+message EchoStructuredPayload {
+   int64 timestamp = 1;
+   string message = 2;
+   double value = 3;
+   bool active = 4; 
+}             
+             </code></pre>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Simple Echo message example in JSON<br/>
+             <pre><code>
+{
+   jobId: 1,
+   odinal: 32,
+   payload: "xxx",
+   structuredPayload: null
+}             
+             </code></pre>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Structured Echo message example in JSON<br/>
+             <pre><code>
+{
+   jobId: 1,
+   odinal: 32,
+   payload: "hello java",
+   structuredPayload: [ 
+      { 
+         timestamp: 1453546512, message: "messsage: 0",
+         value: 125.215, active: true 
+      },
+      { 
+         timestamp: 1453546515, message: "messsage: 1",
+         value: 125.218, active: false 
+      },
+      ... 
+   ] 
+}             
+             </code></pre>
           </section>
           <section>
              <h2>Demo: Hybrid Application</h2>
@@ -683,6 +780,24 @@ public class CacheAccessBean {
              Raspberry PI schematics:<br/>
              <img class="embedded-image" data-src="images/Raspberry_Pi_Controller-schema.svg"/>
              <br/>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Raspberry PI hardware:<br/>
+             <img class="embedded-image" data-src="images/IMG_2716.png" width="50%"/>
+             <br/>
+          </section>
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Raspberry PI resources:<br/>
+             <ul>
+                <li>PI ZERO, 1 MODEL A+, 2 MODEL B, 3 MODEL B</li>
+                <li><a href="https://www.sparkfun.com/products/13763">HTU21D</a> - temperature and relative humidity sensor</li>
+                <li><a href="https://www.adafruit.com/product/1603">BMP180</a> - bosch pressure and temperature sensor</li>
+                <li><a href="http://pi4j.com/">pi4j</a> project</li>
+                <li><a href="https://github.com/jveverka/itx-rpi-drivers">itx-rpi-drivers</a> - pi4j drivers</li>
+                <li><a href="https://github.com/jveverka/jee-examples/tree/master/HybridApplicationNG/hybrid-app-rpi">rpi client</a> - websocket client</a></li>
+             </ul>
           </section>
         </section>
 
