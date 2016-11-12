@@ -97,8 +97,14 @@
           </ul>
         </section>
 
+        <section data-state="jee7TechnologiesState">
+          <h2>JEE7 technologies</h2>
+          <img class="embedded-image" data-src="images/JEE7-technologies.svg"/>
+        </section>
+
         <section>
           <h2>JEE - Java clients</h2>
+          Example integration scenario:<br/><br/>
           <ul>
              <li>Backend - WildFly 10 as JEE7 server</li>
              <li>JEE technologies for JavaSE/JavaFX clients</li>
@@ -128,18 +134,9 @@
           </ul>
         </section>
 
-        <section data-state="jee7TechnologiesState">
-          <h2>JEE7 technologies</h2>
-          <img class="embedded-image" data-src="images/JEE7-technologies.svg"/>
-          <!--
-          <object id="jee7TechologiesImage" type="image/svg+xml" data="images/JEE7-technologies.svg">
-          </object>
-          <embed id="jee7TechologiesImage" src="images/JEE7-technologies.svg">
-          -->
-        </section>
-             
         <section>
           <h2>JEE - HTTP clients</h2>
+          Example integration scenario:<br/><br/>
           <ul>
              <li>Backend - wildFly 10 as JEE7 server</li>
              <li>JEE technologies for HTTP/HTML5 clients</li>
@@ -173,12 +170,53 @@
              <li>Problematic for real-time applications</li>
              <li>Can be adapted for real-time user experience</li>
              <li>Use combination of JSF views and websockets</li>
+             <li>Use combination of JSF components and Javascript components</li>
           </ul>
         </section>
         
         <section>
-          <h2>JSF ... is a problem</h2>
-          
+          <h2>JSF and real-time</h2>
+          <ul>
+             <li>Use partial rendering on data change</li>
+             <li>Use JSF view for page layout</li>
+             <li>Components are updated using javascript</li>
+             <li>Some JSF libraries have support for websockets</li>
+             <li>Primefaces - p:socket component</li>
+             <li>Primefaces - <a href="http://www.primefaces.org/showcase/ui/ajax/remoteCommand.xhtml">p:remoteCommad</a> and custom JavaScript</li> 
+          </ul>
+        </section>
+
+        <section>
+          <h2>Primefaces real-time</h2>
+          use p:remoteCommand in view 
+          <pre><code>
+&lt;h:form&gt;
+    &lt;p:growl id="msgs" showDetail="true" /&gt;
+    &lt;p:remoteCommand name="partialUpdate" update="msgs" 
+        actionListener="#{remoteCommandView.execute}" /&gt;          
+&lt;h:form&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Primefaces real-time</h2>
+          <ul>
+            <li>Use custom websocket connection</li>
+            <li>Custom javascript to update view</li>
+            <li>Easy to update JSF components and HTML/SVG in one view</li>
+          </ul>  
+          <pre><code>
+function onMessage(message) {
+
+   partialUpdate();
+   //update other components
+    
+}          
+          </code></pre>
+        </section>
+
+        <section>
+          <img class="embedded-image" data-src="images/JSF.real-time.01.svg"/>
         </section>
 
         <section>
@@ -241,12 +279,18 @@ public class ProtocolUpgradeServlet extends HttpServlet {
         <section>
           <h2>HTTP protocol upgrade - advandages</h2>
           <ul>
-             <li>Usually only one open port</li>
+             <li>Usually only one open port 8080, 443, ...</li>
              <li>Servlet container handles all inbound traffic</li>
              <li>Not limited to HTTP anymore</li>
              <li>Easy to intercept with Servlet filters</li>
              <li>Easier security setup</li>
+             <li>Custom sessions and busienss logic</li>
           </ul>
+        </section>
+
+        <section>
+          <h2>HTTP protocol upgrade</h2>
+          <img class="embedded-image" data-src="images/Http.upgrade.architecture.svg"/>
         </section>
 
         <section>
@@ -271,10 +315,10 @@ public class ProtocolUpgradeServlet extends HttpServlet {
              <li><a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a></li>
              <li>To speed up HTTP communication</li>
              <li>Better/Faster for serialization of structured data</li>
-             <li>Supported languges - C++, C#, GO, Java, Python, Ruby, ...</li>
-             <li>Instead sending JSON/XML as payload, send smaller packets.</li>
-             <li>Optimizes HTTP payload</li>
+             <li>Optimizes HTTP payload - binary payloads</li>
+             <li>Supported languges - C, C++, C#, Go, Java, Python, Ruby, ...</li>
              <li>Defines protocol contract</li> 
+             <li>Backward compatibility support</li> 
           </ul>
         </section>
 
@@ -406,7 +450,9 @@ public static void main(String[] args) {
              <li>WebSocket MDN - <a href="https://developer.mozilla.org/en/docs/Web/API/WebSocket">API and method overview.</a></li>
              <li>IETF - <a href="https://tools.ietf.org/html/rfc6455">RFC-6455</a></li>
              <li>JSR 356 - <a href="https://jcp.org/en/jsr/detail?id=356">Java API for WebSocket</a></li>
-             <li>HTTP protocol upgrade is used</li>
+             <li>Protocol is an independent TCP-based protocol.</li>
+             <li>Only relationship to HTTP is that its handshake is interpreted by
+                 HTTP servers as an Upgrade request</li>    
           </lu>
         </section>
 
@@ -416,11 +462,25 @@ public static void main(String[] args) {
           
         <section>
           <h2>WebSocket protocol</h2>
+          <ul>
+              <li>WebSocket is thin layer on top of TCP</li>
+              <li>adds a web origin-based security model for browsers</li>
+              <li>adds an addressing and protocol naming mechanism to support
+                  multiple services on one port and multiple host names on one IP
+                  address
+              </li>
+              <li>layers a framing mechanism on top of TCP to get back to the IP
+                  packet mechanism that TCP is built on, but without length limits
+              </li>
+              <li>includes an additional closing handshake in-band that is designed
+                  to work in the presence of proxies and other intermediaries</li>
+          </ul>
         </section>
 
         <section>
           <h2>WebSockets with proto buffers</h2>
           <ul>
+             <li>We can go even faster !</li>
              <li>Easy to use proto messages instead JSOM or XML</li>
              <li>Reuse existing REST API proto messages</li>
              <li>Use binary transport</li>
@@ -510,22 +570,23 @@ public void sendMessage(Session session, Message message,
         </section>
 
         <section>
-          <h2>Communication protocols</h2>
-          <ul>
-             <li>Clients using REST APIs</li>
-             <li>Clients using REST APIs and WebSocket connections</li>
-             <li>Clients using only WebSocket connections</li>
-             <li>Web Browser clients - JSON</li>
-             <li>Other clients - JSON / XML / Proto messages</li>  
-          </ul>
-        </section>  
+          <img class="embedded-image" data-src="images/CommunicationPattern01.svg"/>
+        </section>
 
         <section>
-          <h2>Session synchronizations</h2>
+          <img class="embedded-image" data-src="images/CommunicationPattern02.svg"/>
+        </section>
+
+        <section>
+          <img class="embedded-image" data-src="images/CommunicationPattern03.svg"/>
+        </section>
+
+        <section>
+          <h2>Synchronization of sessions</h2>
           <ul>
              <li>For clients using HTTP session and WebSockets</li>
              <li>HttpsSession is usually bound to user identity</li>
-             <li>WebSocket session is not bount to HttpSession</li>
+             <li>WebSocket session is not bound to HttpSession</li>
              <li>Keep both session types in sync</li> 
              <li>Disconnect WebSockets on HttpSession timeout !</li> 
              <li>Unattended WebSockets may lead to security leaks</li>
@@ -598,34 +659,37 @@ public class CacheAccessBean {
              <li>Define a standard, language-agnostic interface to REST APIs</li>
              <li>Like WSDL but easier and better !</li>
              <li>Machine readable API</li>
-             <li>Easier integrations in microservice way</li>
+             <li>Easier integrations in microservice ecosystem</li>
              <li>Easy to use with WildFly JAX-RS</li>
              <li>Github demo: <a href="https://github.com/jveverka/jee-examples/tree/master/Servlets/servlet-09_jaxrs-swagger">servlet-09_jaxrs-swagger</a></li>
           </ul>
         </section>
 
-        <section>
-          <h2>Beyond JEE7: HTTP 2.0</h2>
-          <ul>
-              <li>Important step towards faster REST/HTTP integration</li>
-              <li></li>
-          </ul>
-        </section>  
-        
         <!-- JEE8 FUTURE IMPROVEMENTS -->        
         <section>
           <h2>Future improvements in JEE8</h2>
           <ul>
-             <li>JEE8 standard - Q3/2017</li>
+             <li>JEE8 standard - JSR366, Q3/2017</li>
              <li>Servlet 4.0, HTTP/2</li>
              <ul>
                 <li>HTTP/2 - eficient and fast HTTP</li>
                 <li>Server Sent Events - MediaType.SERVER_SENT_EVENT JAX-RS 2.1</li>
              </ul>
-             <li>Asynch CDI events ?</li>
-             <li>ALPN - Application Layer Protocol Negotioation</li>
-             <li>ActiveMQ-MQTT bridge ?<a= hrf="http://camel.apache.org/mqtt.html">ActiveMQ - MQTT bridge: camel-mqtt</a> </li> 
-             <li>AMQP <a href="https://developer.jboss.org/thread/269424?start=0&tstart=0">Link</a></li>
+             <li>Easier security APIs</li> 
+             <li>Async CDI events ?</li>
+             <li>ALPN - Application Layer Protocol Negotioation ?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>HTTP/2</h2>
+          Advantages over HTTP/1.1  
+          <ul>
+             <li>Binary protocol - more efficient</li>
+             <li>Is fully multiplexed, instead of ordered and blocking</li>
+             <li>Can therefore reuse one TCP connection for parallelism</li>
+             <li>Uses header compression to reduce overhead</li>
+             <li>Allows servers to “push” responses proactively into client caches</li>
           </ul>
         </section>
 
@@ -636,17 +700,6 @@ public class CacheAccessBean {
              <li>2017 - Finalize JEE8 specs</li>
              <li>2018 - Finalize JEE9 specs</li>
              <li>JEE8 & JEE9 - focus on cloud and micro-services.</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Emerging technologies</h2>
-          Not part of JEE, maybe later ...<br/>
-          <ul>
-            <li><a href="http://socket.io">http://socket.io ??</a></li>
-            <li><a href="https://blogs.oracle.com/OracleCoherence/entry/coherencerx_reactive_extensions_for_oracle">coherenceRx ??</a></li>
-            <li><a href="http://www.grpc.io/">gRPC + HTTP 2</a> - nex gen REST APIs, based on Protobufs</li>
-            <li><a href="http://gluonhq.com/">Gluon</a> - JavaFx for on Android and iOS</li>
           </ul>
         </section>
         
@@ -671,6 +724,9 @@ public class CacheAccessBean {
              </ul>
           </section>
           <section>
+             <h2>Client Types</h2>
+          </section>
+          <section>
              <h2>Demo: Hybrid Application</h2>
              Communication protocols:
              <br/>
@@ -690,7 +746,6 @@ public class CacheAccessBean {
              </ul>
           </section>
           <section>
-             <h2>Demo: Hybrid Application</h2>
              <img class="embedded-image" data-src="images/HybridApp.architecture.detail.svg"/>
           </section>
           <section>
@@ -702,6 +757,9 @@ public class CacheAccessBean {
                 <li><strong>Chat</strong> - in real time of course :)</li>
                 <li><strong>Test</strong> - websocket performance tests</li>
              </ul>
+          </section>
+          <section>
+             <img class="embedded-image" data-src="images/HybridApp.performance.testing.svg"/>
           </section>
           <section>
              <h2>Demo: Hybrid Application</h2>
@@ -802,17 +860,10 @@ message EchoStructuredPayload {
         </section>
 
         <section>
-          <h2>JEE7 Real-Time apps - wrap up</h2>
-        </section>
-        
-        <!-- BACKUP -->        
-        <section>
-          <section>
-            <h2>Backup Slides</h2>
-          </section>
-          <section>
-            <h1>Backup #01</h1>
-          </section>
+          <h1>Q&A</h1>
+          <h2>JEE7 Real-Time</h2>
+          <h2>(web) applications</h2>
+          <img class="embedded-image" data-src="images/wildfly_logo.svg"/>
         </section>
         
         <!-- REFERENCES -->        
