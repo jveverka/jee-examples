@@ -69,6 +69,7 @@
              <li>Beyond JEE - tips for improvements</li>
              <li>Future of JEE platform - what's expected in JEE8/9</li>
              <li>DEMO Included: <a href="https://github.com/jveverka/jee-examples/tree/master/HybridApplicationNG">HybridApplication</a></li>
+             <li>Other examples: <a href="https://github.com/jveverka/jee-examples">jee-examples</a></li>
              <li>Not Included: hard real-time</li> 
           </ul>
         </section>
@@ -311,7 +312,7 @@ public class ProtocolUpgradeServlet extends HttpServlet {
         </section>
 
         <section>
-          <h2>HTTP optimization</h2>
+          <h2>Payload optimization</h2>
           <ul>
              <li><a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a></li>
              <li>To speed up HTTP communication</li>
@@ -595,114 +596,6 @@ public void sendMessage(Session session, Message message,
           </ul>
         </section>
 
-        <section>
-          <h2>Beyond JEE7: JCache</h2>
-          <ul>
-             <li>WildFly subsystem - infinispan</li>
-             <li>In-Memory data store</li>
-             <li>Used by wildfly internally</li>
-             <ul>
-                 <li>clustering</li>
-                 <li>web container</li>
-                 <li>ejb container</li>
-                 <li>hibernate subsystem</li>
-             </ul>
-             <li>Local or distributed cache (clustering/HA)</li>
-             <li>Data eviction strategies: <a href="https://docs.jboss.org/author/display/ISPN/Eviction">NONE, LRU, LIRS</a></li>
-             <li>Data expiration strategies: time criteria</li>
-             <li>Github demo: <a href="https://github.com/jveverka/jee-examples/tree/master/JCache/jcache-01-lab">jcache-01-lab</a></li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Beyond JEE7: JCache</h2>
-          Define custom application cache<br/>
-          standalone-full.xml
-          <pre><code>
-&lt;subsystem xmlns="urn:jboss:domain:infinispan:4.0"&gt;
-  ...
-  &lt;cache-container name="jcacheTest" default-cache="jcacheTestdb"&gt;
-    &lt;local-cache name="jcacheTestdb"&gt;
-      &lt;transaction mode="NON_XA"/&gt;
-    &lt;local-cache&gt;
-  &lt;/cache-container&gt;
-  ...  
-&lt;/subsystem&gt;          
-          </pre></code>
-        </section>  
-
-        <section>
-          <h2>Beyond JEE7: JCache</h2>
-          Use it in your beans.
-          <pre><code>
-@Stateless
-public class CacheAccessBean {
-  @Resource(lookup="java:jboss/infinispan/container/jcacheTest")
-  private CacheContainer container;
-  private Cache&lt;String, String&gt; cache;
-
-  @PostConstruct
-  private void init() {
-    cache = container.getCache();
-  }
-  
-  public String getData(String key) {
-    return cache.get(key);
-  } 
-}
-          </pre></code>
-        </section>  
-                
-        <section>
-          <h2>Beyond JEE7: SWAGGER.io</h2>
-          <ul>
-             <li><a href="">swagger.io</a> - OpenAPI Specification</li>
-             <li>Define a standard, language-agnostic interface to REST APIs</li>
-             <li>Like WSDL but easier and better !</li>
-             <li>Machine readable API</li>
-             <li>Easier integrations in microservice ecosystem</li>
-             <li>Easy to use with WildFly JAX-RS</li>
-             <li>Github demo: <a href="https://github.com/jveverka/jee-examples/tree/master/Servlets/servlet-09_jaxrs-swagger">servlet-09_jaxrs-swagger</a></li>
-          </ul>
-        </section>
-
-        <!-- JEE8 FUTURE IMPROVEMENTS -->        
-        <section>
-          <h2>Future improvements in JEE8</h2>
-          <ul>
-             <li>JEE8 standard - JSR366, Q3/2017</li>
-             <li>Servlet 4.0, HTTP/2</li>
-             <ul>
-                <li>HTTP/2 - eficient and fast HTTP</li>
-                <li>Server Sent Events - MediaType.SERVER_SENT_EVENT JAX-RS 2.1</li>
-             </ul>
-             <li>Easier security APIs</li> 
-             <li>Async CDI events ?</li>
-             <li>ALPN - Application Layer Protocol Negotioation ?</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>HTTP/2</h2>
-          Advantages over HTTP/1.1  
-          <ul>
-             <li>Binary protocol - more efficient</li>
-             <li>Is fully multiplexed, instead of ordered and blocking</li>
-             <li>Can therefore reuse one TCP connection for parallelism</li>
-             <li>Uses header compression to reduce overhead</li>
-             <li>Allows servers to “push” responses proactively into client caches</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>JEE8 - Roadmap</h2>
-          <ul>
-             <li>As presented at JavaOne</li>
-             <li>2017 - Finalize JEE8 specs</li>
-             <li>2018 - Finalize JEE9 specs</li>
-             <li>JEE8 & JEE9 - focus on cloud and micro-services.</li>
-          </ul>
-        </section>
         
         <section>
           <section>
@@ -873,6 +766,115 @@ message EchoStructuredPayload {
                 <li><a href="https://github.com/jveverka/jee-examples/tree/master/HybridApplicationNG/hybrid-app-rpi">rpi client</a> - websocket client</a></li>
              </ul>
           </section>
+        </section>
+
+        <section>
+          <h2>Beyond JEE7: JCache</h2>
+          <ul>
+             <li>WildFly subsystem - infinispan</li>
+             <li>In-Memory data store</li>
+             <li>Used by wildfly internally</li>
+             <ul>
+                 <li>clustering</li>
+                 <li>web container</li>
+                 <li>ejb container</li>
+                 <li>hibernate subsystem</li>
+             </ul>
+             <li>Local or distributed cache (clustering/HA)</li>
+             <li>Data eviction strategies: <a href="https://docs.jboss.org/author/display/ISPN/Eviction">NONE, LRU, LIRS</a></li>
+             <li>Data expiration strategies: time criteria</li>
+             <li>Github demo: <a href="https://github.com/jveverka/jee-examples/tree/master/JCache/jcache-01-lab">jcache-01-lab</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Beyond JEE7: JCache</h2>
+          Define custom application cache<br/>
+          standalone-full.xml
+          <pre><code>
+&lt;subsystem xmlns="urn:jboss:domain:infinispan:4.0"&gt;
+  ...
+  &lt;cache-container name="jcacheTest" default-cache="jcacheTestdb"&gt;
+    &lt;local-cache name="jcacheTestdb"&gt;
+      &lt;transaction mode="NON_XA"/&gt;
+    &lt;local-cache&gt;
+  &lt;/cache-container&gt;
+  ...  
+&lt;/subsystem&gt;          
+          </pre></code>
+        </section>  
+
+        <section>
+          <h2>Beyond JEE7: JCache</h2>
+          Use it in your beans.
+          <pre><code>
+@Stateless
+public class CacheAccessBean {
+  @Resource(lookup="java:jboss/infinispan/container/jcacheTest")
+  private CacheContainer container;
+  private Cache&lt;String, String&gt; cache;
+
+  @PostConstruct
+  private void init() {
+    cache = container.getCache();
+  }
+  
+  public String getData(String key) {
+    return cache.get(key);
+  } 
+}
+          </pre></code>
+        </section>  
+                
+        <section>
+          <h2>Beyond JEE7: SWAGGER.io</h2>
+          <ul>
+             <li><a href="">swagger.io</a> - OpenAPI Specification</li>
+             <li>Define a standard, language-agnostic interface to REST APIs</li>
+             <li>Like WSDL but easier and better !</li>
+             <li>Machine readable API</li>
+             <li>Easier integrations in microservice ecosystem</li>
+             <li>Easy to use with WildFly JAX-RS</li>
+             <li>Github demo: <a href="https://github.com/jveverka/jee-examples/tree/master/Servlets/servlet-09_jaxrs-swagger">servlet-09_jaxrs-swagger</a></li>
+          </ul>
+        </section>
+
+        <!-- JEE8 FUTURE IMPROVEMENTS -->        
+        <section>
+          <h2>Future improvements in JEE8</h2>
+          <ul>
+             <li>JEE8 standard - JSR366, Q3/2017</li>
+             <li>Servlet 4.0, HTTP/2</li>
+             <ul>
+                <li>HTTP/2 - eficient and fast HTTP</li>
+                <li>Server Sent Events - MediaType.SERVER_SENT_EVENT JAX-RS 2.1</li>
+             </ul>
+             <li>Easier security APIs</li> 
+             <li>Async CDI events ?</li>
+             <li>ALPN - Application Layer Protocol Negotioation ?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>HTTP/2</h2>
+          Advantages over HTTP/1.1  
+          <ul>
+             <li>Binary protocol - more efficient</li>
+             <li>Is fully multiplexed, instead of ordered and blocking</li>
+             <li>Can therefore reuse one TCP connection for parallelism</li>
+             <li>Uses header compression to reduce overhead</li>
+             <li>Allows servers to “push” responses proactively into client caches</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>JEE8 - Roadmap</h2>
+          <ul>
+             <li>As presented at JavaOne</li>
+             <li>2017 - Finalize JEE8 specs</li>
+             <li>2018 - Finalize JEE9 specs</li>
+             <li>JEE8 & JEE9 - focus on cloud and micro-services.</li>
+          </ul>
         </section>
 
         <section>
