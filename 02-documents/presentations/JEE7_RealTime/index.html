@@ -94,7 +94,7 @@
              <li><strong>Reactive</strong> - event driven client-server communication</li>
              <li><strong>Near Real-Time</strong> - low latency responses</li>
              <li><strong>Effective</strong> - better http stack utilization</li>
-             <li><strong>Multi-Language</strong> - support different client technologies</li>
+             <li><strong>Heterogeneous</strong> - support different client technologies</li>
              <li><strong>Full-duplex </strong> - communication with server during user's session.</li>
           </ul>
         </section>
@@ -106,63 +106,30 @@
 
         <section>
           <h2>JEE - Java clients</h2>
-          Example integration scenario:<br/><br/>
           <ul>
-             <li>Backend - WildFly 10 as JEE7 server</li>
              <li>JEE technologies for JavaSE/JavaFX clients</li>
              <ul>
-                <li>CDI events</li>
                 <li>JMS - client server messaging</li>
                 <li>Remote EJB calls</li>
                 <li>ACC - Application Client Container</li>
              </ul>
           </ul>
         </section>
-        
-        <section>
-          <h2>Java SE Clients</h2>
-          <img class="embedded-image" data-src="images/RemoteEJBandJMSAccess.svg"/>
-        </section>
 
         <section>
-          <h2>Java SE Clients</h2>
+          <h2>JEE - HTTP/All clients</h2>
           <ul>
-             <li>Does not integrate well in multi-language environment</li>
-             <li>Practically limited to Java SE clients</li>
-             <li>Not suitable for modern deployments</li>
-             <li>Remote EJB call example - <a href="https://github.com/jveverka/jee-examples/tree/master/EJB/ejb-01-lab">ejb-01-lab</a></li>
-             <li>Remote EJB call example with roles - <a href="https://github.com/jveverka/jee-examples/tree/master/EJB/ejb-03-lab">ejb-03-lab</a></li>
-             <li>Remote JMS Topic and Queue access - <a href="https://github.com/jveverka/jee-examples/tree/master/JMS/mdb-01-demo">mdb-01-demo</a></li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>JEE - HTTP clients</h2>
-          Example integration scenario:<br/><br/>
-          <ul>
-             <li>Backend - wildFly 10 as JEE7 server</li>
              <li>JEE technologies for HTTP/HTML5 clients</li>
              <ul>
-                <li>JAX-RS - REST APIs</li>
+                <li>Servlet 3.1, JAX-RS 2.0 - REST APIs</li>
                 <li>HTTP protocol upgrade</li>
-                <li>WebSockets</li>
+                <li>WebSockets 1.0 - JSR356</li>
                 <li>JSF - Java Server Faces *</li>
              </ul>
-             <li>Integrates very well in multi-language environment</li>
+             <li>Integrates very well in heterogeneous environment</li>
              <li>Suitable for Web Browser clients</li>
              <li>Suitable M2M integrations</li>
           </lu>
-        </section>
-
-        <section>
-          <h2>JEE - HTTP RT clients</h2>
-          <ul>
-             <li>Servlet 3.1 - Asynchronous processing, JSR340</li>
-             <li>Servlet 3.1 - Protocol upgrade, JSR340</li>
-             <li>JAX-RS 2.0 - REST APIs, JSR339</li>
-             <li>WebSockets 1.0 - JSR356</li>
-             <li>JSF 2.2 - Java Server Faces, JSR344, kind of suitable ...</li>
-          </ul>
         </section>
 
         <section>
@@ -186,6 +153,11 @@
              <li>Primefaces - p:socket component</li>
              <li>Primefaces - <a href="http://www.primefaces.org/showcase/ui/ajax/remoteCommand.xhtml">p:remoteCommad</a> and custom JavaScript</li> 
           </ul>
+        </section>
+
+        <section>
+          <h2>JSF and real-time</h2>
+          <img class="embedded-image" data-src="images/JSF_real-time.screen.png"/>
         </section>
 
         <section>
@@ -242,7 +214,9 @@ function onMessage(message) {
           <pre><code>
 public class CustomProtocoloUpgradeHandler implements HttpUpgradeHandler {
 	@Override
-	public void init(WebConnection wc) {
+	public void init(WebConnection webConnection) {
+	   ServletInputStream is = webConnection.getInputStream(); 
+	   ServletOutputStream os = webConnection.getOutputStream();
 	   //handle read/write messages
 	}
 
@@ -878,10 +852,9 @@ public class CacheAccessBean {
         </section>
 
         <section>
-          <h1>Q&A</h1>
-          <h2>JEE7 Real-Time</h2>
-          <h2>(web) applications</h2>
-          <img class="embedded-image" data-src="images/wildfly_logo.svg"/>
+          <h3>Q&A</h3>
+          <a href="https://github.com/jveverka/jee-examples">https://github.com/jveverka/jee-examples</a>
+          <img class="embedded-image" data-src="images/qr_code.png"/>
         </section>
         
         <!-- REFERENCES -->        
@@ -894,6 +867,7 @@ public class CacheAccessBean {
               <li><a href="https://developers.google.com/protocol-buffers/"><strong>Google Protocol Buffers</strong></a> - efficient message transport</li>
               <li><a href="http://lab.hakim.se/reveal-js/#/"><strong>Reveal JS</strong></a> - made this presentation possible, thanx!</li>
               <li><a href="http://www.yworks.com/products/yed"><strong>yEd</strong></a> - diagram and graph editor</li>
+              <li><a href="http://www.itbuzzpress.com/ebooks/wildfly-10-ebook.html">WildFly 10 e-books</a></li>
             </ul>
           </section>
           <section>
@@ -901,7 +875,7 @@ public class CacheAccessBean {
             <ul>
               <li><a href="https://www.youtube.com/watch?v=0KArzAbaPWQ">JEE8 JAX-RS 2.1</a> at JavaOne</li> 
               <li><a href="https://www.youtube.com/watch?v=T9HPLLXjGzI">Servlet 4 0 Status Update</a> at JavaOne</li>
-              <li><a href="https://www.youtube.com/watch?v=BwwR1C_Lvpc">Java EE Next HTTP 2 and REST Opportunities</a></li>   
+              <li><a href="https://www.youtube.com/watch?v=BwwR1C_Lvpc">Java EE Next HTTP 2 and REST Opportunities</a></li>
               <li><a href="http://www.mastertheboss.com/">www.mastertheboss.com</a></li>
             </ul>
           </section>
