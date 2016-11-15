@@ -248,7 +248,7 @@ topicId<y:LabelModel>
         <y:UMLNoteNode>
           <y:Geometry height="46.0" width="171.5" x="552.75" y="596.3760108947754"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
-          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:BorderStyle color="#FF0000" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="41.25" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="127.0859375" x="22.20703125" y="2.375">data changed
 notification<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
@@ -297,7 +297,6 @@ notification<y:LabelModel>
       </data>
     </node>
     <node id="n16">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="126.28200817108154" width="124.0" x="295.0" y="533.0"/>
@@ -378,18 +377,16 @@ condition)<y:LabelModel>
       </data>
     </edge>
     <edge id="e6" source="n6" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-6.537089092009069" sy="-15.087918894270842" tx="6.4765625" ty="-15.087918894270842"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:LineStyle color="#FF0000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
     <edge id="e7" source="n5" target="n6">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="6.51550602432161" sy="52.46693249948635" tx="-6.4921875" ty="52.46693249948635"/>
@@ -400,7 +397,6 @@ condition)<y:LabelModel>
       </data>
     </edge>
     <edge id="e8" source="n6" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-6.522578384233952" sy="100.76083910060606" tx="6.5078125" ty="100.76083910060606"/>

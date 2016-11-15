@@ -63,11 +63,11 @@
           <h2>About this presentation</h2>
           <ul>
              <li>Not so traditional development approach</li>
-             <li>JEE technologies for near real-time experience</li>
+             <li><strong>near real-time</strong> experience</li>
              <li>Servlet 3.1 and JAX-RS capabilities</li>
-             <li>WebSockets - of course !</li>
+             <li><strong>WebSockets</strong> - of course !</li>
              <li>Beyond JEE - tips for improvements</li>
-             <li>Future of JEE platform - what's expected in JEE8/9</li>
+             <li><strong>What's expected</strong> in JEE8/9</li>
              <li>DEMO Included: <a href="https://github.com/jveverka/jee-examples/tree/master/HybridApplicationNG">HybridApplication</a></li>
              <li>Other examples: <a href="https://github.com/jveverka/jee-examples">jee-examples</a></li>
              <li>Not Included: hard real-time</li> 
@@ -117,6 +117,10 @@
         </section>
 
         <section>
+          <img class="embedded-image" data-src="images/JEE_architecture.png" height="600"/>
+        </section>
+
+        <section>
           <h2>JEE - HTTP/All clients</h2>
           <ul>
              <li>JEE technologies for HTTP/HTML5 clients</li>
@@ -137,9 +141,8 @@
           <ul>
              <li>JSF is excellent for server-side rendering</li>
              <li>Problematic for real-time applications</li>
-             <li>Can be adapted for real-time user experience</li>
-             <li>Use combination of JSF views and websockets</li>
-             <li>Use combination of JSF components and Javascript components</li>
+             <li><strong>Can be adapted for real-time</strong> user experience</li>
+             <li>Combination of JSF, websockets, JavaScript</li>
           </ul>
         </section>
         
@@ -147,10 +150,9 @@
           <h2>JSF and real-time</h2>
           <ul>
              <li>Use partial rendering on data change</li>
-             <li>Use JSF view for page layout</li>
-             <li>Components are updated using javascript</li>
+             <li>Independent JavaScript componets</li>
              <li>Some JSF libraries have support for websockets</li>
-             <li>Primefaces - p:socket component</li>
+             <li>Primefaces - <strong>p:socket</strong> component</li>
              <li>Primefaces - <a href="http://www.primefaces.org/showcase/ui/ajax/remoteCommand.xhtml">p:remoteCommad</a> and custom JavaScript</li> 
           </ul>
         </section>
@@ -199,9 +201,9 @@ function onMessage(message) {
              <li>Servlet 3.1 - Protocol upgrade</li>
              <li>Full duplex communication using own protocol</li>
              <ol>
-                <li>Handshake - protocol negotiation</li>
-                <li>Full duplex TCP connection</li>
-                <li>Close from client or server</li>
+                <li><strong>Handshake</strong> - protocol negotiation</li>
+                <li><strong>Full duplex</strong> TCP connection</li>
+                <li><strong>Close from client or server</strong></li>
              </ol>
              <li>Demo on Github: <a href="https://github.com/jveverka/jee-examples/tree/master/Servlets/servlet-04_protocol-upgrade">servlet-04_protocol-upgrade</a></li>
              <li>WebSocket is based on HTTP protocol upgrade</li>
@@ -210,7 +212,8 @@ function onMessage(message) {
 
         <section>
           <h2>HTTP protocol upgrade</h2>
-          1. Implement your HttpUpgradeHandler
+          1. Implement your<br>
+          javax.servlet.http.HttpUpgradeHandler
           <pre><code>
 public class CustomProtocoloUpgradeHandler implements HttpUpgradeHandler {
 	@Override
@@ -270,18 +273,21 @@ public class ProtocolUpgradeServlet extends HttpServlet {
         </section>
 
         <section>
-          <h2>Is HTTP a problem !?</h2>
+          <h2>HTTP ServerPush hacks</h2>
           <ul>
-             <li>HTTP is good for client-initiated requests</li>
-             <li>HTTP is <strong>half-duplex</strong></li>
-             <li>HTTP is <strong>verbose, complex, resource-wasteful</strong></li>
-             <li>Common practise for ServerPush</li>
-             <ul>
-                 <li>Polling</li>
-                 <li>Long Polling</li>
+                 <li>Polling - regular period</li>
+                 <li>Long Polling - request timeout</li>
                  <li>Comet / Ajax</li>
                  <li>SSE - Server Sent Events</li>
-             </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Is HTTP a problem !?</h2>
+          <ul>
+             <li>HTTP is <strong>stateless</strong></li>
+             <li>HTTP is <strong>half-duplex</strong></li>
+             <li>HTTP is <strong>verbose, complex, resource-wasteful</strong></li>
           </ul>
         </section>
 
@@ -289,11 +295,9 @@ public class ProtocolUpgradeServlet extends HttpServlet {
           <h2>Payload optimization</h2>
           <ul>
              <li><a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a></li>
-             <li>To speed up HTTP communication</li>
-             <li>Better/Faster for serialization of structured data</li>
-             <li>Optimizes HTTP payload - binary payloads</li>
+             <li><strong>Better/Faster</strong> for serialization of structured data</li>
              <li>Supported languges - C, C++, C#, Go, Java, Python, Ruby, ...</li>
-             <li>Defines protocol contract</li> 
+             <li><strong>Defines protocol contract</strong></li> 
              <li>Backward compatibility support</li> 
           </ul>
         </section>
@@ -318,7 +322,7 @@ public class ProtocolUpgradeServlet extends HttpServlet {
                 <li><code>http://.../data/getAllUsers</code></li>
                 <li><code>http://.../data/getUserByName?userName=john</code></li>
              </ul>
-             <li>Supports 'application/protobuf' media type</li>
+             <li>Supports <strong>'application/protobuf'</strong> media type</li>
           </ul>
         </section>
 
@@ -409,33 +413,31 @@ public static void main(String[] args) {
         <section>
           <h2>WebSockets</h2>
           <ul>
-             <li>TCP based, bi-directional, full-duplex messaging</li> 
-             <li>Dramatic reduction in network latency and traffic.</li>
-             <li>WebSocket frame is just <strong>2</strong> bytes overhead.</li>
-             <li>Good adoption by majority of web browsers.</li> 
+             <li><strong>Dramatic reduction</strong> in network latency and traffic.</li>
+             <li>WebSocket frame is just <strong>2 bytes</strong> overhead.</li>
              <li>Mature JavaScript API.</li> 
              <li>Supports HTTP proxies, filtering, authentication.</li>
-             <li>Suitable also for native client integration</li> 
+             <li>Suitable also <strong>for native</strong> client integration</li> 
           </ul>
         </section>
 
         <section>
           <h2>WebSockets</h2>
           <ul>
-             <li>WebSocket API - <a href="https://www.w3.org/TR/websockets/">W3C</a></li>
-             <li>WebSocket MDN - <a href="https://developer.mozilla.org/en/docs/Web/API/WebSocket">API and method overview.</a></li>
              <li>IETF - <a href="https://tools.ietf.org/html/rfc6455">RFC-6455</a></li>
              <li>JSR 356 - <a href="https://jcp.org/en/jsr/detail?id=356">Java API for WebSocket</a></li>
-             <li>Protocol is an independent TCP-based protocol.</li>
+             <li>Protocol is an <strong>independent TCP-based</strong> protocol.</li>
              <li>Only relationship to HTTP is that its handshake is interpreted by
-                 HTTP servers as an Upgrade request</li>    
+                 HTTP servers as an Upgrade request</li>   
+             <li>WebSocket is thin layer on top of TCP</li>     
           </lu>
         </section>
 
         <section>
           <img class="embedded-image" data-src="images/WebSocket.svg"/>
         </section>
-          
+     
+        <!--     
         <section>
           <h2>WebSocket protocol</h2>
           <ul>
@@ -452,16 +454,16 @@ public static void main(String[] args) {
                   to work in the presence of proxies and other intermediaries</li>
           </ul>
         </section>
+        -->
 
         <section>
           <h2>WebSockets with proto buffers</h2>
           <ul>
              <li>We can go even faster !</li>
              <li>Easy to use proto messages instead JSOM or XML</li>
-             <li>Reuse existing REST API proto messages</li>
-             <li>Use binary transport</li>
-             <li>Use <strong>@PathParam</strong> to process different message types</li>
-             <li>Use Wrapper message in case of single WS endpoint</li>  
+             <li><strong>Reuse existing REST API</strong> proto messages</li>
+             <li><strong>@PathParam</strong> to process different message types</li>
+             <li><strong>Wrapper</strong> message in case of single WS endpoint</li>  
           </ul>
         </section>
 
@@ -594,6 +596,7 @@ public void sendMessage(Session session, Message message,
           <section>
              <img class="embedded-image" data-src="images/HybridApp.architecture.svg"/>
           </section>
+          <!--
           <section>
              <h2>Demo: Hybrid Application</h2>
              Communication protocols:
@@ -612,6 +615,20 @@ public void sendMessage(Session session, Message message,
                </ul>
                <li><strong>proto3</strong> - ready for C#, Python, Ruby ... clients !</li>
              </ul>
+          </section>
+          -->
+          <section>
+             <h2>Demo: Hybrid Application</h2>
+             Application Topics:<br/>
+             <ul>
+               <li>/</li>
+               <li>/devices</li>
+               <li>/devices/{deviceId}</li>
+               <li>/chat</li>
+               <li>/chat/{roomId}</li>
+               <li>/test</li>
+             </ul>
+             <br/>
           </section>
           <section>
              <img class="embedded-image" data-src="images/HybridApp.client01.svg"/>
